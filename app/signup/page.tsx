@@ -15,6 +15,7 @@ export default function Signup({
     const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
+    const displayName = formData.get("displayName") as string;
     const supabase = createClient();
 
     const { error } = await supabase.auth.signUp({
@@ -22,6 +23,9 @@ export default function Signup({
       password,
       options: {
         emailRedirectTo: `${origin}/auth/callback`,
+        data: {
+          name: displayName
+        }
       },
     });
 
