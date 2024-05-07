@@ -1,3 +1,6 @@
 export default function Section() {
-  return <div></div>;
+  return <form>
+    <label>Content Header</label>
+    <input type="text" />
+  </form>;
 }
