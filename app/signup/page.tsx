@@ -67,7 +67,7 @@ export default function Signup({
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="displayName"
-          placeholder="username"
+          placeholder="name"
           required
         />
         <label className="text-md" htmlFor="email">
