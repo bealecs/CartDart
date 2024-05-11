@@ -1,5 +1,5 @@
 import { Navbar } from "@/components/Navbar";
-import UploadToS3 from "@/components/UploadToS3";
+import UploadToS3 from "@/components/pfp-section/UploadToS3";
 import BioForm from "@/components/bio-section/BioForm";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
