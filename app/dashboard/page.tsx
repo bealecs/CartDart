@@ -1,4 +1,5 @@
 import { Navbar } from "@/components/Navbar";
+import UploadToS3 from "@/components/UploadToS3";
 import BioForm from "@/components/bio-section/BioForm";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
@@ -19,6 +20,7 @@ export default async function ProtectedPage() {
       <header>
         <Navbar />
         <BioForm />
+        <UploadToS3 />
       </header>
     <main>
 

@@ -8,7 +8,6 @@ export const Navbar = () => {
         <a>Explore</a>
         <a>My Courses</a>
         <a href="">Create a Course</a>
-        <a>Subscription Plans</a>
         <AuthButton />
       </div>
     </nav>

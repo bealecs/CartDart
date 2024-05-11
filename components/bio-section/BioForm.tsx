@@ -23,8 +23,9 @@ export default function BioForm() {
       {!edittingBio ? (
         <div>
           <div>
-            <h4>Bio</h4>
+            <h4>Bio</h4> 
           </div>
+          {/* Need to add a suspense boundary here for the bio */}
           <p>{bioContent}</p>
           <button onClick={() => setEdittingBio(true)}>Edit my bio</button>
         </div>
