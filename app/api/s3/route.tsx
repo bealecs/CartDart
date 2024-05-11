@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { createClient } from "@/utils/supabase/server";
 
 const s3Client = new S3Client({
 	region: process.env.AWS_S3_BUCKET_REGION,
@@ -24,10 +25,16 @@ async function uploadFileToS3(file, fileName) {
 
 	const command = new PutObjectCommand(params);
 	await s3Client.send(command);
-	return fileName;
+	return "Successfully uploaded file to S3";
 }
 
 export async function POST(request) {
+	"use server";
+
+	const supabase = createClient();
+	const {data: {user}} = await supabase.auth.getUser();
+	const username = user.user_metadata.name;
+
 	try {
 
 		const formData = await request.formData();
@@ -38,7 +45,7 @@ export async function POST(request) {
 		} 
 
 		const buffer = Buffer.from(await file.arrayBuffer());
-		const fileName = await uploadFileToS3(buffer, file.name);
+		const fileName = await uploadFileToS3(buffer, `${username}pfp`);
 
 		return NextResponse.json({ success: true, fileName});
 	} catch (error) {
