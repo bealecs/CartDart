@@ -7,18 +7,7 @@ import UpdatePFP from "./UpdatePFP";
 export default function UploadToS3() {
   const [file, setFile] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
-  const [pfpLink, setPfpLink] = useState(null);
-
-  useEffect(() => {
-    FetchPFP().then((link) => {
-      if (link) {
-        setPfpLink(link);
-      } else {
-        setPfpLink(null);
-      }
-    });
-  }, []);
-
+  
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     
@@ -61,10 +50,11 @@ export default function UploadToS3() {
 
   return (
     <form action={handleSubmit}>
-      {pfpLink != null && <Image width={100} height={100} src={pfpLink} alt="User Profile Picture" className="rounded-xl"/>}
       <input type="file" accept="image/jpeg" onChange={handleFileChange}/>
       <button type="submit">Upload Image</button>
-      {previewURL && <Image width={200} height={200} src={previewURL} alt="preview of image to be uploaded" />}
+      {previewURL && <div>
+        <h4>Upload Preview</h4>
+        <Image width={200} height={200} src={previewURL} alt="preview of image to be uploaded" /></div>}
     </form>
   );
 }
