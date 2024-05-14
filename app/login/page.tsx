@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
@@ -27,12 +26,12 @@ export default function Login({
 
     return redirect("/dashboard");
   };
- 
+
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
+    <div className="flex flex-col items-center justify-center h-screen">
       <Link
         href="/"
-        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm z-10"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +50,7 @@ export default function Login({
         Back
       </Link>
 
-      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
+      <form className="flex flex-col w-full max-w-md gap-6 text-foreground">
         <h2 className="mx-auto text-4xl text-green-400 my-10">Sign in to your account</h2>
         <label className="text-md" htmlFor="email">
           Email
@@ -84,7 +83,8 @@ export default function Login({
           <a href="/signup" className="text-green-400 underline">
             here
           </a>
-        </div>        {searchParams?.message && (
+        </div>
+        {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
             {searchParams.message}
           </p>

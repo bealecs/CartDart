@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { headers } from "next/headers";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../login/submit-button";
+import { headers } from "next/headers";
 
 export default function Signup({
   searchParams,
@@ -38,10 +38,10 @@ export default function Signup({
   };
 
   return (
-    <div className="flex-1 flex flex-col w-full px-8 sm:max-w-md justify-center gap-2">
+    <div className="flex flex-col items-center justify-center h-screen">
       <Link
         href="/"
-        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm"
+        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm z-10"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +59,7 @@ export default function Signup({
         </svg>{" "}
         Back
       </Link>
-      <form className="animate-in flex-1 flex flex-col w-full justify-center gap-2 text-foreground">
+      <form className="flex flex-col w-full max-w-md gap-6 text-foreground">
         <h2 className="mx-auto text-4xl text-green-400 my-10">Create an account</h2>
         <label className="text-md" htmlFor="displayName">
           Display Name
