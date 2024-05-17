@@ -1,4 +1,5 @@
 "use client"
+import Map from './Map';
 import UpdateLocation from './UpdateLocation';
 
 export function GeoLocationComponent(){
@@ -26,6 +27,7 @@ export function GeoLocationComponent(){
   return (
     <div>
      <button onClick={getLocation}>Update Location</button>
+     <Map />
     </div>
   );
 };
