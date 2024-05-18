@@ -1,3 +1,4 @@
+import { GeoLocationComponent } from "@/components/Geolocation/Geolocation";
 import { Navbar } from "@/components/Navbar";
 import BioForm from "@/components/bio-section/BioForm";
 import UploadToS3 from "@/components/pfp-section/UploadToS3";
@@ -12,6 +13,7 @@ export default async function Profile() {
             <Navbar />
             <UploadToS3 />
             <BioForm />
+            <GeoLocationComponent />
         </div>
     )
 }
