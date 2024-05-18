@@ -1,7 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import PFP from "./pfp-section/PFP";
+import PFP from "./edit-profile-section/pfp-section/PFP";
 import Image from "next/image";
 
 export default async function AuthButton() {

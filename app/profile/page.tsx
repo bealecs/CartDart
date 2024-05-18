@@ -1,7 +1,7 @@
-import { GeoLocationComponent } from "@/components/Geolocation/Geolocation";
+import { GeoLocationComponent } from "@/components/edit-profile-section/Geolocation/Geolocation";
 import { Navbar } from "@/components/Navbar";
-import BioForm from "@/components/bio-section/BioForm";
-import UploadToS3 from "@/components/pfp-section/UploadToS3";
+import BioForm from "@/components/edit-profile-section/bio-section/BioForm";
+import UploadToS3 from "@/components/edit-profile-section/pfp-section/UploadToS3";
 import { createClient } from "@/utils/supabase/server"
 
 export default async function Profile() {
