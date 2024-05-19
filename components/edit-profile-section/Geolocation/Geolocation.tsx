@@ -25,7 +25,7 @@ export function GeoLocationComponent(){
   };
 
   return (
-    <div className='mx-5 my-5'>
+    <div className='my-5 border-solid border-4 border-white'>
      <button className='text-xl' onClick={getLocation}>Update Location</button>
      <Map />
     </div>

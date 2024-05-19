@@ -19,7 +19,7 @@ export default function BioForm() {
   }, []);
 
   return (
-    <div>
+    <div className="border-solid border-4 border-white">
       {!edittingBio ? (
         <div>
           <h2 className="text-xl mx-5">Bio:</h2>

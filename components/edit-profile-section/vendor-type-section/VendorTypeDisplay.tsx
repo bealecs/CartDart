@@ -49,12 +49,12 @@ export default function VendorTypeDisplay() {
   
   
   return (
-    <div>
+    <div className="border-solid border-4 border-white my-5">
       {!edittingVendorType ? (
-        <div className="my-10">
+        <div className="">
           <h2 className="text-xl mx-5">Vendor Category Display:</h2>
           {/* Need to add a suspense boundary here for the bio */}
-          <div className="flex flex-row justify-start w-full py-5">
+          <div className="flex flex-row justify-start w-full py-2">
             <p className="mx-5">{vendorType}</p>
             <button
               onClick={() => {
@@ -68,7 +68,7 @@ export default function VendorTypeDisplay() {
           </div>
         </div>
       ) : (
-        <form className="flex flex-col my-5" action={handleSubmit}>
+        <form className="flex flex-col" action={handleSubmit}>
           <label className="mx-5">New Vendor Category:</label>
           <select
             className="text-black w-fit p-2 m-2 mx-5 "
