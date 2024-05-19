@@ -21,7 +21,7 @@ export default async function HomeDisplay() {
       <Suspense fallback={<Loading />}>
         {users.length > 0 ? (
           users.map((user) => (
-            <div className="my-10" key={user.id}>
+            <div className="border-solid border-2 border-white my-5 rounded" key={user.id}>
               <p>Name: {user.name}</p>
               <p>Email: {user.email}</p>
               <p>Vendor Cuisine: {!user.vendor_type ? "No vendor type found" : `${user.vendor_type}`}</p>

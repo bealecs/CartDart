@@ -49,7 +49,7 @@ export default function VendorTypeDisplay() {
   
   
   return (
-    <div className="border-solid border-4 border-white my-5">
+    <div className="border-solid border-2 border-white my-5 rounded">
       {!edittingVendorType ? (
         <div className="">
           <h2 className="text-xl mx-5">Vendor Category Display:</h2>
