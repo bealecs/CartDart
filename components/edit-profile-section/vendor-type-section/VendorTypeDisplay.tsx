@@ -18,39 +18,76 @@ export default function VendorTypeDisplay() {
     });
   }, []);
 
+  const handleSubmit = () => {
+    UpdateVendorType(vendorType);
+    setEdittingVendorType(false);
+  };
+
+  const foodVariations = [
+    "American",
+    "Brazilian",
+    "Caribbean",
+    "Chinese",
+    "Cuban",
+    "Dessert",
+    "Ethiopian",
+    "Filipino",
+    "French",
+    "Greek",
+    "Hawaiian",
+    "Indian",
+    "Italian",
+    "Japanese",
+    "Korean",
+    "Mediterranean",
+    "Mexican",
+    "Middle Eastern",
+    "Peruvian",
+    "Thai",
+    "Vietnamese"
+  ];
+  
+  
   return (
     <div>
       {!edittingVendorType ? (
         <div className="my-10">
           <h2 className="text-xl mx-5">Vendor Category Display:</h2>
           {/* Need to add a suspense boundary here for the bio */}
-          <div className="flex flex-row justify-center w-full py-5">
-            <p>{vendorType}</p>
-            <button onClick={() => {
-                setVendorType("")
-                setEdittingVendorType(true)
-            }} className="mx-12 ">Edit Vendor Category</button>
+          <div className="flex flex-row justify-start w-full py-5">
+            <p className="mx-5">{vendorType}</p>
+            <button
+              onClick={() => {
+                setVendorType("");
+                setEdittingVendorType(true);
+              }}
+              className="mx-5"
+            >
+              Edit Vendor Category
+            </button>
           </div>
         </div>
       ) : (
-        <form
-          className="flex flex-col"
-          action={() => {
-            UpdateVendorType(vendorType);
-            setEdittingVendorType(false);
-          }}
-        >
-          <label>New Vendor Category:</label>
-          <input
-            type="select"
-            className="text-black"
-            onChange={(e) => {
-              setVendorType(e.target.value);
-            }}
+        <form className="flex flex-col my-5" action={handleSubmit}>
+          <label className="mx-5">New Vendor Category:</label>
+          <select
+            className="text-black w-fit p-2 m-2 mx-5 "
+            onChange={(e) => setVendorType(e.target.value)}
             value={vendorType}
-          />
-          <button onClick={() => setEdittingVendorType(false)}>Discard changes</button>
-          <button type="submit">Save changes</button>
+          >
+            <option value="" disabled>
+              Select a category
+            </option>
+            {foodVariations.map((culture) => (
+              <option key={culture} value={culture.replace(' ', '_')}>
+                {culture}
+              </option>
+            ))}
+          </select>
+          <button className="w-fit mx-5" onClick={() => setEdittingVendorType(false)}>
+            Discard changes
+          </button>
+          <button className="w-fit mx-5" type="submit">Save changes</button>
         </form>
       )}
     </div>

@@ -13,9 +13,9 @@ export default async function Profile() {
         <div className="flex flex-col justify-evenly w-full">
             <Navbar />
             <UploadToS3 />
+            <VendorTypeDisplay />
             <BioForm />
             <GeoLocationComponent />
-            <VendorTypeDisplay />
         </div>
     )
 }

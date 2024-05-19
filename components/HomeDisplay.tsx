@@ -24,7 +24,7 @@ export default async function HomeDisplay() {
             <div className="my-10" key={user.id}>
               <p>Name: {user.name}</p>
               <p>Email: {user.email}</p>
-              <p>Vendor Type: {!user.vendor_type ? "No vendor type found" : `${user.vendor_type}`}</p>
+              <p>Vendor Cuisine: {!user.vendor_type ? "No vendor type found" : `${user.vendor_type}`}</p>
               <div className="flex w-fit">
               <p>Vendor Location:</p>
               <ul className="flex mx-2">

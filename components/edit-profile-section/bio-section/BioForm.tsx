@@ -24,8 +24,8 @@ export default function BioForm() {
         <div>
           <h2 className="text-xl mx-5">Bio:</h2>
           {/* Need to add a suspense boundary here for the bio */}
-          <div className="flex flex-row justify-center w-full py-5">
-            <p>{bioContent}</p>
+          <div className="flex flex-row justify-start w-full py-5">
+            <p className="w-7/12 mx-5">{bioContent}</p>
             <button onClick={() => setEdittingBio(true)} className="mx-12 ">Edit my bio</button>
           </div>
         </div>
