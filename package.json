@@ -7,11 +7,12 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.572.0",
+    "@googlemaps/js-api-loader": "^1.16.6",
     "@supabase/ssr": "latest",
     "@supabase/supabase-js": "latest",
     "autoprefixer": "10.4.17",
-    "next": "latest",
     "geist": "^1.2.1",
+    "next": "latest",
     "postcss": "8.4.33",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -19,6 +20,7 @@
     "typescript": "5.3.3"
   },
   "devDependencies": {
+    "@types/google.maps": "^3.55.9",
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "@types/react-dom": "18.2.18",

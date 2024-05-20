@@ -1,6 +1,7 @@
 import GetUsers from "@/app/api/get-users/route";
 import { Suspense } from "react";
 import Loading from "./loading-fallbacks/Loading";
+import MapComponent from "./MapComponent";
 
 interface User {
   Latitude_Longitude_Location: number[];
@@ -17,22 +18,31 @@ export default async function HomeDisplay() {
   const users: User[] = await GetUsers();
 
   return (
-    <div>
+    <div className="w-8/12 mx-auto">
       <Suspense fallback={<Loading />}>
         {users.length > 0 ? (
           users.map((user) => (
-            <div className="border-solid border-2 border-white my-5 rounded" key={user.id}>
-              <p>Name: {user.name}</p>
-              <p>Email: {user.email}</p>
-              <p>Vendor Cuisine: {!user.vendor_type ? "No vendor type found" : `${user.vendor_type}`}</p>
-              <div className="flex w-fit">
-              <p>Vendor Location:</p>
-              <ul className="flex mx-2">
-                <li className="mx-2">Latitude: {user.Latitude_Longitude_Location[0]}</li>
-                <li className="mx-2">Longitude: {user.Latitude_Longitude_Location[1]}</li>
-              </ul>
+            <div
+              className="border-solid border-2 border-white my-5 rounded flex justify-around"
+              key={user.id}
+            >
+              <div className="content-center items-center m-5">
+                <p>Name: {user.name}</p>
+                <p>Email: {user.email}</p>
+                <p>
+                  Vendor Cuisine:{" "}
+                  {!user.vendor_type
+                    ? "No vendor type found"
+                    : `${user.vendor_type}`}
+                </p>
+                <p>Vendor Location:</p>
               </div>
-              {/* Add more user details as needed */}
+              {user.Latitude_Longitude_Location ? 
+              <div className="m-5">
+                <MapComponent coordinates={user.Latitude_Longitude_Location} />
+              </div>
+              :
+              <p>There was no current location found</p>}
             </div>
           ))
         ) : (
