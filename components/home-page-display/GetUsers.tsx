@@ -1,7 +1,7 @@
 "use server";
 import { createClient } from "@/utils/supabase/server";
 
-export default async function GET() {
+export default async function GetUsers() {
     const supabase = createClient();
 
     const { data: profiles, error } = await supabase.from('profiles').select('*');

@@ -1,5 +1,5 @@
-import HomeDisplay from "@/components/HomeDisplay";
 import { Navbar } from "@/components/Navbar";
+import HomeDisplay from "@/components/home-page-display/HomeDisplay";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 

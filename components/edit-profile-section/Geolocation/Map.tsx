@@ -11,8 +11,17 @@ export default function Map() {
 
   return (
     <div>
-      <p>{coords[0]}</p>
-      <p>{coords[1]}</p>
+      {coords ? (
+        <div>
+          <p>{coords[0]}</p>
+          <p>{coords[1]}</p>
+        </div>
+      ) : (
+        <p>
+          There were no coordinates found. Update your location to view your
+          coordinates
+        </p>
+      )}
     </div>
   );
 }

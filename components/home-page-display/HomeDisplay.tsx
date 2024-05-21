@@ -1,7 +1,7 @@
-import GetUsers from "@/app/api/get-users/route";
 import { Suspense } from "react";
-import Loading from "./loading-fallbacks/Loading";
-import MapComponent from "./MapComponent";
+import Loading from "../loading-fallbacks/Loading";
+import MapComponent from "../edit-profile-section/Geolocation/MapComponent";
+import GetUsers from "./GetUsers";
 
 interface User {
   Latitude_Longitude_Location: number[];
@@ -18,7 +18,7 @@ export default async function HomeDisplay() {
   const users: User[] = await GetUsers();
 
   return (
-    <div className="w-8/12 mx-auto">
+    <div className="mx-auto">
       <Suspense fallback={<Loading />}>
         {users.length > 0 ? (
           users.map((user) => (

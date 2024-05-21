@@ -44,24 +44,25 @@ export default function VendorTypeDisplay() {
     "Middle Eastern",
     "Peruvian",
     "Thai",
-    "Vietnamese"
+    "Vietnamese",
   ];
-  
-  
+
   return (
-    <div className="border-solid border-2 border-white my-5 rounded">
+    <div className="border-solid border-2 border-white p-5 my-5 rounded">
       {!edittingVendorType ? (
-        <div className="">
-          <h2 className="text-xl mx-5">Vendor Category Display:</h2>
-          {/* Need to add a suspense boundary here for the bio */}
-          <div className="flex flex-row justify-start w-full py-2">
-            <p className="mx-5">{vendorType}</p>
+        <div>
+          <div className="flex">
+            <h2 className="text-xl">Vendor Category Display:</h2>
+            <p className=" items-center content-center mx-2 text-xl">
+              {vendorType}
+            </p>
+          </div>
+          <div className="flex flex-row justify-start w-full">
             <button
               onClick={() => {
                 setVendorType("");
                 setEdittingVendorType(true);
               }}
-              className="mx-5"
             >
               Edit Vendor Category
             </button>
@@ -69,9 +70,10 @@ export default function VendorTypeDisplay() {
         </div>
       ) : (
         <form className="flex flex-col" action={handleSubmit}>
-          <label className="mx-5">New Vendor Category:</label>
+          <label htmlFor="newVendor" className="text-xl">New Vendor Category:</label>
           <select
-            className="text-black w-fit p-2 m-2 mx-5 "
+            className="text-black w-fit my-2"
+            id="newVendor"
             onChange={(e) => setVendorType(e.target.value)}
             value={vendorType}
           >
@@ -79,15 +81,22 @@ export default function VendorTypeDisplay() {
               Select a category
             </option>
             {foodVariations.map((culture) => (
-              <option key={culture} value={culture.replace(' ', '_')}>
+              <option key={culture} value={culture.replace(" ", "_")}>
                 {culture}
               </option>
             ))}
           </select>
-          <button className="w-fit mx-5" onClick={() => setEdittingVendorType(false)}>
-            Discard changes
-          </button>
-          <button className="w-fit mx-5" type="submit">Save changes</button>
+          <div className="flex">
+            <button
+              className="w-fit"
+              onClick={() => setEdittingVendorType(false)}
+            >
+              Discard changes
+            </button>
+            <button className="w-fit mx-5" type="submit">
+              Save changes
+            </button>
+          </div>
         </form>
       )}
     </div>

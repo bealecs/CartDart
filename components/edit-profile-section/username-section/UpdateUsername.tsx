@@ -1,10 +1,7 @@
 "use server";
 import { createClient } from "@/utils/supabase/server";
 
-export default async function UpdateLocation(
-  latitude: number,
-  longitude: number
-) {
+export default async function UpdateUsername(newName: string) {
   const supabase = createClient();
 
   const {
@@ -15,12 +12,15 @@ export default async function UpdateLocation(
     return;
   }
 
+  const newUsername = newName;
+
   const { error } = await supabase
     .from("profiles")
-    .update({ Latitude_Longitude_Location: [latitude, longitude] })
+    .update({ name: newUsername })
     .eq("id", user.id);
 
   if (error) {
     throw error;
   }
+
 }

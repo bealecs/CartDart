@@ -19,15 +19,14 @@ export default function BioForm() {
   }, []);
 
   return (
-    <div className="border-solid border-2 border-white rounded">
+    <div className="border-solid border-2 border-white rounded my-5 p-5">
       {!edittingBio ? (
         <div>
-          <h2 className="text-xl mx-5">Bio:</h2>
-          {/* Need to add a suspense boundary here for the bio */}
-          <div className="flex flex-row justify-start w-full py-5">
-            <p className="w-7/12 mx-5">{bioContent}</p>
-            <button onClick={() => setEdittingBio(true)} className="mx-12 ">Edit my bio</button>
-          </div>
+          <h2 className="text-xl">Bio:</h2>
+            <p className="w-fit my-2">{bioContent}</p>
+            <button onClick={() => setEdittingBio(true)}>
+              Edit my bio
+            </button>
         </div>
       ) : (
         <form
@@ -46,8 +45,12 @@ export default function BioForm() {
             }}
             value={bioContent}
           />
-          <button onClick={() => setEdittingBio(false)}>Discard changes</button>
-          <button type="submit">Save changes</button>
+          <div className="flex">
+            <button className="mr-5" onClick={() => setEdittingBio(false)}>
+              Discard changes
+            </button>
+            <button className="mx-5" type="submit">Save changes</button>
+          </div>
         </form>
       )}
     </div>

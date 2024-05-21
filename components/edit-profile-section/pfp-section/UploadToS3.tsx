@@ -49,11 +49,11 @@ export default function UploadToS3() {
   };
 
   return (
-    <div className="border-solid border-2 border-white rounded">
-      <h2 className="text-xl mx-5">Choose a new profile picture:</h2>
-      <form action={handleSubmit} className="flex flex-row justify-start items-center content-center w-full py-5">
-        <input type="file" accept="image/jpeg" onChange={handleFileChange} className="mx-5"/>
-        <button type="submit" className="mx-5">Upload Image</button>
+    <div className="border-solid border-2 border-white rounded p-5 my-5">
+      <h2 className="text-xl">Choose a new profile picture:</h2>
+      <form action={handleSubmit} className="flex flex-row justify-start items-center content-center w-full">
+        <input type="file" accept="image/jpeg" onChange={handleFileChange}/>
+        <button type="submit">Upload Image</button>
         {previewURL && (
         <div className="flex flex-row items-center content-center">
           <h4>Upload Preview:</h4>

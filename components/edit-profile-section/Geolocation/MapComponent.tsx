@@ -13,7 +13,7 @@ export default function MapComponent({
   useEffect(() => {
     const initMap = async () => {
       const loader = new Loader({
-        apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
+        apiKey: process.env.GOOGLE_MAPS_API_KEY as string,
         version: "weekly",
       });
 
@@ -29,7 +29,7 @@ export default function MapComponent({
 
       const mapOptions: google.maps.MapOptions = {
         center: position,
-        zoom: 17,
+        zoom: 4,
         mapId: "locator map",
       };
 
