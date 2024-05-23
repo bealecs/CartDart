@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import FetchPFP from "./FetchPFP";
+import { useState } from "react";
 import UpdatePFP from "./UpdatePFP";
 
 export default function UploadToS3() {
@@ -31,7 +30,7 @@ export default function UploadToS3() {
 
       // Send formData to your server-side API using fetch or any other HTTP client
       try {
-        const response = await fetch("/api/s3", {
+        const response = await fetch("/api/pfp-s3", {
           method: "POST",
           body: formData,
         });

@@ -1,15 +1,7 @@
 import { NextResponse } from "next/server";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { createClient } from "@/utils/supabase/server";
-
-const s3Client = new S3Client({
-	region: process.env.AWS_S3_BUCKET_REGION,
-	credentials: {
-		accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
-		secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
-	}
-});
-
+import s3Client from "@/app/lib/S3-Client";
 
 async function uploadFileToS3(file, fileName) {
 
@@ -17,12 +9,12 @@ async function uploadFileToS3(file, fileName) {
 	console.log(fileName);
 
 	const params = {
-		Bucket: process.env.AWS_S3_BUCKET_NAME,
+		Bucket: process.env.AWS_S3_PFP_BUCKET_NAME,
 		Key: `${fileName}`,
 		Body: fileBuffer,
 		ContentType: "image/jpg"
 	}
-
+	
 	const command = new PutObjectCommand(params);
 	await s3Client.send(command);
 	return "Successfully uploaded file to S3";

@@ -8,6 +8,10 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'clif-notes-profile-pictures.s3.amazonaws.com'
+            },
+            {
+                protocol: 'https',
+                hostname: 'cart-dart-menus.s3.amazonaws.com'
             }
         ]
     }
