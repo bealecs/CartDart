@@ -12,9 +12,9 @@ export default async function DeleteMenuFromS3(itemToDelete) {
     const command = new DeleteObjectCommand(params);
     try {
        const response = await s3Client.send(command);
+       console.log(`${itemToDelete}: successfully deleted from S3 bucket`);
+       return response;
     } catch (error) {
         console.log(error);
     }
-
-
 }

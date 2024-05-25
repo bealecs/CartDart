@@ -86,9 +86,23 @@ export default function AddMenu() {
   const handleDeleteMenu = () => {
     if (window.confirm("Are you sure you want to delete this menu?")) {
       DeleteMenuFromDB(menuArray, menuArray[itemToDelete]);
-      DeleteMenuFromS3(menuArray[itemToDelete]);
+      DeleteMenuFromS3(trimURL(menuArray[itemToDelete]));
+      location.reload();
     }
-    location.reload();
+  }
+
+  const  trimURL = (url) => {
+    // Find the index of ".com/"
+    const targetIndex = url.indexOf(".com/");
+  
+    // If ".com/" is found in the string
+    if (targetIndex !== -1) {
+      // Slice the string from after ".com/"
+      return url.slice(targetIndex + 5); // +5 to account for the length of ".com/"
+    } else {
+      // If ".com/" is not found, return the original string
+      return url;
+    }
   }
 
   return (
@@ -131,9 +145,11 @@ export default function AddMenu() {
                   alt="A menu for the featured vendor"
                   src={menu}
                 />
+                <a href={menu} target="_blank">View Menu</a>
+                <button onClick={handleDeleteMenu}>Delete Menu</button>
                 {menuClicked ? (
                   <div className="flex flex-col">
-                    <button onClick={handleDeleteMenu}>Delete menu</button>
+                    <button onClick={handleDeleteMenu}>Delete Menu</button>
                     <button onClick={() => setMenuClicked(false)}>
                       Cancel
                     </button>
