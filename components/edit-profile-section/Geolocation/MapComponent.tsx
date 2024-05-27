@@ -63,7 +63,6 @@ export default function MapComponent({
 
   return (
     <div
-      className="rounded"
       style={{ height: "400px", width: "400px", color: "black" }}
       ref={mapRef}
     ></div>

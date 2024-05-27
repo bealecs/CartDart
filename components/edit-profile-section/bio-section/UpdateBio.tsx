@@ -14,7 +14,7 @@ export default async function UpdateBio(bioState: string) {
 
   const userBio = bioState;
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("profiles")
     .update({ bio: userBio })
     .eq("id", user.id);

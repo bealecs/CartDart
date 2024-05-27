@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import Loading from "../loading-fallbacks/Loading";
 import MapComponent from "../edit-profile-section/Geolocation/MapComponent";
 import GetUsers from "./GetUsers";
-import PFP from "../edit-profile-section/pfp-section/PFP";
 import Image from "next/image";
 
 interface User {
@@ -12,30 +11,53 @@ interface User {
   id: string;
   name: string;
   pfp: string;
-  today_special: string;
   vendor_type: string;
+  menus: string[];
+  special_today: string;
 }
 
 export default async function HomeDisplay() {
   const users: User[] = await GetUsers();
 
   return (
-    <div className="flex flex-wrap justify-evenly items-center content-center">
+    <div className="flex flex-col items-center content-center">
       <Suspense fallback={<Loading />}>
         {users.length > 0 ? (
           users.map((user) => (
             <div
-              className="border-solid border-2 border-white m-5 rounded flex justify-around"
+              className="w-5/12 border-solid border-2 border-white m-5 flex justify-between"
               key={user.id}
             >
-              <div className="m-5">
-                <p>Name: {user.name}</p>
-                <p>
-                  Vendor Cuisine:{" "}
-                  {!user.vendor_type
-                    ? "No vendor type found"
-                    : `${user.vendor_type}`}
-                </p>
+              <div className="m-5 flex flex-col justify-evenly">
+                <div>
+                  <p className="underline">Name:</p>
+                  <div className="flex">
+                    <p className="items-center content-center">{user.name}</p>
+                    <Image
+                      height={60}
+                      width={60}
+                      src={user.pfp}
+                      alt="Profile picture for the vendor specified"
+                      className="rounded-full mx-5"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <p className="underline">Vendor Cuisine:</p>
+                  <p>
+                    {!user.vendor_type
+                      ? "No vendor type found"
+                      : `${user.vendor_type}`}
+                  </p>
+                </div>
+                <div>
+                  <p className="underline">{"Today's Special:"}</p>
+                  <p>
+                    {!user.special_today
+                      ? "The are currently no deals highlighted for this vendor"
+                      : user.special_today}
+                  </p>
+                </div>
               </div>
               {user.Latitude_Longitude_Location ? (
                 <MapComponent coordinates={user.Latitude_Longitude_Location} />

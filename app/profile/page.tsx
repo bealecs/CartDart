@@ -5,6 +5,7 @@ import UploadToS3 from "@/components/edit-profile-section/pfp-section/UploadToS3
 import VendorTypeDisplay from "@/components/edit-profile-section/vendor-type-section/VendorTypeDisplay";
 import ChangeUsername from "@/components/edit-profile-section/username-section/ChangeUsername";
 import AddMenu from "@/components/edit-profile-section/alter-menus/Menus";
+import TodaySpecial from "@/components/edit-profile-section/today-special/TodaySpecialDisplay";
 
 export default async function Profile() {
 
@@ -13,6 +14,7 @@ export default async function Profile() {
             <Navbar />
             <ChangeUsername />
             <UploadToS3 />
+            <TodaySpecial />
             <VendorTypeDisplay />
             <BioForm />
             <AddMenu />

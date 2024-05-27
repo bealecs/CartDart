@@ -84,17 +84,17 @@ export default function AddMenu() {
   };
 
   const handleDeleteMenu = () => {
-    if (window.confirm("Are you sure you want to delete this menu?")) {
       DeleteMenuFromDB(menuArray, menuArray[itemToDelete]);
       DeleteMenuFromS3(trimURL(menuArray[itemToDelete]));
       location.reload();
-    }
-  }
+  };
 
-  const  trimURL = (url) => {
+  //I pass in the value of the image link from the DB into the deletefromS3 function. I need the first half of the URL gone to match the S3 object name.
+  //This function removes the necessary parts of the URL to get the desired form of the string to remove from S3 bucket
+  const trimURL = (url) => {
     // Find the index of ".com/"
     const targetIndex = url.indexOf(".com/");
-  
+
     // If ".com/" is found in the string
     if (targetIndex !== -1) {
       // Slice the string from after ".com/"
@@ -103,7 +103,7 @@ export default function AddMenu() {
       // If ".com/" is not found, return the original string
       return url;
     }
-  }
+  };
 
   return (
     <div className="border-2 border-white rounded">
@@ -137,24 +137,21 @@ export default function AddMenu() {
         <div className="flex">
           {menuArray &&
             menuArray.map((menu, index) => (
-              <div key={menu} onClick={() => handleMenuClick(index)}>
-                <Image
-                  className="mr-5"
-                  width={150}
-                  height={100}
-                  alt="A menu for the featured vendor"
-                  src={menu}
-                />
-                <a href={menu} target="_blank">View Menu</a>
-                <button onClick={handleDeleteMenu}>Delete Menu</button>
-                {menuClicked ? (
-                  <div className="flex flex-col">
-                    <button onClick={handleDeleteMenu}>Delete Menu</button>
+              <div key={menu} className="flex flex-col">
+                <a href={menu} target="_blank">Menu # {index + 1}</a>
+                {!menuClicked ? (
+                    <button className="text-left" onClick={() => handleMenuClick(index)}>
+                      Delete Menu
+                    </button>
+                ) : (
+                  <div className="flex">
+                    Are you sure?
+                    <button onClick={handleDeleteMenu}>Delete</button>
                     <button onClick={() => setMenuClicked(false)}>
                       Cancel
                     </button>
                   </div>
-                ) : null}
+                )}
               </div>
             ))}
         </div>
