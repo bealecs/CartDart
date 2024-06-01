@@ -6,7 +6,7 @@ export const Navbar = () => {
     <nav>
       <div className="flex w-screen justify-around items-center text-sm ">
         <a href="/dashboard">Home</a>
-        <a>Explore</a>
+        <a href="/explore">Explore</a>
         <AuthButton />
       </div>
     </nav>

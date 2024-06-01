@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Loading from "../loading-fallbacks/Loading";
+import Loading from "../loading-fallbacks/LoadingEditProfile";
 import MapComponent from "../edit-profile-section/Geolocation/MapComponent";
 import GetUsers from "./GetUsers";
 import Image from "next/image";
