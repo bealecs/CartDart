@@ -19,6 +19,7 @@ export default function Signup({
     const displayName = formData.get("displayName") as string;
     const state = formData.get("state") as string;
     const city = formData.get("city") as string;
+    const userType = formData.get("userType") as string;
     const supabase = createClient();
 
     const { error } = await supabase.auth.signUp({
@@ -30,6 +31,7 @@ export default function Signup({
           name: displayName,
           state: state,
           city: city,
+          user_type: userType,
         }
       },
     });
@@ -67,6 +69,11 @@ export default function Signup({
       <form className="flex flex-col w-full max-w-md gap-6 text-foreground">
         <h2 className="mx-auto text-4xl text-green-400 my-10">Create an account</h2>
         <CitySelector />
+        <label htmlFor="userType">Which type of user are you?</label>
+          <select id="state" className='text-black' name='userType' required>
+              <option key="customer" value="customer">Customer</option>
+              <option key="vendor" value="vender">Vendor</option>
+          </select>
         <label className="text-md" htmlFor="displayName">
           Display Name
         </label>
