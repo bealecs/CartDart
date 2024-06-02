@@ -36,14 +36,13 @@ export default async function HomeDisplay() {
                     <p className="underline">Name:</p>
                     <div className="flex">
                       <p className="items-center content-center">{user.name}</p>
-                      {user.pfp ?
                       <Image
                         height={60}
                         width={60}
-                        src={user.pfp}
+                        src={user.pfp ? user.pfp : "/default-pfp.svg"}
                         alt="Profile picture for the vendor specified"
                         className="rounded-full mx-5"
-                      /> : null}
+                      />
                     </div>
                   </div>
 
@@ -66,9 +65,17 @@ export default async function HomeDisplay() {
                 </div>
               </a>
               {user.Latitude_Longitude_Location ? (
-                <MapComponent coordinates={user.Latitude_Longitude_Location} />
+                <div className="w-[400px] h-[400px] items-center content-center bg-white text-black">
+                  <MapComponent
+                    coordinates={user.Latitude_Longitude_Location}
+                  />
+                </div>
               ) : (
-                <p>There was no current location found</p>
+                <div className="w-[480px] h-[400px] items-center content-center bg-white text-black">
+                  <p className="mx-auto text-center">
+                    There was no current location found
+                  </p>
+                </div>
               )}
             </div>
           ))

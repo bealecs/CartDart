@@ -1,10 +1,8 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import FetchLocation from "./FetchLocation";
 import MapComponent from "./MapComponent";
 import UpdateLocation from "./UpdateLocation";
-
-
 
 export default function GeoLocationComponent() {
   const [coordinates, setCoordinates] = useState([]);
@@ -26,7 +24,7 @@ export default function GeoLocationComponent() {
         (position) => {
           const { latitude, longitude } = position.coords;
           UpdateLocation(latitude, longitude);
-          setMapUpdater((prev) => prev + 1)
+          setMapUpdater((prev) => prev + 1);
           alert("Your new location has been posted");
         },
         (error) => {
@@ -45,7 +43,12 @@ export default function GeoLocationComponent() {
       <div className="flex flex-col">
         <h4 className="text-xl">My Current Location</h4>
         {coordinates ? <MapComponent coordinates={coordinates} /> : <p>There is no current geolocation for this profile.</p>}
-        <button onClick={getLocation} className="border-2 border-white rounded p-2 my-5">Push Current Location</button>
+        <button
+          onClick={getLocation}
+          className="border-2 border-white rounded p-2 my-5"
+        >
+          Push Current Location
+        </button>
       </div>
     </div>
   );

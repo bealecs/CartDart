@@ -6,7 +6,6 @@ import Image from "next/image";
 
 export default async function Page({ params }: { params: { user: string } }) {
   const supabase = createClient();
-  console.log('params received:', params)
   const { data, error } = await supabase
     .from("profiles")
     .select('*')
@@ -28,12 +27,12 @@ export default async function Page({ params }: { params: { user: string } }) {
         <div key={profile.id}>
           <div className="flex">
           <p className="items-center content-center mr-5">Name: {profile.name}</p>
-          <Image width={50} height={50} className="rounded" src={profile.pfp} alt={profile.name} />
+          {profile.pfp != null && <Image width={50} height={50} className="rounded" src={profile.pfp} alt={profile.name} />}
           </div>
           <p className="my-5">Vendor Type: {profile.vendor_type}</p>
           <div className="flex flex-col">
             <p>Location:</p>
-            <MapComponent coordinates={profile.Latitude_Longitude_Location} />
+            {profile.Latitude_Longitude_Location != null ? <MapComponent coordinates={profile.Latitude_Longitude_Location} /> : <p>There was no location found for this vendor</p>}
           </div>
           {/* You can add more fields from the profile object here */}
         </div>

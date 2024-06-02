@@ -19,7 +19,7 @@ export default function PFP() {
     }, []);
     return(
         <div>
-            {pfpLink != null && <Image width={50} height={50} src={pfpLink} alt="User Profile Picture" className="rounded-full"/>}
+            <Image width={50} height={50} src={pfpLink ? pfpLink : "/default-pfp.svg"} alt="User Profile Picture" className="rounded-full"/>
         </div>
     )
 }
