@@ -3,6 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../login/submit-button";
 import { headers } from "next/headers";
+import CitySelector from "@/components/CityStateSelectionForm";
 
 export default function Signup({
   searchParams,
@@ -16,6 +17,8 @@ export default function Signup({
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const displayName = formData.get("displayName") as string;
+    const state = formData.get("state") as string;
+    const city = formData.get("city") as string;
     const supabase = createClient();
 
     const { error } = await supabase.auth.signUp({
@@ -24,7 +27,9 @@ export default function Signup({
       options: {
         emailRedirectTo: `${origin}/auth/callback`,
         data: {
-          name: displayName
+          name: displayName,
+          state: state,
+          city: city,
         }
       },
     });
@@ -61,13 +66,14 @@ export default function Signup({
       </Link>
       <form className="flex flex-col w-full max-w-md gap-6 text-foreground">
         <h2 className="mx-auto text-4xl text-green-400 my-10">Create an account</h2>
+        <CitySelector />
         <label className="text-md" htmlFor="displayName">
           Display Name
         </label>
         <input
           className="rounded-md px-4 py-2 bg-inherit border mb-6"
           name="displayName"
-          placeholder="name"
+          placeholder="Display name"
           required
         />
         <label className="text-md" htmlFor="email">

@@ -11,5 +11,4 @@ export default async function GetUsers() {
     }
 
     return profiles;
-
 }

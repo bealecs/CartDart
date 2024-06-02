@@ -59,16 +59,17 @@ export default function Explore() {
         <button type="submit">Enter Search</button>
       </form>
       {searchResults.length === 0
-        ? null
+        ? <p>There were no results found for your search, please try another vendor name</p>
         : searchResults.map((result, index) => (
             <div key={index} className="text-white flex flex-col border-2 border-white rounded w-fit my-5">
               <p>Vendor Name: {result.name}</p>
               <p>Vendor Cuisine: {result.vendor_type}</p>
               <div>
                 <p>Vendor Location:</p>
+                { result.Latitude_Longitude_Location ?
                 <MapComponent
                   coordinates={result.Latitude_Longitude_Location}
-                />
+                /> : <p>There is no current posted location for this vendor</p>}
               </div>
             </div>
           ))}

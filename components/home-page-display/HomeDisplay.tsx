@@ -14,6 +14,8 @@ interface User {
   vendor_type: string;
   menus: string[];
   special_today: string;
+  state: string;
+  city: string;
 }
 
 export default async function HomeDisplay() {
@@ -34,13 +36,14 @@ export default async function HomeDisplay() {
                     <p className="underline">Name:</p>
                     <div className="flex">
                       <p className="items-center content-center">{user.name}</p>
+                      {user.pfp ?
                       <Image
                         height={60}
                         width={60}
                         src={user.pfp}
                         alt="Profile picture for the vendor specified"
                         className="rounded-full mx-5"
-                      />
+                      /> : null}
                     </div>
                   </div>
 
