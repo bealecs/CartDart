@@ -31,7 +31,7 @@ export default function Signup({
           name: displayName,
           state: state,
           city: city,
-          user_type: userType,
+          vendor: userType === "vendor" ? true : false,
         }
       },
     });

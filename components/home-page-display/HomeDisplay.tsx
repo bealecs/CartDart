@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import Loading from "../loading-fallbacks/LoadingEditProfile";
 import MapComponent from "../edit-profile-section/Geolocation/MapComponent";
-import GetUsers from "./GetUsers";
 import Image from "next/image";
+import GetVendors from "./GetVendors";
 
 interface User {
   Latitude_Longitude_Location: number[];
@@ -16,10 +16,11 @@ interface User {
   special_today: string;
   state: string;
   city: string;
+  vendor: boolean;
 }
 
 export default async function HomeDisplay() {
-  const users: User[] = await GetUsers();
+  const users: User[] = await GetVendors();
 
   return (
     <div className="flex flex-col items-center content-center">
