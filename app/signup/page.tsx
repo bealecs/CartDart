@@ -3,7 +3,7 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../login/submit-button";
 import { headers } from "next/headers";
-import CitySelector from "@/components/CityStateSelectionForm";
+import CitySelector from "@/components/edit-profile-section/city-state/CityStateSelectionForm";
 
 export default function Signup({
   searchParams,

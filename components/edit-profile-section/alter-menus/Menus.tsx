@@ -84,9 +84,9 @@ export default function AddMenu() {
   };
 
   const handleDeleteMenu = () => {
-      DeleteMenuFromDB(menuArray, menuArray[itemToDelete]);
-      DeleteMenuFromS3(trimURL(menuArray[itemToDelete]));
-      location.reload();
+    DeleteMenuFromDB(menuArray, menuArray[itemToDelete]);
+    DeleteMenuFromS3(trimURL(menuArray[itemToDelete]));
+    location.reload();
   };
 
   //I pass in the value of the image link from the DB into the deletefromS3 function. I need the first half of the URL gone to match the S3 object name.
@@ -107,6 +107,17 @@ export default function AddMenu() {
 
   return (
     <div className="border-2 border-white rounded">
+      <div className="m-5">
+        {previewURL ? <p>Preview:</p> : null}
+        {previewURL && (
+          <Image
+            width={100}
+            height={100}
+            src={previewURL}
+            alt="Preview image of the menu to be uploaded to the server"
+          />
+        )}
+      </div>
       <form action={handleSubmit} className="flex flex-col m-5">
         <label>Upload photos of your menu{"(s)"} here:</label>
         <input type="file" accept="image/jpeg" onChange={handleFileChange} />
@@ -121,28 +132,23 @@ export default function AddMenu() {
           Upload Menu
         </button>
       </form>
-      <div className="m-5">
-        {previewURL ? <p>Preview:</p> : null}
-        {previewURL && (
-          <Image
-            width={100}
-            height={100}
-            src={previewURL}
-            alt="Preview image of the menu to be uploaded to the server"
-          />
-        )}
-      </div>
+
       <div className="m-5">
         {menuArray ? <p>Current Menus:</p> : null}
         <div className="flex">
           {menuArray &&
             menuArray.map((menu, index) => (
               <div key={menu} className="flex flex-col">
-                <a href={menu} target="_blank">Menu # {index + 1}</a>
+                <a href={menu} target="_blank">
+                  Menu # {index + 1}
+                </a>
                 {!menuClicked ? (
-                    <button className="text-left" onClick={() => handleMenuClick(index)}>
-                      Delete Menu
-                    </button>
+                  <button
+                    className="text-left"
+                    onClick={() => handleMenuClick(index)}
+                  >
+                    Delete Menu
+                  </button>
                 ) : (
                   <div className="flex">
                     Are you sure?

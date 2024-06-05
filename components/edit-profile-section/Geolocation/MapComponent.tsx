@@ -45,7 +45,7 @@ export default function MapComponent({
         if (response.results[0]) {
           map.setZoom(11);
 
-          const marker = new Marker({
+          const marker = new google.maps.marker.AdvancedMarkerElement({
             position: latlng,
             map: map,
           });

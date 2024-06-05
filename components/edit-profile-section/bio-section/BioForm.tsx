@@ -24,7 +24,11 @@ export default function BioForm() {
         <div>
           <h2 className="text-xl">Bio:</h2>
             <p className="w-fit my-2">{bioContent}</p>
-            <button onClick={() => setEdittingBio(true)}>
+            <button onClick={() => {
+              setBioContent("");
+              setEdittingBio(true)
+            }
+            }>
               Edit my bio
             </button>
         </div>

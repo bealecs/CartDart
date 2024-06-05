@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import FetchLocation from "./FetchLocation";
 import MapComponent from "./MapComponent";
 import UpdateLocation from "./UpdateLocation";
+import Loading from "@/components/loading-fallbacks/LoadingEditProfile";
 
 export default function GeoLocationComponent() {
   const [coordinates, setCoordinates] = useState([]);
@@ -25,7 +26,6 @@ export default function GeoLocationComponent() {
           const { latitude, longitude } = position.coords;
           UpdateLocation(latitude, longitude);
           setMapUpdater((prev) => prev + 1);
-          alert("Your new location has been posted");
         },
         (error) => {
           console.error(error);
@@ -38,6 +38,11 @@ export default function GeoLocationComponent() {
     }
   };
 
+  const clearLocation = () => {
+    UpdateLocation(null, null);
+    setMapUpdater((prev) => prev + 1);
+  }
+
   return (
     <div className="my-5 flex border-solid border-2 border-white rounded p-5">
       <div className="flex flex-col">
@@ -49,6 +54,7 @@ export default function GeoLocationComponent() {
         >
           Push Current Location
         </button>
+        <button onClick={clearLocation} className="border-2 border-white rounded p-2">Clear current location</button>
       </div>
     </div>
   );
