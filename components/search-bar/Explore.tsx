@@ -3,6 +3,7 @@ import { useState } from "react";
 import FetchSearchResults from "./FetchSearchResults";
 import MapComponent from "../edit-profile-section/Geolocation/MapComponent";
 import Image from "next/image";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface SearchResults {
   id: string;
@@ -50,18 +51,22 @@ export default function Explore() {
   };
 
   return (
-    <div>
+    <div className="mx-2 my-4">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="query">Vendor Search</label>
-        <input
-          id="query"
-          className="text-black p-1"
-          type="text"
-          value={query}
-          onChange={handleChange}
-          placeholder="Search vendors by name"
-        />
-        <button type="submit">Enter Search</button>
+        <h2 className="text-2xl">Vendor Search</h2>
+        <div className="flex">
+          <input
+            id="query"
+            className="text-black p-1 rounded-md my-4 mr-2"
+            type="text"
+            value={query}
+            onChange={handleChange}
+            placeholder="Search vendors by name"
+          />
+          <button type="submit">
+            <SearchIcon />
+          </button>
+        </div>
       </form>
       {searchResults.length === 0 ? (
         <p>
@@ -70,7 +75,7 @@ export default function Explore() {
         </p>
       ) : (
         searchResults.map((result, index) => (
-          <div key={index} className="border-2 border-white rounded my-5 w-fit">
+          <div key={index} className="border-2 p-1 border-white rounded w-fit">
             <a href={"/" + result.name} className="w-fit">
               <div className="text-white flex flex-col">
                 <div className="flex items-center">
@@ -83,9 +88,21 @@ export default function Explore() {
                   />
                   <p className="mx-5">{result.name}</p>
                 </div>
-                <p>{result.city}, {result.state}</p>
-                <p className="text-left">Cuisine: {result.vendor_type ? result.vendor_type : "Cuisine type not specified"}</p>
-                {result.special_today && <p>Deal of the day: {result.special_today}</p>}
+                <p>
+                  {result.city}, {result.state}
+                </p>
+                <p className="text-left">
+                  <span className="underline">Cuisine:</span>{" "}
+                  {result.vendor_type
+                    ? result.vendor_type
+                    : "Cuisine type not specified"}
+                </p>
+                {result.special_today && (
+                  <p>
+                    <span className="underline">Deal of the day:</span>{" "}
+                    {result.special_today}
+                  </p>
+                )}
               </div>
               <div>
                 {result.Latitude_Longitude_Location ? (

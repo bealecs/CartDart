@@ -28,10 +28,10 @@ export default function Login({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center h-screen px-4 py-8 bg-gray-900">
       <Link
         href="/"
-        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm z-10"
+        className="transition duration-500 linear absolute left-4 top-8 py-1 px-2 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm z-10"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ export default function Login({
       </Link>
 
       <form className="flex flex-col w-full max-w-md gap-6 text-foreground">
-        <h2 className="mx-auto text-4xl text-green-400 my-10">Sign in to your account</h2>
+        <h2 className="mx-auto text-4xl text-center text-[#663399] mt-16">Sign in to your account</h2>
         <label className="text-md" htmlFor="email">
           Email
         </label>
@@ -73,15 +73,15 @@ export default function Login({
         />
         <SubmitButton
           formAction={signIn}
-          className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
+          className="transition duration-300 linear bg-btn-background hover:bg-btn-background-hover rounded-md px-4 py-2 text-foreground mb-2"
           pendingText="Signing In..."
         >
           Sign In
         </SubmitButton>
         <div className="mx-auto">
-          No account? Create an account{" "}
-          <a href="/signup" className="text-green-400 underline">
-            here
+          No account?{" "}
+          <a href="/signup" className="text-[#663399] underline">
+          Create an account
           </a>
         </div>
         {searchParams?.message && (

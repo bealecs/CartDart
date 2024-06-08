@@ -1,7 +1,6 @@
 import MapComponent from "../edit-profile-section/Geolocation/MapComponent";
 import Image from "next/image";
 import GetVendors, { GetCurrentUser } from "./GetVendors";
-import { AuthUser } from "@supabase/supabase-js";
 
 interface User {
   Latitude_Longitude_Location: number[];

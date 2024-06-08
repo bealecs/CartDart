@@ -32,12 +32,12 @@ export default function Signup({
           state: state,
           city: city,
           vendor: userType === "vendor" ? true : false,
-        }
+        },
       },
     });
 
     if (error) {
-        console.log(error)
+      console.log(error);
       return redirect("/login?message=Could not authenticate user");
     }
 
@@ -45,10 +45,10 @@ export default function Signup({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center px-4 bg-gray-900 h-screen">
       <Link
         href="/"
-        className="absolute left-8 top-8 py-2 px-4 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm z-10"
+        className="transition duration-500 linear absolute left-4 top-8 py-1 px-2 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm z-10"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,19 +66,27 @@ export default function Signup({
         </svg>{" "}
         Back
       </Link>
-      <form className="flex flex-col w-full max-w-md gap-6 text-foreground">
-        <h2 className="mx-auto text-4xl text-green-400 my-10">Create an account</h2>
+      <form className="flex flex-col w-full max-w-md text-foreground">
+        <h2 className="mx-auto text-3xl text-center text-[#663399] mt-10 mb-4">
+          Create an account
+        </h2>
         <CitySelector />
-        <label htmlFor="userType">Which type of user are you?</label>
-          <select id="state" className='text-black' name='userType' required>
-              <option key="customer" value="customer">Customer</option>
-              <option key="vendor" value="vender">Vendor</option>
+        <div className="my-2">
+          <label htmlFor="userType">Which type of user are you?</label>
+          <select  id="state" className="text-black w-9/12 rounded-md mb-2" name="userType" required>
+            <option key="customer" value="customer">
+              Customer
+            </option>
+            <option key="vendor" value="vender">
+              Vendor
+            </option>
           </select>
+        </div>
         <label className="text-md" htmlFor="displayName">
           Display Name
         </label>
         <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="rounded-md px-2 py-1 bg-inherit border mb-2"
           name="displayName"
           placeholder="Display name"
           required
@@ -87,7 +95,7 @@ export default function Signup({
           Email
         </label>
         <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="rounded-md px-2 py-1 bg-inherit border mb-2"
           name="email"
           placeholder="you@example.com"
           required
@@ -96,7 +104,7 @@ export default function Signup({
           Password
         </label>
         <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="rounded-md px-2 py-1 bg-inherit border mb-4"
           type="password"
           name="password"
           placeholder="••••••••"
@@ -104,15 +112,15 @@ export default function Signup({
         />
         <SubmitButton
           formAction={createAccount}
-          className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
+          className="transition duration-300 linear bg-btn-background hover:bg-btn-background-hover rounded-md px-4 py-2 text-foreground mb-2"
           pendingText="Signing Up..."
         >
           Sign Up
         </SubmitButton>
-        <div className="mx-auto">
-          Already have an account? Sign in{" "}
-          <a href="/login" className="text-green-400 underline">
-            here
+        <div className="mx-auto mt-2">
+          Already have an account?{" "}
+          <a href="/login" className="text-[#663399] underline">
+          Sign in
           </a>
         </div>
         {searchParams?.message && (

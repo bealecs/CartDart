@@ -66,16 +66,16 @@ const CitySelector = () => {
     };
 
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col my-2'>
             <label htmlFor="state">Where are you located?:</label>
-            <select id="state" className='text-black' name='state' onChange={handleStateChange} required>
+            <select id="state" className='text-black w-9/12 rounded-md' name='state' onChange={handleStateChange} required>
                 <option value="" className='text-black'>Select State</option>
                 {Object.keys(data).map((state) => (
                     <option key={state} value={state}>{state}</option>
                 ))}
             </select>
-            <select id="city" className='text-black' name='city' disabled={!selectedState} required>
-                <option value="" className='text-black'>Select City</option>
+            <select id="city" className='text-black w-9/12 mt-2 rounded-md' name='city' disabled={!selectedState} required>
+                <option value="">Select City</option>
                 {cities.map((city) => (
                     <option key={city} value={city}>{city}</option>
                 ))}
