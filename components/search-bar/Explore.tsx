@@ -76,7 +76,7 @@ export default function Explore() {
       ) : (
         searchResults.map((result, index) => (
           <div key={index} className="border-2 p-1 border-white rounded w-fit">
-            <a href={"/" + result.name} className="w-fit">
+            <a href={"/" + result.name + "/" + result.id} className="w-fit">
               <div className="text-white flex flex-col">
                 <div className="flex items-center">
                   <Image

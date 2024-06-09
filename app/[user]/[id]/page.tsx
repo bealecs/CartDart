@@ -4,12 +4,13 @@ import MapComponent from "@/components/edit-profile-section/Geolocation/MapCompo
 import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 
-export default async function Page({ params }: { params: { user: string } }) {
+export default async function Page({ params }: { params: { user: string, id: string} }) {
   const supabase = createClient();
   const { data: profile, error } = await supabase
     .from("profiles")
     .select("*")
-    .eq("name", params.user);
+    .eq("name", params.user)
+    .eq('id', params.id);
 
   if (error) {
     console.log(error);

@@ -31,7 +31,7 @@ export default async function HomeDisplay() {
                 className="transition duration-500 linear bg-blue-200 hover:bg-blue-400 text-black w-5/12 border-solid border-2 border-white m-5 flex justify-between"
                 key={user.id}
               >
-                <a href={`/${user.name}`} className="w-full">
+                <a href={`/${user.name}/${user.id} `} className="w-full">
                   <div className="mx-auto items-center flex flex-col justify-evenly h-full">
                     <div>
                       <p className="underline">Name:</p>
