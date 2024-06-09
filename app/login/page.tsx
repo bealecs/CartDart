@@ -51,12 +51,12 @@ export default function Login({
       </Link>
 
       <form className="flex flex-col w-full max-w-md gap-6 text-foreground">
-        <h2 className="mx-auto text-4xl text-center text-[#663399] mt-16">Sign in to your account</h2>
+        <h2 className="mx-auto text-4xl text-center text-[#663399]">Sign in to your account</h2>
         <label className="text-md" htmlFor="email">
           Email
         </label>
         <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="rounded-md px-4 py-2 bg-inherit border"
           name="email"
           placeholder="you@example.com"
           required
@@ -65,7 +65,7 @@ export default function Login({
           Password
         </label>
         <input
-          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          className="rounded-md px-4 py-2 bg-inherit border"
           type="password"
           name="password"
           placeholder="••••••••"

@@ -12,7 +12,7 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --background: 200 50% 3%;
+      --background: 221, 39%, 11%;
       --btn-background: 270 50% 50%;
       --btn-background-hover: 270 50% 40%;
       --foreground: 200 20% 96%;

@@ -12,7 +12,7 @@ import EditCityState from "@/components/edit-profile-section/city-state/EditCity
 export default async function Profile() {
      
     return (
-        <div className="flex flex-col justify-evenly">
+        <div className="flex flex-col justify-evenly bg-background">
             <Navbar />
             <EditCityState/>
             <ChangeUsername />

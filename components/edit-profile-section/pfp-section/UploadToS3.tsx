@@ -55,7 +55,7 @@ export default function UploadToS3() {
         <button type="submit">Upload Image</button>
         {previewURL && (
         <div className="flex flex-row items-center content-center">
-          <h4>Upload Preview:</h4>
+          <h4>Preview:</h4>
           <Image
             width={65}
             height={65}

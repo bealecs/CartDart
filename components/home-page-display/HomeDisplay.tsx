@@ -22,7 +22,7 @@ export default async function HomeDisplay() {
   const currentUser: User = await GetCurrentUser();
 
   return (
-    <div className="flex flex-col items-center content-center">
+    <div className="flex flex-col items-center content-center bg-background h-screen">
       <p>Showing results from: {currentUser?.city}, {currentUser?.state}</p>
         {users.length > 0 ? (
           users.map((user) => (
