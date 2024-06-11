@@ -7,7 +7,11 @@ import InsertMenu from "./InsertMenu";
 import DeleteMenuFromDB from "./DeleteMenuFromDB";
 import DeleteMenuFromS3 from "./DeleteMenuFromS3";
 
-export default function AddMenu() {
+interface Menus {
+  menus: string[];
+}
+
+export default function AddMenu({menus}: Menus) {
   const [file, setFile] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
   const [menuArray, setMenuArray] = useState<string[]>([]);
@@ -15,14 +19,8 @@ export default function AddMenu() {
   const [menuClicked, setMenuClicked] = useState<boolean>(false);
 
   useEffect(() => {
-    FetchMenus().then((menuList) => {
-      if (menuList) {
-        setMenuArray(menuList);
-      } else {
-        setMenuArray(null);
-      }
-    });
-  }, []);
+    setMenuArray(menus);
+  }, [menus]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -49,6 +47,7 @@ export default function AddMenu() {
       try {
         const response = await fetch("/api/menus-s3", {
           headers: {
+            //sends UUID to attach unique indentifier number to the menu for later retrieval
             uuid: uuid,
           },
           method: "POST",

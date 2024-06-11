@@ -15,7 +15,7 @@ export default async function UpdateLocation(
     return;
   }
 
-  const { error } = await supabase
+  const { data, error } = await supabase
     .from("profiles")
     .update({ Latitude_Longitude_Location: [latitude, longitude] })
     .eq("id", user.id);
@@ -23,4 +23,5 @@ export default async function UpdateLocation(
   if (error) {
     throw error;
   }
+  return data;
 }

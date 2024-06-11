@@ -1,48 +1,42 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FetchCity, FetchState } from "./FetchCityState";
 import CitySelector from "./CityStateSelectionForm";
 import { UpdateCity, UpdateState } from "./UpdateCityState";
 
-export default function EditCityState(user, profile) {
-    const [city, setCity] = useState<string>(null);
-    const [state, setState] = useState<string>(null);
+interface Residence {
+    city: string;
+    state: string;
+}
+
+export default function EditCityState({city, state}: Residence) {
+    const [cityValue, setCityValue] = useState<string>(null);
+    const [stateValue, setStateValue] = useState<string>(null);
     const [editting, setEditting] = useState<boolean>(false);
 
     useEffect(() => {
-        FetchCity().then((city) => {
-            if(city) {
-                setCity(city);
-            } else {
-                return;
-            }
-        })
-        FetchState().then((state) => {
-            if(state) {
-                setState(state);
-            } else {
-                return;
-            }
-        })
-    })
+        if(city && state) {
+            setCityValue(city)
+            setStateValue(state)
+        }
+    }, [city, state])
 
     const handleSubmit = (formData: FormData) => {
         const updatedCity = formData.get('city') as string;
         const updatedState = formData.get('state') as string;
         UpdateCity(updatedCity);
         UpdateState(updatedState);
-        setCity(updatedCity);
-        setState(updatedState);
+        setCityValue(updatedCity);
+        setStateValue(updatedState);
         setEditting(false)
     }
     return (
         <div className="border-2 border-white rounded flex my-5 justify-evenly">
            {!editting ? (
             <>
-            <p>My State: {state}</p>
-            <p>My City: {city}</p>
-            <button onClick={() => setEditting(true)}>Edit my city/state</button>
+            <p>My State: {stateValue}</p>
+            <p>My City: {cityValue}</p>
+            <button onClick={() => setEditting(true)}>Edit</button>
             </>
            ): (
            <form action={handleSubmit}>

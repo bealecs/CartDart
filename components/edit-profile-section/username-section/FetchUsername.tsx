@@ -9,12 +9,12 @@ export default async function FetchUsername() {
     if(!user) { 
         return;
     }
-    const { data:  profiles, error } = await supabase.from('profiles').select('name').eq('id', user.id);
+    const { data:  profile, error } = await supabase.from('profiles').select('name').eq('id', user.id);
 
     if(error) {
         throw error;
     }
-
-    return profiles[0].name;
+    
+    return profile[0].name;
 
 }

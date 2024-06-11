@@ -4,18 +4,18 @@ import MapComponent from "./MapComponent";
 import UpdateLocation from "./UpdateLocation";
 
 interface Geolocation {
-  latitude_longitude_location: number[] | null;
+  latitude_longitude_location: number[];
 }
 
 export default function GeoLocationComponent(coords: Geolocation) {
   const [coordinates, setCoordinates] = useState<number[]>([]);
-  const [mapUpdater, setMapUpdater] = useState<number>(0);
 
   useEffect(() => {
     if (coords.latitude_longitude_location && coords.latitude_longitude_location.length === 2) {
       setCoordinates([coords.latitude_longitude_location[0], coords.latitude_longitude_location[1]]);
     }
-  }, [mapUpdater]);
+    console.log(coords.latitude_longitude_location)
+  }, [coords]);
 
   const getLocation = () => {
     if (navigator.geolocation) {
@@ -23,8 +23,7 @@ export default function GeoLocationComponent(coords: Geolocation) {
         (position) => {
           const { latitude, longitude } = position.coords;
           UpdateLocation(latitude, longitude);
-          setMapUpdater((prev) => prev + 1);
-          alert("Your location has been successfully updated")
+          setCoordinates([latitude, longitude]);
         },
         (error) => {
           console.error(error);
@@ -38,8 +37,8 @@ export default function GeoLocationComponent(coords: Geolocation) {
   };
 
   const clearLocation = () => {
-    setMapUpdater((prev) => prev + 1);
     UpdateLocation(null, null);
+    setCoordinates([null, null])
   }
 
   return (

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import PFP from "../edit-profile-section/pfp-section/PFP";
 import UsernameDisplay from "../edit-profile-section/username-section/UsernameDisplay";
+import FetchPFP from "../edit-profile-section/pfp-section/FetchPFP";
+import FetchUsername from "../edit-profile-section/username-section/FetchUsername";
 
 export default async function AuthButton() {
   const supabase = createClient();
@@ -10,6 +12,9 @@ export default async function AuthButton() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  const pfp: string = await FetchPFP();
+  const name: string = await FetchUsername();
 
   const signOut = async () => {
     "use server";
@@ -21,14 +26,14 @@ export default async function AuthButton() {
 
   return user ? (
     <div className="flex items-center gap-4 w-fit">
-      <PFP />
+      <PFP pfp={pfp}/>
       <a
         href="/profile"
         className="transition duration-500 linear border-2 border-transparent hover:border-b-white"
       >
         <div className="flex">
           <p className="mr-1">Hey,</p>
-          <UsernameDisplay />
+          <UsernameDisplay name={name}/>
         </div>
       </a>
       <form action={signOut}>
