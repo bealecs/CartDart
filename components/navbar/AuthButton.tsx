@@ -1,8 +1,8 @@
 import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import PFP from "./edit-profile-section/pfp-section/PFP";
-import UsernameDisplay from "./edit-profile-section/username-section/UsernameDisplay";
+import PFP from "../edit-profile-section/pfp-section/PFP";
+import UsernameDisplay from "../edit-profile-section/username-section/UsernameDisplay";
 
 export default async function AuthButton() {
   const supabase = createClient();

@@ -25,7 +25,7 @@ export default function NoUserDisplay() {
               </radialGradient>
             </defs>
           </svg>
-          <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+          <div className="mx-auto max-w-lg text-center lg:mx-auto lg:flex-auto lg:py-32 lg:text-left">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Find Favorite Food Carts, Fast
             </h2>
@@ -35,10 +35,10 @@ export default function NoUserDisplay() {
             <a href="/explore">Explore local vendors</a>
             <OpenInNew className="p-1"/>
             </div>
-            <div className="mt-12 flex items-center justify-center gap-x-6 lg:justify-start">
+            <div className="mt-12 flex items-center justify-center gap-x-6 lg:justify-evenly">
               <a
                 href="/signup"
-                className="rounded-md bg-btn-background px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:btn-background-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="rounded-md bg-gray-300 px-3.5 py-2.5 text-sm font-semibold text-btn-background shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 Create an account
               </a>

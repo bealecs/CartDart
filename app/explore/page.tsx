@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/navbar/Navbar";
 import Explore from "@/components/search-bar/Explore";
 
 export default function ExplorePage() {

@@ -1,22 +1,20 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
-import FetchLocation from "./FetchLocation";
+import {  useEffect, useState } from "react";
 import MapComponent from "./MapComponent";
 import UpdateLocation from "./UpdateLocation";
-import Loading from "@/components/loading-fallbacks/LoadingEditProfile";
 
-export default function GeoLocationComponent() {
-  const [coordinates, setCoordinates] = useState([]);
+interface Geolocation {
+  latitude_longitude_location: number[] | null;
+}
+
+export default function GeoLocationComponent(coords: Geolocation) {
+  const [coordinates, setCoordinates] = useState<number[]>([]);
   const [mapUpdater, setMapUpdater] = useState<number>(0);
 
   useEffect(() => {
-    FetchLocation().then((coordinates) => {
-      if (coordinates) {
-        setCoordinates([coordinates[0], coordinates[1]]);
-      } else {
-        setCoordinates([]);
-      }
-    });
+    if (coords.latitude_longitude_location && coords.latitude_longitude_location.length === 2) {
+      setCoordinates([coords.latitude_longitude_location[0], coords.latitude_longitude_location[1]]);
+    }
   }, [mapUpdater]);
 
   const getLocation = () => {
@@ -26,6 +24,7 @@ export default function GeoLocationComponent() {
           const { latitude, longitude } = position.coords;
           UpdateLocation(latitude, longitude);
           setMapUpdater((prev) => prev + 1);
+          alert("Your location has been successfully updated")
         },
         (error) => {
           console.error(error);
@@ -39,15 +38,15 @@ export default function GeoLocationComponent() {
   };
 
   const clearLocation = () => {
-    UpdateLocation(null, null);
     setMapUpdater((prev) => prev + 1);
+    UpdateLocation(null, null);
   }
 
   return (
     <div className="my-5 flex border-solid border-2 border-white rounded p-5">
       <div className="flex flex-col">
         <h4 className="text-xl">My Current Location</h4>
-        {coordinates ? <MapComponent coordinates={coordinates} /> : <p>There is no current geolocation for this profile.</p>}
+        {coordinates[0] != null ? (<div className="h-[400px] w-[400px]"> <MapComponent coordinates={coordinates} /> </div>): <p className="h-[400px] content-center">There is no current geolocation for this profile.</p>}
         <button
           onClick={getLocation}
           className="border-2 border-white rounded p-2 my-5"

@@ -2,43 +2,47 @@
 
 import { useEffect, useState } from "react";
 import UpdateBio from "./UpdateBio";
-import FetchBio from "./FetchBio";
 
-export default function BioForm() {
+interface Bio {
+  bio: string;
+}
+
+export default function BioForm(bio: Bio) {
   const [edittingBio, setEdittingBio] = useState(false);
   const [bioContent, setBioContent] = useState(String);
 
   useEffect(() => {
-    FetchBio().then((bioData) => {
-      if (bioData) {
-        setBioContent(bioData);
-      } else {
-        setBioContent("You have not set your bio yet!");
-      }
-    });
-  }, []);
+    setBioContent(bio.bio);
+  }, [bio.bio]);
 
+  const handleSubmit = () => {
+    if(bioContent.length < 1) {
+      alert("You must input atleast 1 character to submit a new bio")
+      return;
+    } else {
+      UpdateBio(bioContent);
+      setEdittingBio(false);
+    }
+  }
   return (
     <div className="border-solid border-2 border-white rounded my-5 p-5">
       {!edittingBio ? (
         <div>
           <h2 className="text-xl">Bio:</h2>
-            <p className="w-fit my-2">{bioContent}</p>
-            <button onClick={() => {
+          <p className="w-fit my-2">{bioContent}</p>
+          <button
+            onClick={() => {
               setBioContent("");
-              setEdittingBio(true)
-            }
-            }>
-              Edit my bio
-            </button>
+              setEdittingBio(true);
+            }}
+          >
+            Edit my bio
+          </button>
         </div>
       ) : (
         <form
           className="flex flex-col"
-          action={() => {
-            UpdateBio(bioContent);
-            setEdittingBio(false);
-          }}
+          action={handleSubmit}
         >
           <label>New Bio</label>
           <input
@@ -50,10 +54,18 @@ export default function BioForm() {
             value={bioContent}
           />
           <div className="flex">
-            <button className="mr-5" onClick={() => setEdittingBio(false)}>
+            <button
+              className="mr-5"
+              onClick={() => {
+                setBioContent(bio.bio);
+                setEdittingBio(false);
+              }}
+            >
               Discard changes
             </button>
-            <button className="mx-5" type="submit">Save changes</button>
+            <button className="mx-5" type="submit">
+              Save changes
+            </button>
           </div>
         </form>
       )}

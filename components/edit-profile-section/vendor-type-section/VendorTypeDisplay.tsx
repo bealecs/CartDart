@@ -1,26 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FetchVendorType from "./FetchVendorType";
 import UpdateVendorType from "./UpdateVendorType";
 
-export default function VendorTypeDisplay() {
+interface VendorType {
+  vendor_type: string;
+}
+
+export default function VendorTypeDisplay(type: VendorType) {
   const [edittingVendorType, setEdittingVendorType] = useState(false);
   const [vendorType, setVendorType] = useState(String);
 
   useEffect(() => {
-    FetchVendorType().then((vendorType) => {
-      if (vendorType) {
-        setVendorType(vendorType);
-      } else {
-        setVendorType("There is no vendor category currently set");
-      }
-    });
-  }, []);
+    setVendorType(type.vendor_type);
+  }, [type.vendor_type]);
 
   const handleSubmit = () => {
+    if(vendorType.length < 1) {
+      alert("You must select a vendor type");
+    } else {
     UpdateVendorType(vendorType);
     setEdittingVendorType(false);
+    }
   };
 
   const foodVariations = [
@@ -54,7 +55,7 @@ export default function VendorTypeDisplay() {
           <div className="flex">
             <h2 className="text-xl">Vendor Category Display:</h2>
             <p className=" items-center content-center mx-2 text-xl">
-              {vendorType}
+              {!vendorType ? "There is no selected vendor category yet" : vendorType.replace(/_/g, ' ')}
             </p>
           </div>
           <div className="flex flex-row justify-start w-full">
@@ -89,7 +90,9 @@ export default function VendorTypeDisplay() {
           <div className="flex">
             <button
               className="w-fit"
-              onClick={() => setEdittingVendorType(false)}
+              onClick={() => {
+                setVendorType(type.vendor_type)
+                setEdittingVendorType(false)}}
             >
               Discard changes
             </button>

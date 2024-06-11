@@ -1,6 +1,6 @@
 "use server";
-import { Navbar } from "@/components/Navbar";
 import MapComponent from "@/components/edit-profile-section/Geolocation/MapComponent";
+import { Navbar } from "@/components/navbar/Navbar";
 import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 
@@ -22,10 +22,10 @@ export default async function Page({ params }: { params: { user: string, id: str
   }
 
   return (
-    <div className="bg-gray-900 overflow-x-hidden">
+    <div className="bg-gray-900 overflow-x-hidden h-screen">
       <Navbar />
       {profile.map((profile) => (
-        <div key={profile.id} className="m-2">
+        <div key={profile.id} className="m-2 w-10/12 mx-auto">
           <div className="flex items-center justify-start" key={profile.id}>
             {profile.pfp != null ? (
               <Image
@@ -83,7 +83,9 @@ export default async function Page({ params }: { params: { user: string, id: str
             )}
           </div>
           {profile.Latitude_Longitude_Location != null ? (
+            <div className="h-[400px] lg:w-5/12 mx-auto w-full">
             <MapComponent coordinates={profile.Latitude_Longitude_Location} />
+            </div>
           ) : null}
         </div>
       ))}

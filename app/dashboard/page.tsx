@@ -1,5 +1,5 @@
-import { Navbar } from "@/components/Navbar";
 import HomeDisplay from "@/components/home-page-display/HomeDisplay";
+import { Navbar } from "@/components/navbar/Navbar";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 
@@ -15,7 +15,7 @@ export default async function ProtectedPage() {
   }
 
   return (
-    <div className="flex-1 overflow-hidden flex flex-col gap-20 items-center">
+    <div className="flex-1 overflow-hidden flex flex-col items-center">
       <header>
         <Navbar />
         <HomeDisplay />

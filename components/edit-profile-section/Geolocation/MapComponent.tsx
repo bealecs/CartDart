@@ -63,7 +63,7 @@ export default function MapComponent({
 
   return (
     <div
-      className="text-black h-[200px] p-2"
+      className="text-black w-full h-full p-2"
       ref={mapRef}
     ></div>
   );

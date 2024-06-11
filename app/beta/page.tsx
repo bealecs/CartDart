@@ -24,14 +24,16 @@ export default function Beta() {
             </div>
           </div>
         </div>
+        <div className="lg:hidden">
+          <Image
+            src={"/logo2.svg"}
+            alt="logo for cart dart"
+            width={400}
+            height={400}
+          />
+        </div>
 
-        <Image
-          src={"/logo2.svg"}
-          alt="logo for cart dart"
-          width={400}
-          height={400}
-        />
-        <div className="flex justify-center">
+        <div className="lg:hidden flex justify-center">
           <a href="/signup" className="underline">
             Sign up for beta testing
           </a>
@@ -94,6 +96,14 @@ export default function Beta() {
               </a>
               <OpenInNewIcon className="p-1" />
             </div>
+          </div>
+          <div className="hidden lg:block">
+            <Image
+              src={"/logo2.svg"}
+              alt="logo for cart dart"
+              width={400}
+              height={400}
+            />
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ export default async function HomeDisplay() {
           users.map((user) => (
 
               <div
-                className="transition duration-500 linear bg-blue-200 hover:bg-blue-400 text-black w-5/12 border-solid border-2 border-white m-5 flex justify-between"
+                className="transition duration-500 my-2 linear bg-indigo-300 hover:bg-indigo-400 my-2 text-black w-5/12 border-solid border-2 border-white flex justify-between"
                 key={user.id}
               >
                 <a href={`/${user.name}/${user.id} `} className="w-full">
@@ -68,13 +68,13 @@ export default async function HomeDisplay() {
                   </div>
                 </a>
                 {user.Latitude_Longitude_Location ? (
-                  <div className="w-[400px] h-[400px] items-center content-center bg-white text-black">
+                  <div className="w-full h-[400px] items-center content-center bg-white text-black">
                     <MapComponent
                       coordinates={user.Latitude_Longitude_Location}
                     />
                   </div>
                 ) : (
-                  <div className="w-[480px] h-[400px] items-center content-center bg-white text-black">
+                  <div className="w-full h-[400px] items-center content-center bg-white text-black">
                     <p className="mx-auto text-center">
                       There was no current location found
                     </p>
