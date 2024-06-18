@@ -68,43 +68,52 @@ export default function Explore() {
           </button>
         </div>
       </form>
-      {searchResults.length === 0 ? (
-        <p>
-          There were no results found for your search, please try another vendor
-          name
-        </p>
-      ) : (
-        searchResults.map((result, index) => (
-          <div key={index} className="border-2 p-1 border-white rounded w-fit">
-            <a href={"/" + result.name + "/" + result.id} className="w-fit">
+      <div className="flex">
+        {searchResults.length === 0 ? (
+          <p>
+            There were no results found for your search, please try another
+            vendor name
+          </p>
+        ) : (
+          searchResults.map((result, index) => (
+            <div
+              key={index}
+              className="border-2 p-1 border-white rounded w-fit"
+            >
               <div className="text-white flex flex-col">
-                <div className="flex items-center">
-                  <Image
-                    src={result.pfp ? result.pfp : "/default-pfp.svg"}
-                    alt={"Profile picture for:" + result.name}
-                    width={60}
-                    height={60}
-                    className=""
-                  />
-                  <p className="mx-5">{result.name}</p>
-                </div>
-                <p>
-                  {result.city}, {result.state}
-                </p>
-                <p className="text-left">
-                  <span className="underline">Cuisine:</span>{" "}
-                  {result.vendor_type
-                    ? result.vendor_type
-                    : "Cuisine type not specified"}
-                </p>
-                {result.special_today && (
+                <a
+                  href={"/" + result.name + "/" + result.id}
+                  className="w-full"
+                >
+                  <div className="flex items-center">
+                    <Image
+                      src={result.pfp ? result.pfp : "/default-pfp.svg"}
+                      alt={"Profile picture for:" + result.name}
+                      width={60}
+                      height={60}
+                      className="rounded"
+                    />
+                    <p className="mx-5">{result.name}</p>
+                  </div>
                   <p>
-                    <span className="underline">Deal of the day:</span>{" "}
-                    {result.special_today}
+                    {result.city}, {result.state}
                   </p>
-                )}
+                  <p className="text-left">
+                    <span className="underline">Cuisine:</span>{" "}
+                    {result.vendor_type
+                      ? result.vendor_type
+                      : "Cuisine type not specified"}
+                  </p>
+                  {result.special_today ? (
+                    <p>
+                      <span className="underline">Deal of the day:</span>{" "}
+                      {result.special_today}
+                    </p>
+                  ) :
+                  <br />}
+                </a>
               </div>
-              <div>
+              <div className="h-[400px] w-[400px]">
                 {result.Latitude_Longitude_Location ? (
                   <MapComponent
                     coordinates={result.Latitude_Longitude_Location}
@@ -113,10 +122,10 @@ export default function Explore() {
                   <p>There is no current vendor location</p>
                 )}
               </div>
-            </a>
-          </div>
-        ))
-      )}
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 }

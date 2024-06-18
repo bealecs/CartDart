@@ -18,7 +18,7 @@ export default function Beta() {
               <h1 className="mt-2 text-3xl font-bold tracking-tight text-white-900 sm:text-4xl">
                 Creating a great experience
               </h1>
-              <p className="mt-6 text-md leading-8 text-indigo-800 border-2 border-indigo-800 rounded-xl text-center w-fit px-1">
+              <p className="mt-6 text-md leading-8 text-indigo-600 border-2 border-indigo-600 rounded-xl text-center w-fit px-1">
                 Limited public access
               </p>
             </div>
