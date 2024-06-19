@@ -25,11 +25,11 @@ export default async function AuthButton() {
   };
 
   return user ? (
-    <div className="flex items-center gap-4 w-fit">
-      <PFP pfp={pfp}/>
+    <div className="items-center gap-4 hidden md:flex justify-center">
+      <PFP pfp={pfp} />
       <a
         href="/profile"
-        className="transition duration-500 linear border-2 border-transparent hover:border-b-white"
+        className="transition duration-300 linear border-2 border-transparent hover:text-gray-400 hover:border-b-gray-400"
       >
         <div className="flex">
           <p className="mr-1">Hey,</p>
@@ -37,7 +37,7 @@ export default async function AuthButton() {
         </div>
       </a>
       <form action={signOut}>
-        <button className="py-2 px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
+        <button className="py-2 px-2 md:px-4 rounded-md no-underline bg-btn-background hover:bg-btn-background-hover">
           Logout
         </button>
       </form>

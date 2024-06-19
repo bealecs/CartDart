@@ -64,9 +64,9 @@ export default function Signup({
         >
           <polyline points="15 18 9 12 15 6" />
         </svg>{" "}
-        Back
+        Dashboard
       </Link>
-      <form className="flex flex-col w-full max-w-md text-foreground">
+      <form className="flex flex-col justify-evenly my-8 h-full md:w-full max-w-md text-foreground">
         <h2 className="mx-auto text-3xl text-center text-[#663399] mt-10 mb-4">
           Create an account
         </h2>
@@ -83,7 +83,7 @@ export default function Signup({
           </select>
         </div>
         <label className="text-md" htmlFor="displayName">
-          Display Name
+          Display Name:
         </label>
         <input
           className="rounded-md px-2 py-1 bg-inherit border mb-2"
@@ -92,7 +92,7 @@ export default function Signup({
           required
         />
         <label className="text-md" htmlFor="email">
-          Email
+          Email:
         </label>
         <input
           className="rounded-md px-2 py-1 bg-inherit border mb-2"
@@ -101,7 +101,7 @@ export default function Signup({
           required
         />
         <label className="text-md" htmlFor="password">
-          Password
+          Password:
         </label>
         <input
           className="rounded-md px-2 py-1 bg-inherit border mb-4"

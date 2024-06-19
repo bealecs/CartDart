@@ -22,6 +22,7 @@ interface SearchResults {
 export default function Explore() {
   const [query, setQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SearchResults[]>([]);
+  const [startedSearch, setStartedSearch] = useState<boolean>(false);
 
   const handleChange = (e) => {
     setQuery(e.target.value);
@@ -29,6 +30,7 @@ export default function Explore() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
+    setStartedSearch(!startedSearch);
     FetchSearchResults(query).then((result) => {
       if (result) {
         setSearchResults(
@@ -51,7 +53,7 @@ export default function Explore() {
   };
 
   return (
-    <div className="mx-2 my-4">
+    <div className="mx-auto w-9/12 my-12">
       <form onSubmit={handleSubmit}>
         <h2 className="text-2xl">Vendor Search</h2>
         <div className="flex">
@@ -69,6 +71,9 @@ export default function Explore() {
         </div>
       </form>
       <div className="flex">
+        {!startedSearch && (
+          <div> </div>
+        )}
         {searchResults.length === 0 ? (
           <p>
             There were no results found for your search, please try another
