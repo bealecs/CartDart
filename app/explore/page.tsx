@@ -1,12 +1,15 @@
 import AuthButton from "@/components/navbar/AuthButton";
 import Explore from "@/components/search-bar/Explore";
 import Link from "next/link";
+import { supabase } from "../lib/Supabase-Client";
+import { Navbar } from "@/components/navbar/Navbar";
 
 export default async function ExplorePage() {
 
+  const { data: { user } } = await supabase.auth.getUser();
   return (
     <main className="bg-gray-900 h-screen w-fit">
-      <div className="flex justify-between px-8 w-screen py-4">
+      {!user ? <div className="flex justify-between px-8 w-screen py-4">
       <Link
         href="/"
         className="transition duration-500 linear  py-1 px-2 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm z-10"
@@ -28,7 +31,8 @@ export default async function ExplorePage() {
         Dashboard
       </Link>
       <AuthButton />
-      </div>
+      </div> :
+      <Navbar />}
       <Explore />
     </main>
   );
