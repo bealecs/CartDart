@@ -5,12 +5,15 @@ import Favorite from "../edit-profile-section/favorite/Favorite";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { User } from "@/app/lib/Supabase-Client";
+import { Suspense } from "react";
+import Loading from "../loading-fallbacks/LoadingEditProfile";
 
 export default async function HomeDisplay() {
   const users: User[] = await GetVendors();
   const currentUser: User = await GetCurrentUser();
 
   return (
+    <Suspense fallback={<Loading />}>
     <div className="flex flex-col items-center content-center bg-background md:h-screen">
       <p className="mt-5">
         Showing results from: {currentUser?.city}, {currentUser?.state}
@@ -84,5 +87,6 @@ export default async function HomeDisplay() {
         )}
       </div>
     </div>
+    </Suspense>
   );
 }

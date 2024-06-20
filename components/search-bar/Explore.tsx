@@ -4,6 +4,9 @@ import FetchSearchResults from "./FetchSearchResults";
 import MapComponent from "../edit-profile-section/Geolocation/MapComponent";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
+import { User } from "@/app/lib/Supabase-Client";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 interface SearchResults {
   id: string;
@@ -51,6 +54,7 @@ export default function Explore() {
       }
     });
   };
+ 
 
   return (
     <div className="mx-auto w-9/12 my-12">
@@ -71,61 +75,73 @@ export default function Explore() {
         </div>
       </form>
       <div className="flex">
-        {!startedSearch && (
-          <div> </div>
-        )}
+        {!startedSearch && <div> </div>}
         {searchResults.length === 0 ? (
           <p>
             There were no results found for your search, please try another
             vendor name
           </p>
         ) : (
-          searchResults.map((result, index) => (
+          searchResults.map((result: User, index) => (
             <div
+              className="transition duration-500 m-2 linear bg-indigo-400 my-2 lg:w-3/12 md:w-7/12 sm:w-full text-black border-solid border-2 border-white relative"
               key={index}
-              className="border-2 p-1 border-white rounded w-fit"
             >
-              <div className="text-white flex flex-col">
-                <a
-                  href={"/" + result.name + "/" + result.id}
-                  className="w-full"
-                >
-                  <div className="flex items-center">
-                    <Image
-                      src={result.pfp ? result.pfp : "/default-pfp.svg"}
-                      alt={"Profile picture for:" + result.name}
-                      width={60}
-                      height={60}
-                      className="rounded"
-                    />
-                    <p className="mx-5">{result.name}</p>
-                  </div>
-                  <p>
-                    {result.city}, {result.state}
-                  </p>
-                  <p className="text-left">
-                    <span className="underline">Cuisine:</span>{" "}
-                    {result.vendor_type
-                      ? result.vendor_type
-                      : "Cuisine type not specified"}
-                  </p>
-                  {result.special_today ? (
-                    <p>
-                      <span className="underline">Deal of the day:</span>{" "}
-                      {result.special_today}
-                    </p>
-                  ) :
-                  <br />}
-                </a>
-              </div>
-              <div className="h-[400px] w-[400px]">
+              <div className="relative mx-auto flex flex-col p-4 h-full">
                 {result.Latitude_Longitude_Location ? (
-                  <MapComponent
-                    coordinates={result.Latitude_Longitude_Location}
-                  />
+                  <div className="w-full h-[300px] items-center content-center bg-white text-black">
+                    <MapComponent
+                      coordinates={result.Latitude_Longitude_Location}
+                    />
+                  </div>
                 ) : (
-                  <p>There is no current vendor location</p>
+                  <div className="w-full h-[400px] items-center content-center bg-white text-black">
+                    <p className="mx-auto text-center">
+                      There was no current location found
+                    </p>
+                  </div>
                 )}
+                <div className="flex flex-col justify-between flex-grow">
+                  <h4 className="py-2 text-xl italic text-center">
+                    {!result.special_today
+                      ? "There are currently no deals highlighted for this vendor"
+                      : result.special_today}
+                  </h4>
+                  <h4 className="py-2">
+                    {result.bio
+                      ? result.bio
+                      : "There is no bio for this vendor yet"}
+                  </h4>
+                  <div className="flex items-center py-2">
+                    <Image
+                      height={50}
+                      width={50}
+                      src={result.pfp ? result.pfp : "/default-pfp.svg"}
+                      alt="Profile picture for the vendor specified"
+                      className="rounded-full mr-2"
+                    />
+                    <div className="flex flex-col flex-wrap">
+                      <a
+                        className="transition duration-300 linear hover:text-indigo-800 h-fit w-fit items-center content-center"
+                        href={`/${result.name}/${result.id}`}
+                      >
+                        {result.name}
+                        <span>
+                          {" "}
+                          <OpenInNewIcon fontSize="small" />
+                        </span>
+                      </a>
+                      <p className=" text-sm border-2 rounded-full w-fit px-1 border-indigo-800 text-indigo-800">
+                        <span>
+                          <RestaurantMenuIcon fontSize="small" />
+                        </span>
+                        {!result.vendor_type
+                          ? "No vendor type found"
+                          : `${result.vendor_type}`}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))
