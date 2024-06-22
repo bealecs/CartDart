@@ -3,7 +3,6 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import PFP from "../edit-profile-section/pfp-section/PFP";
 import UsernameDisplay from "../edit-profile-section/username-section/UsernameDisplay";
-import FetchPFP from "../edit-profile-section/pfp-section/FetchPFP";
 import FetchUsername from "../edit-profile-section/username-section/FetchUsername";
 
 export default async function AuthButton() {
@@ -13,7 +12,6 @@ export default async function AuthButton() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const pfp: string = await FetchPFP();
   const name: string = await FetchUsername();
 
   const signOut = async () => {
@@ -26,7 +24,7 @@ export default async function AuthButton() {
 
   return user ? (
     <div className="items-center gap-4 hidden md:flex justify-center">
-      <PFP pfp={pfp} />
+      <PFP size={50} />
       <a
         href="/profile"
         className="transition duration-300 linear border-2 border-transparent hover:text-gray-400 hover:border-b-gray-400"

@@ -62,6 +62,7 @@ export default function Explore() {
         <h2 className="text-2xl">Vendor Search</h2>
         <div className="flex">
           <input
+            autoFocus
             id="query"
             className="text-black p-1 rounded-md my-4 mr-2"
             type="text"

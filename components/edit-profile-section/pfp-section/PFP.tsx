@@ -1,26 +1,19 @@
-"use client";
+"use server";
 
-import { useEffect, useState } from "react";
-import FetchPFP from "./FetchPFP";
 import Image from "next/image";
+import FetchPFP from "./FetchPFP";
 
-interface PFP {
-  pfp: string;
-}
 
-export default function PFP({ pfp }: PFP) {
-  const [pfpLink, setPfpLink] = useState(null);
+export default async function PFP({ size }: {size: number}) {
 
-  useEffect(() => {
-    setPfpLink(pfp);
-  }, [pfp]);
+  const pfp: string = await FetchPFP();
 
   return (
     <div>
       <Image
-        width={50}
-        height={50}
-        src={pfpLink ? pfpLink : "/default-pfp.svg"}
+        width={size}
+        height={size}
+        src={pfp ? pfp : "/default-pfp.svg"}
         alt="User Profile Picture"
         className="rounded-full"
       />

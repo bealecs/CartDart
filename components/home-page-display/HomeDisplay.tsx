@@ -18,11 +18,11 @@ export default async function HomeDisplay() {
       <p className="mt-5">
         Showing results from: {currentUser?.city}, {currentUser?.state}
       </p>
-      <div className="flex flex-wrap justify-evenly my-5">
+      <div className="flex flex-wrap justify-evenly w-full my-5">
         {users.length > 0 ? (
           users.map((user) => (
             <div
-              className="transition duration-500 m-2 linear bg-indigo-400 my-2 lg:w-3/12 md:w-7/12 sm:w-full text-black border-solid border-2 border-white relative"
+              className="transition duration-500 m-2 linear bg-indigo-400 my-2 lg:w-3/12 md:w-5/12 text-black border-solid border-2 border-white relative"
               key={user.id}
             >
               <div className="relative mx-auto flex flex-col p-4 h-full">

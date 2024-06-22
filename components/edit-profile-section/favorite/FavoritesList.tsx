@@ -28,14 +28,15 @@ export default async function FavoritesPageComponent() {
   // returns a list of all of the user's favorited carts
   const favoritesList: UUID[] = await FetchFavorites();
 
-  if (!favoritesList) {
+  if (!favoritesList || favoritesList.length < 1) {
     return (
       <div className="items-center content-center text-center">
         <p className="text-center h-fit mt-24 my-4">
-          You have no carts favorited, yet :/
+          You have not favorited any carts,
         </p>
+        <h4 className="my-4 text-3xl">YET {";)"}</h4>
         <a
-          className="text-btn-background border-2 border-btn-background rounded-xl p-1"
+          className="text-btn-background my-4 border-2 border-btn-background rounded-xl p-1"
           href="/dashboard"
         >
           Back to home

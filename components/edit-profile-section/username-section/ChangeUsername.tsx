@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import UpdateUsername from "./UpdateUsername";
+import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 
 interface Username {
   name: string;
@@ -35,34 +38,35 @@ export default function ChangeUsername({ name }: Username) {
   };
 
   return (
-    <div className="border-2 rounded border-white my-5 p-5">
-      <h4 className="text-xl">Current Username: {currentUsername}</h4>
+    <div className=" flex items-center">
       {!edittingUsername ? (
-        <button onClick={handleClick}>Edit username</button>
+        <>
+          <h4 className="text-xl mr-4">{currentUsername}</h4>
+          <button onClick={handleClick}><EditIcon fontSize="small"/></button>
+        </>
       ) : (
         <form action={handleSubmit}>
-          <label htmlFor="newUsername" className="mr-2">
+          <label htmlFor="newUsername" className="hidden">
             Enter a new username:
           </label>
           <input
             type="text"
             id="newUsername"
-            className="my-2 text-black w-fit"
+            className="my-2 text-black w-fit rounded-md"
             value={username}
             onChange={handleChange}
           />
-          <div className="flex my-2">
-            <button type="submit">Save changes</button>
+          
+            <button type="submit" className="mx-2"><CheckIcon className="border-2 border-white bg-btn-background rounded-md"/></button>
             <button
-              className="mx-5"
+              className="mx-2"
               onClick={() => {
                 setCurrentUsername(name);
                 setEdittingUsername(false);
               }}
             >
-              Discard changes
+              <ClearIcon className="border-2 border-white bg-red-700 rounded-md" />
             </button>
-          </div>
         </form>
       )}
     </div>

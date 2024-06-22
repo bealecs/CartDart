@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import UpdateVendorType from "./UpdateVendorType";
+import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 
 interface VendorType {
   vendor_type: string;
@@ -16,11 +19,11 @@ export default function VendorTypeDisplay(type: VendorType) {
   }, [type.vendor_type]);
 
   const handleSubmit = () => {
-    if(vendorType.length < 1) {
+    if (vendorType.length < 1) {
       alert("You must select a vendor type");
     } else {
-    UpdateVendorType(vendorType);
-    setEdittingVendorType(false);
+      UpdateVendorType(vendorType);
+      setEdittingVendorType(false);
     }
   };
 
@@ -49,31 +52,36 @@ export default function VendorTypeDisplay(type: VendorType) {
   ];
 
   return (
-    <div className="border-solid border-2 border-white p-5 my-5 rounded">
+    <div>
       {!edittingVendorType ? (
         <div>
+          <h2 className="text-3xl">Vendor Category Display:</h2>
           <div className="flex">
-            <h2 className="text-xl">Vendor Category Display:</h2>
-            <p className=" items-center content-center mx-2 text-xl">
-              {!vendorType ? "There is no selected vendor category yet" : vendorType.replace(/_/g, ' ')}
+            <p className=" items-center content-center text-xl">
+              {!vendorType
+                ? "There is no selected vendor category yet"
+                : vendorType.replace(/_/g, " ")}
             </p>
-          </div>
-          <div className="flex flex-row justify-start w-full">
-            <button
-              onClick={() => {
-                setVendorType("");
-                setEdittingVendorType(true);
-              }}
-            >
-              Edit Vendor Category
-            </button>
+
+            <div className="flex flex-row justify-start w-full">
+              <button
+                onClick={() => {
+                  setVendorType("");
+                  setEdittingVendorType(true);
+                }}
+              >
+                <EditIcon fontSize="small" className="mx-2" />
+              </button>
+            </div>
           </div>
         </div>
       ) : (
-        <form className="flex flex-col" action={handleSubmit}>
-          <label htmlFor="newVendor" className="text-xl">New Vendor Category:</label>
+        <form className="flex h-fit items-center content-center" action={handleSubmit}>
+          <label htmlFor="newVendor" className="hidden">
+            New Vendor Category:
+          </label>
           <select
-            className="text-black w-fit my-2"
+            className="text-black w-fit p-1 rounded-md my-2"
             id="newVendor"
             onChange={(e) => setVendorType(e.target.value)}
             value={vendorType}
@@ -87,17 +95,18 @@ export default function VendorTypeDisplay(type: VendorType) {
               </option>
             ))}
           </select>
-          <div className="flex">
-            <button
-              className="w-fit"
-              onClick={() => {
-                setVendorType(type.vendor_type)
-                setEdittingVendorType(false)}}
-            >
-              Discard changes
+          <div className="flex h-fit content-center items-center">
+          <button className="mx-2 border-2 border-white bg-btn-background rounded-md" type="submit">
+              <CheckIcon />
             </button>
-            <button className="w-fit mx-5" type="submit">
-              Save changes
+            <button
+              className=" border-2 border-white bg-red-700 rounded-md"
+              onClick={() => {
+                setVendorType(type.vendor_type);
+                setEdittingVendorType(false);
+              }}
+            >
+              <ClearIcon />
             </button>
           </div>
         </form>

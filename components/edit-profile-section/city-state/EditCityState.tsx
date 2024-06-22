@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import CitySelector from "./CityStateSelectionForm";
 import { UpdateCity, UpdateState } from "./UpdateCityState";
+import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 
 interface Residence {
     city: string;
@@ -31,18 +34,17 @@ export default function EditCityState({city, state}: Residence) {
         setEditting(false)
     }
     return (
-        <div className="border-2 border-white rounded flex my-5 justify-evenly">
+        <div>
            {!editting ? (
-            <>
-            <p>My State: {stateValue}</p>
-            <p>My City: {cityValue}</p>
-            <button onClick={() => setEditting(true)}>Edit</button>
-            </>
+            <div className="flex items-center">
+                <p>{cityValue}, {stateValue}</p>
+                <button onClick={() => setEditting(true)}><EditIcon fontSize="small" className="mx-4" /></button>
+            </div>
            ): (
-           <form action={handleSubmit}>
+           <form action={handleSubmit} className="flex">
             <CitySelector />
-            <button type="submit">Submit changes</button>
-            <button onClick={() => setEditting(false)}>cancel changes</button>
+            <button type="submit"><CheckIcon className="border-2 border-white bg-btn-background rounded-md mx-2"/></button>
+            <button onClick={() => setEditting(false)}><ClearIcon  className="border-2 border-white bg-red-700 rounded-md" /></button>
            </form>
            )} 
         </div>

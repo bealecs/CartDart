@@ -161,11 +161,10 @@ export default function CitySelector() {
   };
 
   return (
-    <div className="flex flex-col my-2">
-      <label htmlFor="state">Where are you located?:</label>
+    <div className="flex my-2">
       <select
         id="state"
-        className="text-black w-9/12 rounded-md"
+        className="text-black w-fit rounded-md"
         name="state"
         onChange={handleStateChange}
         required
@@ -181,7 +180,7 @@ export default function CitySelector() {
       </select>
       <select
         id="city"
-        className="text-black w-9/12 mt-2 rounded-md"
+        className="text-black w-fit rounded-md mx-2"
         name="city"
         disabled={!selectedState}
         required

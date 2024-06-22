@@ -47,7 +47,7 @@ export default function Login({
         >
           <polyline points="15 18 9 12 15 6" />
         </svg>{" "}
-        Dashboard
+        Back to landing
       </Link>
 
       <form className="flex flex-col w-full max-w-md gap-6 text-foreground">

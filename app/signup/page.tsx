@@ -64,7 +64,7 @@ export default function Signup({
         >
           <polyline points="15 18 9 12 15 6" />
         </svg>{" "}
-        Dashboard
+        Back to landing
       </Link>
       <form className="flex flex-col justify-evenly my-8 h-full md:w-full max-w-md text-foreground">
         <h2 className="mx-auto text-3xl text-center text-[#663399] mt-10 mb-4">
