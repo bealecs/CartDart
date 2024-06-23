@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import UpdateBio from "./UpdateBio";
-import EditIcon from '@mui/icons-material/Edit';
-import CheckIcon from '@mui/icons-material/Check';
-import ClearIcon from '@mui/icons-material/Clear';
+import EditIcon from "@mui/icons-material/Edit";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
 
 interface Bio {
   bio: string;
@@ -45,32 +45,37 @@ export default function BioForm(bio: Bio) {
           </div>
         </div>
       ) : (
-        <form className="flex" action={handleSubmit}>
-          <label className="text-3xl hidden">New Bio:</label>
-          <input
-            type="textarea"
-            className="text-black rounded-md w-7/12"
-            onChange={(e) => {
-              setBioContent(e.target.value);
-            }}
-            value={bioContent}
-          />
-          <div className="flex">
-          <button className="mx-2 border-2 border-white bg-btn-background rounded-md" type="submit">
-              <CheckIcon />
-            </button>
-            <button
-              className="mx-2 border-2 border-white bg-red-700 rounded-md"
-              onClick={() => {
-                setBioContent(bio.bio);
-                setEdittingBio(false);
+        <>
+          <h2 className="text-3xl">Bio:</h2>
+          <form className="flex" action={handleSubmit}>
+            <label className="text-3xl hidden">New Bio:</label>
+            <input
+              type="textarea"
+              className="text-black rounded-md w-7/12"
+              onChange={(e) => {
+                setBioContent(e.target.value);
               }}
-            >
-              <ClearIcon />
-            </button>
-            
-          </div>
-        </form>
+              value={bioContent}
+            />
+            <div className="flex">
+              <button
+                className="mx-2 border-2 border-white bg-btn-background rounded-md"
+                type="submit"
+              >
+                <CheckIcon />
+              </button>
+              <button
+                className="mx-2 border-2 border-white bg-red-700 rounded-md"
+                onClick={() => {
+                  setBioContent(bio.bio);
+                  setEdittingBio(false);
+                }}
+              >
+                <ClearIcon />
+              </button>
+            </div>
+          </form>
+        </>
       )}
     </div>
   );

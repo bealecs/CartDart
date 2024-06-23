@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import UpdateVendorType from "./UpdateVendorType";
-import EditIcon from '@mui/icons-material/Edit';
-import CheckIcon from '@mui/icons-material/Check';
-import ClearIcon from '@mui/icons-material/Clear';
+import EditIcon from "@mui/icons-material/Edit";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
 
 interface VendorType {
   vendor_type: string;
@@ -76,40 +76,50 @@ export default function VendorTypeDisplay(type: VendorType) {
           </div>
         </div>
       ) : (
-        <form className="flex h-fit items-center content-center" action={handleSubmit}>
-          <label htmlFor="newVendor" className="hidden">
-            New Vendor Category:
-          </label>
-          <select
-            className="text-black w-fit p-1 rounded-md my-2"
-            id="newVendor"
-            onChange={(e) => setVendorType(e.target.value)}
-            value={vendorType}
+        <>
+          <h2 className="text-3xl">Vendor Category Display:</h2>
+
+          <form
+            className="flex h-fit items-center content-center"
+            action={handleSubmit}
           >
-            <option value="" disabled>
-              Select a category
-            </option>
-            {foodVariations.map((culture) => (
-              <option key={culture} value={culture.replace(" ", "_")}>
-                {culture}
-              </option>
-            ))}
-          </select>
-          <div className="flex h-fit content-center items-center">
-          <button className="mx-2 border-2 border-white bg-btn-background rounded-md" type="submit">
-              <CheckIcon />
-            </button>
-            <button
-              className=" border-2 border-white bg-red-700 rounded-md"
-              onClick={() => {
-                setVendorType(type.vendor_type);
-                setEdittingVendorType(false);
-              }}
+            <label htmlFor="newVendor" className="hidden">
+              New Vendor Category:
+            </label>
+            <select
+              className="text-black w-fit p-1 rounded-md"
+              id="newVendor"
+              onChange={(e) => setVendorType(e.target.value)}
+              value={vendorType}
             >
-              <ClearIcon />
-            </button>
-          </div>
-        </form>
+              <option value="" disabled>
+                Select a category
+              </option>
+              {foodVariations.map((culture) => (
+                <option key={culture} value={culture.replace(" ", "_")}>
+                  {culture}
+                </option>
+              ))}
+            </select>
+            <div className="flex h-fit content-center items-center">
+              <button
+                className="mx-2 border-2 border-white bg-btn-background rounded-md"
+                type="submit"
+              >
+                <CheckIcon />
+              </button>
+              <button
+                className=" border-2 border-white bg-red-700 rounded-md"
+                onClick={() => {
+                  setVendorType(type.vendor_type);
+                  setEdittingVendorType(false);
+                }}
+              >
+                <ClearIcon />
+              </button>
+            </div>
+          </form>
+        </>
       )}
     </div>
   );

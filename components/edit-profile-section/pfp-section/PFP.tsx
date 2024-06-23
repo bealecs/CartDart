@@ -1,8 +1,6 @@
 "use server";
-
 import Image from "next/image";
 import FetchPFP from "./FetchPFP";
-
 
 export default async function PFP({ size }: {size: number}) {
 

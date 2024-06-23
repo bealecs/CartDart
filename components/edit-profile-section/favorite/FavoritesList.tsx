@@ -8,6 +8,8 @@ import MapComponent from "@/components/edit-profile-section/Geolocation/MapCompo
 import { User } from "@/app/lib/Supabase-Client";
 import Loading from "@/components/loading-fallbacks/LoadingEditProfile";
 import { Suspense } from "react";
+import { GetCurrentUser } from "@/components/home-page-display/GetVendors";
+import Favorite from "./Favorite";
 
 async function FavoritesList(id: UUID) {
   const supabase = createClient();
@@ -27,6 +29,7 @@ async function FavoritesList(id: UUID) {
 export default async function FavoritesPageComponent() {
   // returns a list of all of the user's favorited carts
   const favoritesList: UUID[] = await FetchFavorites();
+  const currentUser: User = await GetCurrentUser();
 
   if (!favoritesList || favoritesList.length < 1) {
     return (
@@ -111,6 +114,11 @@ export default async function FavoritesPageComponent() {
                         : `${favoritee.vendor_type}`}
                     </p>
                   </div>
+                  <Favorite
+                  id={favoritee.id}
+                  isFavorited={currentUser.favorites.includes(favoritee.id)}
+                  className="absolute bottom-4 right-4 p-2"
+                />                
                 </div>
               </div>
             </div>

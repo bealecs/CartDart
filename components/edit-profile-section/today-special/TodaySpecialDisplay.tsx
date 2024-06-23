@@ -36,13 +36,15 @@ export default function TodaySpecial({ special_today }: Special) {
   return (
     <div>
       {editting ? (
+        <>
+        <h4 className="text-3xl">{"Today's special:"}</h4>
         <form className="flex items-center" action={handleSubmit}>
           <label htmlFor="special" className="hidden">
             Edit your special deal of the day
           </label>
           <input
             value={todaySpecial}
-            className="w-5/12 my-5 text-black p-1 rounded-md"
+            className="w-5/12 text-black p-1 rounded-md"
             type="text"
             id="special"
             onChange={handleChange}
@@ -62,6 +64,7 @@ export default function TodaySpecial({ special_today }: Special) {
             </button>
           </div>
         </form>
+        </>
       ) : (
         <div>
           <h4 className="text-3xl">{"Today's special:"}</h4>

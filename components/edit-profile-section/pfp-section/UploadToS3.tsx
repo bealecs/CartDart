@@ -7,7 +7,6 @@ import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 
 export default function UploadToS3({ pfp }: { pfp: string }) {
-  const [pfpLink, setPfpLink] = useState(pfp);
   const [file, setFile] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
   const [editting, setEditting] = useState<boolean>(false);

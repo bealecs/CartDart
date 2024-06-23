@@ -8,6 +8,7 @@ import { User } from "@/app/lib/Supabase-Client";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Loading from "../loading-fallbacks/LoadingEditProfile";
+import { UUID } from "crypto";
 
 interface SearchResults {
   id: string;
@@ -21,6 +22,8 @@ interface SearchResults {
   special_today: string;
   state: string;
   city: string;
+  vendor: boolean;
+  favorites: UUID[];
 }
 
 export default function Explore() {
@@ -50,6 +53,8 @@ export default function Explore() {
             special_today: resultItem.special_today,
             state: resultItem.state,
             city: resultItem.city,
+            vendor: resultItem.vendor,
+            favorites: resultItem.favorites,
           }))
         );
       }

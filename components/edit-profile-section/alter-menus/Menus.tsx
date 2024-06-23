@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import UpdateMenu from "./UpdateMenus";
 import Image from "next/image";
-import FetchMenus from "./FetchMenus";
 import InsertMenu from "./InsertMenu";
 import DeleteMenuFromDB from "./DeleteMenuFromDB";
 import DeleteMenuFromS3 from "./DeleteMenuFromS3";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 interface Menus {
   menus: string[];
@@ -105,7 +105,7 @@ export default function AddMenu({menus}: Menus) {
   };
 
   return (
-    <div className="border-2 border-white rounded">
+    <div>
       <div className="m-5">
         {previewURL ? <p>Preview:</p> : null}
         {previewURL && (
@@ -117,7 +117,7 @@ export default function AddMenu({menus}: Menus) {
           />
         )}
       </div>
-      <form action={handleSubmit} className="flex flex-col m-5">
+      <form action={handleSubmit} className="flex flex-col">
         <label>Upload photos of your menu{"(s)"} here:</label>
         <input type="file" accept="image/jpeg" onChange={handleFileChange} />
         <aside className="italic">
@@ -132,14 +132,15 @@ export default function AddMenu({menus}: Menus) {
         </button>
       </form>
 
-      <div className="m-5">
+      <div>
         {menuArray ? <p>Current Menus:</p> : null}
         <div className="flex">
           {menuArray &&
             menuArray.map((menu, index) => (
               <div key={menu} className="flex flex-col">
-                <a href={menu} target="_blank">
-                  Menu # {index + 1}
+                <a href={menu} target="_blank" className="flex flex-col">
+                 <MenuBookIcon fontSize="large"/>
+                 <span>#{index +1}</span>
                 </a>
                 {!menuClicked ? (
                   <button
