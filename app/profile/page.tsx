@@ -6,31 +6,14 @@ import ChangeUsername from "@/components/edit-profile-section/username-section/C
 import AddMenu from "@/components/edit-profile-section/alter-menus/Menus";
 import TodaySpecial from "@/components/edit-profile-section/today-special/TodaySpecialDisplay";
 import EditCityState from "@/components/edit-profile-section/city-state/EditCityState";
-import FetchBio from "@/components/edit-profile-section/bio-section/FetchBio";
-import FetchVendorType from "@/components/edit-profile-section/vendor-type-section/FetchVendorType";
-import FetchLocation from "@/components/edit-profile-section/Geolocation/FetchLocation";
-import {
-  FetchCity,
-  FetchState,
-} from "@/components/edit-profile-section/city-state/FetchCityState";
-import FetchUsername from "@/components/edit-profile-section/username-section/FetchUsername";
 import { Suspense } from "react";
 import Loading from "@/components/loading-fallbacks/LoadingEditProfile";
-import FetchSpecial from "@/components/edit-profile-section/today-special/FetchSpecial";
-import FetchMenus from "@/components/edit-profile-section/alter-menus/FetchMenus";
-import FetchPFP from "@/components/edit-profile-section/pfp-section/FetchPFP";
 import Link from "next/link";
+import { User } from "../lib/Supabase-Client";
+import { GetCurrentUser } from "../lib/GetCurrentUser";
 
 export default async function Profile() {
-  const bio: string = await FetchBio();
-  const vendorType: string = await FetchVendorType();
-  const coordinates: number[] = await FetchLocation();
-  const city: string = await FetchCity();
-  const state: string = await FetchState();
-  const name: string = await FetchUsername();
-  const special: string = await FetchSpecial();
-  const menus: string[] = await FetchMenus();
-  const pfp: string = await FetchPFP();
+  const currentUser: User = await GetCurrentUser();
 
   return (
     <Suspense fallback={<Loading />}>
@@ -56,14 +39,27 @@ export default async function Profile() {
           Dashboard
         </Link>
         <div className="mt-24">
-          <UploadToS3 pfp={pfp} />
-          <ChangeUsername name={name} />
-          <EditCityState city={city} state={state} />
-          <TodaySpecial special_today={special} />
-          <VendorTypeDisplay vendor_type={vendorType} />
-          <BioForm bio={bio} />
-          <AddMenu menus={menus} />
-          <GeoLocationComponent latitude_longitude_location={coordinates} />
+          <div className="flex justify-evenly items-center">
+            <UploadToS3 pfp={currentUser.pfp} />
+            <div>
+              <ChangeUsername name={currentUser.name} />
+              <EditCityState
+                city={currentUser.city}
+                state={currentUser.state}
+              />
+              <VendorTypeDisplay vendor_type={currentUser.vendor_type} />
+            </div>
+          </div>
+          <BioForm bio={currentUser.bio} />
+          <div className="border-[1px] border-gray-700"/>
+
+          <TodaySpecial special_today={currentUser.special_today} />
+          <AddMenu menus={currentUser.menus} />
+          <GeoLocationComponent
+            latitude_longitude_location={
+              currentUser.Latitude_Longitude_Location
+            }
+          />
         </div>
       </div>
     </Suspense>

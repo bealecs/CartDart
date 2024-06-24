@@ -36,15 +36,15 @@ export default function EditCityState({city, state}: Residence) {
     return (
         <div>
            {!editting ? (
-            <div className="flex items-center">
+            <div className="flex">
                 <p>{cityValue}, {stateValue}</p>
                 <button onClick={() => setEditting(true)}><EditIcon fontSize="small" className="mx-4" /></button>
             </div>
            ): (
-           <form action={handleSubmit} className="flex">
+           <form action={handleSubmit} className="">
             <CitySelector />
-            <button type="submit"><CheckIcon className="border-2 border-white bg-btn-background rounded-md mx-2"/></button>
-            <button onClick={() => setEditting(false)}><ClearIcon  className="border-2 border-white bg-red-700 rounded-md" /></button>
+            <button type="submit"><CheckIcon className="border-2 border-white bg-btn-background rounded-md"/></button>
+            <button onClick={() => setEditting(false)}><ClearIcon  className="border-2 border-white bg-red-700 rounded-md ml-2" /></button>
            </form>
            )} 
         </div>

@@ -1,12 +1,13 @@
 import MapComponent from "../edit-profile-section/Geolocation/MapComponent";
 import Image from "next/image";
-import GetVendors, { GetCurrentUser } from "./GetVendors";
 import Favorite from "../edit-profile-section/favorite/Favorite";
 import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { User } from "@/app/lib/Supabase-Client";
 import { Suspense } from "react";
 import Loading from "../loading-fallbacks/LoadingEditProfile";
+import { GetCurrentUser } from "@/app/lib/GetCurrentUser";
+import GetVendors from "./GetVendors";
 
 export default async function HomeDisplay() {
   const users: User[] = await GetVendors();

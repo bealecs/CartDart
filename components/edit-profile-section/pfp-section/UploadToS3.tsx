@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import UpdatePFP from "./UpdatePFP";
-import EditIcon from "@mui/icons-material/Edit";
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -52,15 +52,15 @@ export default function UploadToS3({ pfp }: { pfp: string }) {
   };
 
   return (
-    <div className="flex">
+    <div className="mx-2">
       {!editting ? (<>
         <Image src={pfp} width={150} height={150} className="rounded-full" alt="user profile picture" />
-        <button onClick={() => setEditting(!editting)}><EditIcon fontSize="large" /></button>
+        <button className="block w-fit mx-auto text-center my-2" onClick={() => setEditting(!editting)}><UploadFileIcon fontSize="medium" /></button>
       </>
       ) : (
         <form
           action={handleSubmit}
-          className="h-[150px] content-center"
+          className="h-[150px] w-[200px] content-center"
         >
           <input type="file" accept="image/jpeg" className="block w-fit" onChange={handleFileChange} />
           <button type="submit" className="border-2 border-white bg-btn-background rounded-md mt-2"><CheckIcon /></button>

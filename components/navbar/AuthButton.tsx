@@ -23,15 +23,17 @@ export default async function AuthButton() {
   };
 
   return user ? (
-    <div className="items-center gap-4 hidden md:flex justify-center">
-      <PFP size={50} />
+    <div className="items-center gap-2 flex justify-end">
       <a
         href="/profile"
         className="transition duration-300 linear border-2 border-transparent hover:text-gray-400 hover:border-b-gray-400"
       >
         <div className="flex">
-          <p className="mr-1">Hey,</p>
-          <UsernameDisplay name={name}/>
+        <PFP size={50} />
+        <div className="hidden md:flex items-center ml-2">
+        <p className="mr-1">Hey,</p>
+        <UsernameDisplay name={name} />
+        </div>
         </div>
       </a>
       <form action={signOut}>

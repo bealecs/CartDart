@@ -8,8 +8,8 @@ import MapComponent from "@/components/edit-profile-section/Geolocation/MapCompo
 import { User } from "@/app/lib/Supabase-Client";
 import Loading from "@/components/loading-fallbacks/LoadingEditProfile";
 import { Suspense } from "react";
-import { GetCurrentUser } from "@/components/home-page-display/GetVendors";
 import Favorite from "./Favorite";
+import { GetCurrentUser } from "@/app/lib/GetCurrentUser";
 
 async function FavoritesList(id: UUID) {
   const supabase = createClient();

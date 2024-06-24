@@ -25,7 +25,7 @@ export default function NoUserDisplay() {
               </radialGradient>
             </defs>
           </svg>
-          <div className="mx-auto max-w-lg text-center lg:mx-auto lg:flex-auto lg:py-32 lg:text-left">
+          <div className="mx-auto mt-20 max-w-lg text-center lg:mx-auto lg:flex-auto lg:py-32 lg:text-left">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Find Favorite Food Carts, Fast
             </h2>

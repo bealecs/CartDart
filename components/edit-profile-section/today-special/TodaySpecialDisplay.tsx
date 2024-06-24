@@ -34,45 +34,53 @@ export default function TodaySpecial({ special_today }: Special) {
   };
 
   return (
-    <div>
+    <div className="border-2 border-btn-background rounded-md my-8">
       {editting ? (
         <>
-        <h4 className="text-3xl">{"Today's special:"}</h4>
-        <form className="flex items-center" action={handleSubmit}>
-          <label htmlFor="special" className="hidden">
-            Edit your special deal of the day
-          </label>
-          <input
-            value={todaySpecial}
-            className="w-5/12 text-black p-1 rounded-md"
-            type="text"
-            id="special"
-            onChange={handleChange}
-          />
-          <div className="flex h-fit">
-            <button type="submit" className="mx-2 border-2 border-white bg-btn-background rounded-md">
-              <CheckIcon />
-            </button>
-            <button
-              onClick={() => {
-                setEditting(false);
-                setUpdatedSpecial(special_today);
-              }}
-              className="border-2 border-white bg-red-700 rounded-md"
-            >
-              <ClearIcon />
-            </button>
-          </div>
-        </form>
+          <h4 className="text-3xl text-btn-background text-center my-4">
+            {"Today's special:"}
+          </h4>
+          <form className="flex justify-center my-2" action={handleSubmit}>
+            <label htmlFor="special" className="hidden">
+              Edit your special deal of the day
+            </label>
+            <input
+              autoFocus
+              value={todaySpecial}
+              className="w-5/12 text-black p-1 rounded-md"
+              type="text"
+              id="special"
+              onChange={handleChange}
+            />
+            <div className="flex h-fit">
+              <button
+                type="submit"
+                className="mx-2 border-2 border-white bg-btn-background rounded-md"
+              >
+                <CheckIcon />
+              </button>
+              <button
+                onClick={() => {
+                  setEditting(false);
+                  setUpdatedSpecial(special_today);
+                }}
+                className="border-2 border-white bg-red-700 rounded-md"
+              >
+                <ClearIcon />
+              </button>
+            </div>
+          </form>
         </>
       ) : (
         <div>
-          <h4 className="text-3xl">{"Today's special:"}</h4>
-          <div className="flex">
-            <p className="text-xl">{updatedSpecial}</p>
+          <h4 className="text-3xl text-btn-background text-center my-4">
+            {"Today's special:"}
+          </h4>
+          <div className="flex my-2">
             <button className="mx-2" onClick={() => setEditting(true)}>
-              <EditIcon fontSize="small"/>
+              <EditIcon fontSize="small" />
             </button>
+            <p className="text-xl">{updatedSpecial}</p>
           </div>
         </div>
       )}

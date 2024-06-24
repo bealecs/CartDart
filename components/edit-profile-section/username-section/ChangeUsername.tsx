@@ -38,7 +38,7 @@ export default function ChangeUsername({ name }: Username) {
   };
 
   return (
-    <div className=" flex items-center">
+    <div className="flex items-center w-fit">
       {!edittingUsername ? (
         <>
           <h4 className="text-xl mr-4">{currentUsername}</h4>
@@ -50,9 +50,10 @@ export default function ChangeUsername({ name }: Username) {
             Enter a new username:
           </label>
           <input
+            autoFocus
             type="text"
             id="newUsername"
-            className="my-2 text-black w-fit rounded-md"
+            className="my-2 text-black w-8/12 rounded-md"
             value={username}
             onChange={handleChange}
           />

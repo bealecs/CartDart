@@ -5,18 +5,20 @@ import Image from "next/image";
 import InsertMenu from "./InsertMenu";
 import DeleteMenuFromDB from "./DeleteMenuFromDB";
 import DeleteMenuFromS3 from "./DeleteMenuFromS3";
-import MenuBookIcon from '@mui/icons-material/MenuBook';
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 interface Menus {
   menus: string[];
 }
 
-export default function AddMenu({menus}: Menus) {
+export default function AddMenu({ menus }: Menus) {
   const [file, setFile] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
   const [menuArray, setMenuArray] = useState<string[]>([]);
-  const [itemToDelete, setItemToDelete] = useState<string>(null);
-  const [menuClicked, setMenuClicked] = useState<boolean>(false);
+  const [addingMenu, setAddingMenu] = useState<boolean>(false);
 
   useEffect(() => {
     setMenuArray(menus);
@@ -73,18 +75,16 @@ export default function AddMenu({menus}: Menus) {
     return false;
   };
 
-  const handleMenuClick = (index) => {
-    if (menuClicked) {
-      setMenuClicked(false);
+  const handleDeleteMenu = (menuIndex: number) => {
+    const trimmedURL = trimURL(menuArray[menuIndex]);
+    console.log(trimmedURL);
+    const result = confirm("Are you sure you want to delete this menu?");
+    if (result) {
+      DeleteMenuFromDB(menuArray, menuArray[menuIndex]);
+      DeleteMenuFromS3(trimmedURL);
     } else {
-      setMenuClicked(true);
-      setItemToDelete(index);
+      return;
     }
-  };
-
-  const handleDeleteMenu = () => {
-    DeleteMenuFromDB(menuArray, menuArray[itemToDelete]);
-    DeleteMenuFromS3(trimURL(menuArray[itemToDelete]));
     location.reload();
   };
 
@@ -105,63 +105,81 @@ export default function AddMenu({menus}: Menus) {
   };
 
   return (
-    <div>
-      <div className="m-5">
-        {previewURL ? <p>Preview:</p> : null}
-        {previewURL && (
-          <Image
-            width={100}
-            height={100}
-            src={previewURL}
-            alt="Preview image of the menu to be uploaded to the server"
-          />
-        )}
-      </div>
-      <form action={handleSubmit} className="flex flex-col">
-        <label>Upload photos of your menu{"(s)"} here:</label>
-        <input type="file" accept="image/jpeg" onChange={handleFileChange} />
-        <aside className="italic">
-          Note: Current maximum file upload is 5MB, please upload menu photos
-          one at a time
-        </aside>
-        <button
-          type="submit"
-          className="text-left border-2 border-white w-fit p-2 rounded"
-        >
-          Upload Menu
-        </button>
-      </form>
+    <div className="border-2 border-btn-background rounded-md p-2">
+      {addingMenu ? (
+        <>
+          <form action={handleSubmit} className="flex flex-col">
+            <label className="text-xl mb-2">Upload photos of your menu{"(s)"} here:</label>
+            <input
+              type="file"
+              accept="image/jpeg"
+              onChange={handleFileChange}
+            />
+            <aside className="italic mt-1">
+              Note: Current maximum file upload is 5MB, please upload menu
+              photos one at a time
+            </aside>
+            <div className="mt-4">
+              <button
+                type="submit"
+                className="text-left border-2 border-white w-fit bg-btn-background rounded-md"
+              >
+                <CheckIcon />
+              </button>
+              <button
+                className="text-left border-2 border-white w-fit bg-red-700 rounded-md mx-4"
+                onClick={() => setAddingMenu(!addingMenu)}
+              >
+                <ClearIcon />
+              </button>
+            </div>
+          </form>
 
-      <div>
-        {menuArray ? <p>Current Menus:</p> : null}
-        <div className="flex">
-          {menuArray &&
-            menuArray.map((menu, index) => (
-              <div key={menu} className="flex flex-col">
-                <a href={menu} target="_blank" className="flex flex-col">
-                 <MenuBookIcon fontSize="large"/>
-                 <span>#{index +1}</span>
-                </a>
-                {!menuClicked ? (
+          <div className="m-5">
+            {previewURL ? <p>Preview:</p> : null}
+            {previewURL && (
+              <Image
+                width={100}
+                height={100}
+                src={previewURL}
+                alt="Preview image of the menu to be uploaded to the server"
+              />
+            )}
+          </div>
+        </>
+      ) : (
+        <div>
+          <div className="flex justify-center">
+            <h4 className="text-3xl text-btn-background">Menus:</h4>
+            <button
+              onClick={() => setAddingMenu(!addingMenu)}
+              className="mx-2"
+            >
+              <AddCircleIcon/>
+            </button>
+          </div>
+          <div className="flex mx-2">
+            {menuArray.length > 0 ? (
+              menuArray.map((menu, index) => (
+                <div key={menu} className="flex flex-col">
+                  <a href={menu} target="_blank" className="flex flex-col">
+                    <MenuBookIcon fontSize="large" className="mx-auto" />
+                    <span className="mx-auto">Menu #{index + 1}</span>
+                  </a>
                   <button
-                    className="text-left"
-                    onClick={() => handleMenuClick(index)}
+                    className="mx-auto"
+                    onClick={() => handleDeleteMenu(index)}
                   >
-                    Delete Menu
+                    <ClearIcon className="text-btn-background" />
                   </button>
-                ) : (
-                  <div className="flex">
-                    Are you sure?
-                    <button onClick={handleDeleteMenu}>Delete</button>
-                    <button onClick={() => setMenuClicked(false)}>
-                      Cancel
-                    </button>
-                  </div>
-                )}
-              </div>
-            ))}
+                </div>
+              ))
+            ) : (
+              <p className="w-fit mx-auto my-2 text-lg">No menus uploaded :/</p>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

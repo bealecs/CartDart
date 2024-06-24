@@ -28,12 +28,10 @@ export default function BioForm(bio: Bio) {
     }
   };
   return (
-    <div>
+    <div className="my-4 text-xl">
       {!edittingBio ? (
         <div>
-          <h2 className="text-3xl">Bio:</h2>
           <div className="flex">
-            <p className="w-fit">{bioContent}</p>
             <button
               onClick={() => {
                 setBioContent("");
@@ -42,40 +40,39 @@ export default function BioForm(bio: Bio) {
             >
               <EditIcon className="mx-2" fontSize="small" />
             </button>
+            <p className="w-10/12 mx-auto">{bioContent}</p>
           </div>
         </div>
       ) : (
-        <>
-          <h2 className="text-3xl">Bio:</h2>
-          <form className="flex" action={handleSubmit}>
-            <label className="text-3xl hidden">New Bio:</label>
-            <input
-              type="textarea"
-              className="text-black rounded-md w-7/12"
-              onChange={(e) => {
-                setBioContent(e.target.value);
+        <form className="flex" action={handleSubmit}>
+          <label className="text-3xl hidden">New Bio:</label>
+          <input
+            autoFocus
+            type="textarea"
+            className="text-black rounded-md w-10/12"
+            onChange={(e) => {
+              setBioContent(e.target.value);
+            }}
+            value={bioContent}
+          />
+          <div className="flex mx-2">
+            <button
+              className="mr-1 border-2 border-white bg-btn-background rounded-md"
+              type="submit"
+            >
+              <CheckIcon />
+            </button>
+            <button
+              className="ml-1 border-2 border-white bg-red-700 rounded-md"
+              onClick={() => {
+                setBioContent(bio.bio);
+                setEdittingBio(false);
               }}
-              value={bioContent}
-            />
-            <div className="flex">
-              <button
-                className="mx-2 border-2 border-white bg-btn-background rounded-md"
-                type="submit"
-              >
-                <CheckIcon />
-              </button>
-              <button
-                className="mx-2 border-2 border-white bg-red-700 rounded-md"
-                onClick={() => {
-                  setBioContent(bio.bio);
-                  setEdittingBio(false);
-                }}
-              >
-                <ClearIcon />
-              </button>
-            </div>
-          </form>
-        </>
+            >
+              <ClearIcon />
+            </button>
+          </div>
+        </form>
       )}
     </div>
   );

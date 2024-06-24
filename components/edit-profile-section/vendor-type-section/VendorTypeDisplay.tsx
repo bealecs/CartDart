@@ -5,6 +5,7 @@ import UpdateVendorType from "./UpdateVendorType";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
+import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 
 interface VendorType {
   vendor_type: string;
@@ -52,33 +53,30 @@ export default function VendorTypeDisplay(type: VendorType) {
   ];
 
   return (
-    <div>
+    <div className="w-fit my-1">
       {!edittingVendorType ? (
-        <div>
-          <h2 className="text-3xl">Vendor Category Display:</h2>
-          <div className="flex">
-            <p className=" items-center content-center text-xl">
+        <div className="flex">
+          <div className="flex items-center border-2 border-btn-background rounded-md text-btn-background">
+            <RestaurantMenuIcon fontSize="small" />
+            <p className="items-center content-center px-2">
               {!vendorType
                 ? "There is no selected vendor category yet"
                 : vendorType.replace(/_/g, " ")}
             </p>
-
-            <div className="flex flex-row justify-start w-full">
-              <button
-                onClick={() => {
-                  setVendorType("");
-                  setEdittingVendorType(true);
-                }}
-              >
-                <EditIcon fontSize="small" className="mx-2" />
-              </button>
-            </div>
+          </div>
+          <div className="flex flex-row justify-start w-full mx-4">
+            <button
+              onClick={() => {
+                setVendorType("");
+                setEdittingVendorType(true);
+              }}
+            >
+              <EditIcon fontSize="small" />
+            </button>
           </div>
         </div>
       ) : (
         <>
-          <h2 className="text-3xl">Vendor Category Display:</h2>
-
           <form
             className="flex h-fit items-center content-center"
             action={handleSubmit}
@@ -87,6 +85,7 @@ export default function VendorTypeDisplay(type: VendorType) {
               New Vendor Category:
             </label>
             <select
+              autoFocus
               className="text-black w-fit p-1 rounded-md"
               id="newVendor"
               onChange={(e) => setVendorType(e.target.value)}

@@ -161,10 +161,11 @@ export default function CitySelector() {
   };
 
   return (
-    <div className="flex my-2">
+    <div className="my-2">
       <select
+        autoFocus
         id="state"
-        className="text-black w-fit rounded-md"
+        className="text-black w-8/12 rounded-md"
         name="state"
         onChange={handleStateChange}
         required
@@ -180,7 +181,7 @@ export default function CitySelector() {
       </select>
       <select
         id="city"
-        className="text-black w-fit rounded-md mx-2"
+        className="text-black w-8/12 rounded-md"
         name="city"
         disabled={!selectedState}
         required

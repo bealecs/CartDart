@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import MapComponent from "./MapComponent";
 import UpdateLocation from "./UpdateLocation";
+import PersonPinIcon from '@mui/icons-material/PersonPin';
+import ClearIcon from "@mui/icons-material/Clear";
 
 interface Geolocation {
   latitude_longitude_location: number[];
@@ -48,21 +50,23 @@ export default function GeoLocationComponent(coords: Geolocation) {
   };
 
   return (
-    <div>
+    <div className="border-2 border-btn-background rounded-md p-2 my-8">
       <div className="flex flex-col">
-        <h4 className="text-xl">My Current Location</h4>
-        <div className="flex my-4">
+        <h4 className="text-3xl text-center text-btn-background">My Current Location:</h4>
+        <div className="flex my-4 justify-center">
           <button
             onClick={getLocation}
-            className="border-2 mr-2 border-white rounded p-2"
+            className="border-2 mr-2 border-white rounded p-2 bg-btn-background"
           >
-            Push Current Location
+            <PersonPinIcon />
+             Push my location
           </button>
           <button
             onClick={clearLocation}
-            className="border-2 ml-2 border-white rounded p-2"
+            className="border-2 ml-2 border-white rounded p-2 bg-red-700"
           >
-            Clear current location
+            <ClearIcon />
+            Clear my location
           </button>
         </div>
         {coordinates[0] != null ? (

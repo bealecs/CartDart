@@ -1,5 +1,7 @@
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
+import { Suspense } from "react";
+import Loading from "@/components/loading-fallbacks/LoadingEditProfile";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -21,7 +23,9 @@ export default function RootLayout({
       <link rel="icon" href="/logo2.svg" />
       <body className="text-foreground">
         <main>
-          {children}
+          <Suspense fallback={<Loading />}>
+            {children}
+          </Suspense>
         </main>
       </body>
     </html>

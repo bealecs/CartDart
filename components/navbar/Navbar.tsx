@@ -1,5 +1,5 @@
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import AuthButton from "./AuthButton";
+import HamburgerMenu from './HamburgerMenu';
 
 export const Navbar = () => {
   
@@ -11,9 +11,8 @@ export const Navbar = () => {
           <li><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit" href="/explore">Explore</a></li>
           <li><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit" href="/favorites">My Favorites</a></li>
         </ul>
-
-        <div className="block md:hidden px-1"><MenuOpenIcon fontSize='large' className='text-6xl'/></div>
-        <div className="w-6/12">
+        <HamburgerMenu />
+        <div className="w-full pr-4">
           <AuthButton />
         </div>
         
