@@ -18,9 +18,9 @@ export default async function ProtectedPage() {
     <div className="flex-1 overflow-hidden flex flex-col items-center">
       <header>
         <Navbar />
-        <HomeDisplay />
       </header>
-    <main>
+    <main className="w-full">
+    <HomeDisplay />
 
     </main>
     <footer>

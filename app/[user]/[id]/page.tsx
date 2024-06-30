@@ -1,8 +1,8 @@
 "use server";
+import { GetCurrentUser } from "@/app/lib/GetCurrentUser";
 import { User } from "@/app/lib/Supabase-Client";
 import MapComponent from "@/components/edit-profile-section/Geolocation/MapComponent";
 import Favorite from "@/components/edit-profile-section/favorite/Favorite";
-import { GetCurrentUser } from "@/components/home-page-display/GetVendors";
 import { Navbar } from "@/components/navbar/Navbar";
 import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
@@ -33,75 +33,77 @@ export default async function Page({
   }
 
   return (
-    <div className="bg-gray-900 overflow-x-hidden h-screen">
-      <Navbar />
-      {profile.map((profile) => (
-        <div key={profile.id} className="m-2 w-10/12 mx-auto">
-          <div className="flex items-center justify-start" key={profile.id}>
-            {profile.pfp != null ? (
-              <Image
-                width={50}
-                height={50}
-                className="rounded"
-                src={profile.pfp}
-                alt={profile.name}
-              />
-            ) : (
-              <Image
-                width={50}
-                height={50}
-                className="rounded"
-                src={"/default-pfp.svg"}
-                alt={profile.name}
-              />
-            )}
-            <p className="items-center content-center ml-5">{profile.name}</p>
+    <div className="bg-gray-900 text-gray-200 overflow-x-hidden min-h-screen">
+  <Navbar />
+  {profile.map((profile) => (
+    <div key={profile.id} className="container mx-auto px-4 py-8">
+      
+      <div className="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center content-center">
+      <Image
+          width={150}
+          height={150}
+          className="rounded-full border-4 border-gray-700 lg:hidden"
+          src={profile.pfp ? profile.pfp : "/default-pfp.svg"}
+          alt={profile.name}
+        />
+        <div className="lg:ml-6 mt-4 lg:mt-0 text-center lg:text-left">
+          <div className="flex flex-wrap items-center justify-center lg:justify-around">
+          <Image
+          width={150}
+          height={150}
+          className="rounded-full border-4 border-gray-700 hidden lg:block"
+          src={profile.pfp ? profile.pfp : "/default-pfp.svg"}
+          alt={profile.name}
+        />
+          <h4 className="text-4xl font-semibold">{profile.name}</h4>
+          <Favorite id={profile.id} isFavorited={currentUser.favorites.includes(profile.id)} className="p-4"/>
           </div>
-          <p className="my-4">{profile.bio}</p>
-          {/* Add all of the necessary fields here, this will be the page the user sees when they visit a vendor */}
-          <p className="my-4">
-            <span className="underline">Cuisine:</span>{" "}
-            {profile.vendor_type
-              ? profile.vendor_type
-              : "No cuisine type specified"}
+          <p className="lg:mt-8 text-lg">{profile.bio}</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+        <div className="bg-gray-800 rounded-lg shadow-lg p-6">
+          <h4 className="text-xl font-semibold mb-4">{"Today's Special"}</h4>
+          <p className="mb-4">
+           {profile.special_today ? profile.special_today : "There were no deals found from this vendor"}
           </p>
-          <p className="my-4">
-            <span className="underline">Deal of the day:</span>{" "}
-            {profile.special_today
-              ? profile.special_today
-              : "There were no deals found from this vendor"}
+          <p className="mb-4">
+            <span className="font-semibold">Cuisine:</span> {profile.vendor_type ? profile.vendor_type : "No cuisine type specified"}
           </p>
-          <p className="my-1">
-            <span className="underline">Menus:</span>
-          </p>
-          <div className="flex">
-            {profile.menus ? (
-              profile.menus.map((menu, index) => {
-                return (
-                  <div key={index}>
-                    <a
-                      target="_blank"
-                      rel="ref noopener"
-                      className="mr-5"
-                      href={menu}
-                    >
-                      Menu #{index + 1}
-                    </a>
-                  </div>
-                );
-              })
-            ) : (
-              <p>There were no menus found for this vendor</p>
-            )}
+          <div>
+            <span className="font-semibold">Menus:</span>
+            <div className="flex flex-wrap mt-2">
+              {profile.menus ? (
+                profile.menus.map((menu, index) => (
+                  <a
+                    key={index}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-indigo-400 hover:text-indigo-600 mr-4 mb-2"
+                    href={menu}
+                  >
+                    Menu #{index + 1}
+                  </a>
+                ))
+              ) : (
+                <p>No menus found for this vendor</p>
+              )}
+            </div>
           </div>
-          <Favorite id={profile.id} isFavorited={currentUser.favorites.includes(profile.id)} />
-          {profile.Latitude_Longitude_Location != null ? (
-            <div className="h-[400px] lg:w-5/12 mx-auto w-full">
+        </div>
+
+        {profile.Latitude_Longitude_Location && (
+          <div className="bg-gray-800 rounded-lg shadow-lg p-6">
+            <h4 className="text-xl font-semibold mb-4">Location</h4>
+            <div className="h-64 w-full bg-gray-700 rounded-lg overflow-hidden">
               <MapComponent coordinates={profile.Latitude_Longitude_Location} />
             </div>
-          ) : null}
-        </div>
-      ))}
+          </div>
+        )}
+      </div>
     </div>
-  );
+  ))}
+</div>
+  )
 }

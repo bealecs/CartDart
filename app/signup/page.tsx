@@ -72,8 +72,13 @@ export default function Signup({
         </h2>
         <CitySelector />
         <div className="my-2">
-          <label htmlFor="userType">Which type of user are you?</label>
-          <select  id="state" className="text-black w-9/12 rounded-md mb-2" name="userType" required>
+          <label htmlFor="userType">Which type of user are you?:</label>
+          <select
+            id="state"
+            className="text-black p-1 w-full md:w-8/12 rounded-md mb-2"
+            name="userType"
+            required
+          >
             <option key="customer" value="customer">
               Customer
             </option>
@@ -82,34 +87,40 @@ export default function Signup({
             </option>
           </select>
         </div>
-        <label className="text-md" htmlFor="displayName">
-          Display Name:
-        </label>
-        <input
-          className="rounded-md px-2 py-1 bg-inherit border mb-2"
-          name="displayName"
-          placeholder="Display name"
-          required
-        />
-        <label className="text-md" htmlFor="email">
-          Email:
-        </label>
-        <input
-          className="rounded-md px-2 py-1 bg-inherit border mb-2"
-          name="email"
-          placeholder="you@example.com"
-          required
-        />
-        <label className="text-md" htmlFor="password">
-          Password:
-        </label>
-        <input
-          className="rounded-md px-2 py-1 bg-inherit border mb-4"
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          required
-        />
+        <div className="flex flex-col">
+          <label className="text-md" htmlFor="displayName">
+            Display Name:
+          </label>
+          <input
+            className="rounded-md p-1 bg-inherit border"
+            name="displayName"
+            placeholder="Display name"
+            required
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-md" htmlFor="email">
+            Email:
+          </label>
+          <input
+            className="rounded-md p-1 bg-inherit border"
+            name="email"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-md" htmlFor="password">
+            Password:
+          </label>
+          <input
+            className="rounded-md p-1 bg-inherit border"
+            type="password"
+            name="password"
+            placeholder="••••••••••••••••"
+            required
+          />
+        </div>
         <SubmitButton
           formAction={createAccount}
           className="transition duration-300 linear bg-btn-background hover:bg-btn-background-hover rounded-md px-4 py-2 text-foreground mb-2"
@@ -120,7 +131,7 @@ export default function Signup({
         <div className="mx-auto mt-2">
           Already have an account?{" "}
           <a href="/login" className="text-[#663399] underline">
-          Sign in
+            Sign in
           </a>
         </div>
         {searchParams?.message && (

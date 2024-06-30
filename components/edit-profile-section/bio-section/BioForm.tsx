@@ -28,10 +28,11 @@ export default function BioForm(bio: Bio) {
     }
   };
   return (
-    <div className="my-4 text-xl">
+    <div className="m-4 text-xl font-semibold">
       {!edittingBio ? (
-        <div>
+        <div className="flex justify-center">
           <div className="flex">
+            <p className="mx-auto">{bioContent}</p>
             <button
               onClick={() => {
                 setBioContent("");
@@ -40,7 +41,6 @@ export default function BioForm(bio: Bio) {
             >
               <EditIcon className="mx-2" fontSize="small" />
             </button>
-            <p className="w-10/12 mx-auto">{bioContent}</p>
           </div>
         </div>
       ) : (

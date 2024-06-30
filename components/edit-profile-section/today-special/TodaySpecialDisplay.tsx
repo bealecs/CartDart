@@ -34,7 +34,7 @@ export default function TodaySpecial({ special_today }: Special) {
   };
 
   return (
-    <div className="border-2 border-btn-background rounded-md my-8">
+    <div className="rounded-md my-8">
       {editting ? (
         <>
           <h4 className="text-3xl text-btn-background text-center my-4">
@@ -73,14 +73,14 @@ export default function TodaySpecial({ special_today }: Special) {
         </>
       ) : (
         <div>
-          <h4 className="text-3xl text-btn-background text-center my-4">
+          <h4 className="text-2xl font-semibold m-4">
             {"Today's special:"}
           </h4>
           <div className="flex my-2">
             <button className="mx-2" onClick={() => setEditting(true)}>
               <EditIcon fontSize="small" />
             </button>
-            <p className="text-xl">{updatedSpecial}</p>
+            <p className="text-lg">{updatedSpecial}</p>
           </div>
         </div>
       )}

@@ -40,7 +40,7 @@ export default async function Profile() {
         </Link>
         <div className="mt-24">
           <div className="flex justify-evenly items-center">
-            <UploadToS3 pfp={currentUser.pfp} />
+            <UploadToS3 pfp={currentUser.pfp ? currentUser.pfp : "/default-pfp.svg"} />
             <div>
               <ChangeUsername name={currentUser.name} />
               <EditCityState
@@ -51,15 +51,17 @@ export default async function Profile() {
             </div>
           </div>
           <BioForm bio={currentUser.bio} />
-          <div className="border-[1px] border-gray-700"/>
-
-          <TodaySpecial special_today={currentUser.special_today} />
-          <AddMenu menus={currentUser.menus} />
-          <GeoLocationComponent
-            latitude_longitude_location={
-              currentUser.Latitude_Longitude_Location
-            }
-          />
+          <div className="lg:flex lg:my-12 border-t m-4 py-4 lg:py-12">
+            <div className="border border-gray-700 rounded-lg shadow-lg w-full md:w-8/12 lg:w-4/12 bg-gray-800 mx-auto">
+              <TodaySpecial special_today={currentUser.special_today} />
+              <AddMenu menus={currentUser.menus} />
+            </div>
+            <GeoLocationComponent
+              latitude_longitude_location={
+                currentUser.Latitude_Longitude_Location
+              }
+            />
+          </div>
         </div>
       </div>
     </Suspense>

@@ -20,7 +20,6 @@ export default function Favorite({ id, isFavorited, className }: ID) {
 
     if (favorited) {
       RemoveFavorite(id);
-      alert("You must reload the page for changes to take effect.")
     } else {
       UpdateFavorites(id);
     }

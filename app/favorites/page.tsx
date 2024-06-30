@@ -4,7 +4,7 @@ import { Navbar } from "@/components/navbar/Navbar";
 export default async function FavoritesPage() {
  
   return (
-    <div className="bg-gray-900 h-screen">
+    <div className="bg-gray-900 h-screen overflow-x-hidden">
         <Navbar />
         <FavoritesPageComponent />
     </div>

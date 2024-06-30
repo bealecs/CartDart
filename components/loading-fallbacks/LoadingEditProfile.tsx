@@ -1,11 +1,12 @@
-export default function Loading() {
+import React from 'react';
 
-    return (
-        <div className="flex flex-col border-white border-2 m-2 bg-gray-900 h-screen">
-            <p>Loading!</p>
-            <div className="bg-gray-100 h-3/12 w/full"></div>
-            <div className="bg-gray-100 h-3/12 w/full"></div>
-            <div className="bg-gray-100 h-3/12 w/full"></div>
-        </div>
-    )
-}
+const Loading: React.FC = () => {
+  return (
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-900">
+      <div className="text-white text-xl mb-4">Loading...</div>
+      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-white"></div>
+    </div>
+  );
+};
+
+export default Loading;

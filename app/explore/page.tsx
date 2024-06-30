@@ -8,7 +8,7 @@ export default async function ExplorePage() {
 
   const { data: { user } } = await supabase.auth.getUser();
   return (
-    <main className="bg-gray-900 h-screen w-fit">
+    <main className="bg-gray-900 overflow-x-hidden h-screen">
       {!user ? <div className="flex justify-between px-8 w-screen py-4">
       <Link
         href="/"

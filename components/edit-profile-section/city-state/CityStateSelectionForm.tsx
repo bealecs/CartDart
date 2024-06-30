@@ -161,11 +161,12 @@ export default function CitySelector() {
   };
 
   return (
-    <div className="my-2">
+    <div>
+      <h4>Location:</h4>
       <select
         autoFocus
         id="state"
-        className="text-black w-8/12 rounded-md"
+        className="text-black w-full md:w-8/12 rounded-md"
         name="state"
         onChange={handleStateChange}
         required
@@ -181,7 +182,7 @@ export default function CitySelector() {
       </select>
       <select
         id="city"
-        className="text-black w-8/12 rounded-md"
+        className="text-black w-full md:w-8/12 rounded-md"
         name="city"
         disabled={!selectedState}
         required

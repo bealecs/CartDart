@@ -21,7 +21,11 @@ export default function AddMenu({ menus }: Menus) {
   const [addingMenu, setAddingMenu] = useState<boolean>(false);
 
   useEffect(() => {
+    if(menus != null) {
     setMenuArray(menus);
+    } else {
+      setMenuArray([]);
+    }
   }, [menus]);
 
   const handleFileChange = (e) => {
@@ -105,7 +109,7 @@ export default function AddMenu({ menus }: Menus) {
   };
 
   return (
-    <div className="border-2 border-btn-background rounded-md p-2">
+    <div className="">
       {addingMenu ? (
         <>
           <form action={handleSubmit} className="flex flex-col">
@@ -149,16 +153,16 @@ export default function AddMenu({ menus }: Menus) {
         </>
       ) : (
         <div>
-          <div className="flex justify-center">
-            <h4 className="text-3xl text-btn-background">Menus:</h4>
+          <div className="flex m-4">
+            <h4 className="text-2xl font-semibold">Menus:</h4>
             <button
               onClick={() => setAddingMenu(!addingMenu)}
               className="mx-2"
             >
-              <AddCircleIcon/>
+              <AddCircleIcon className="text-btn-background"/>
             </button>
           </div>
-          <div className="flex mx-2">
+          <div className="flex m-4">
             {menuArray.length > 0 ? (
               menuArray.map((menu, index) => (
                 <div key={menu} className="flex flex-col">

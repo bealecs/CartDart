@@ -2,6 +2,7 @@ import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { Suspense } from "react";
 import Loading from "@/components/loading-fallbacks/LoadingEditProfile";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -24,7 +25,7 @@ export default function RootLayout({
       <body className="text-foreground">
         <main>
           <Suspense fallback={<Loading />}>
-            {children}
+            <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
           </Suspense>
         </main>
       </body>

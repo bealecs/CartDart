@@ -50,27 +50,27 @@ export default function GeoLocationComponent(coords: Geolocation) {
   };
 
   return (
-    <div className="border-2 border-btn-background rounded-md p-2 my-8">
-      <div className="flex flex-col">
-        <h4 className="text-3xl text-center text-btn-background">My Current Location:</h4>
-        <div className="flex my-4 justify-center">
+    <div className="border border-gray-700 rounded-lg shadow-lg w-full md:w-8/12 lg:w-4/12 mx-auto bg-gray-800 my-8 lg:my-0">
+      <div className="flex flex-col p-4">
+        <h4 className="text-2xl font-semibold">My Current Location:</h4>
+        <div className="flex my-4">
           <button
             onClick={getLocation}
-            className="border-2 mr-2 border-white rounded p-2 bg-btn-background"
+            className="border-2 mr-2 border-white rounded p-1 bg-btn-background"
           >
             <PersonPinIcon />
              Push my location
           </button>
           <button
             onClick={clearLocation}
-            className="border-2 ml-2 border-white rounded p-2 bg-red-700"
+            className="border-2 ml-2 border-white rounded p-1 bg-red-700"
           >
             <ClearIcon />
             Clear my location
           </button>
         </div>
         {coordinates[0] != null ? (
-          <div className="h-[400px]">
+          <div className="h-[300px]">
             {" "}
             <MapComponent coordinates={coordinates} />{" "}
           </div>

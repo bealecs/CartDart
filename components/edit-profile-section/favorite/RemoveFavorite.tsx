@@ -2,7 +2,7 @@
 import { UUID } from "crypto";
 import FetchFavorites from "./FetchFavorites";
 import { User, supabase } from "@/app/lib/Supabase-Client";
-import { GetCurrentUser } from "@/components/home-page-display/GetVendors";
+import { GetCurrentUser } from "@/app/lib/GetCurrentUser";
 
 export default async function RemoveFavorite(id: UUID) {
 
