@@ -8,7 +8,7 @@ import DeleteMenuFromS3 from "./DeleteMenuFromS3";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 interface Menus {
   menus: string[];
@@ -21,8 +21,8 @@ export default function AddMenu({ menus }: Menus) {
   const [addingMenu, setAddingMenu] = useState<boolean>(false);
 
   useEffect(() => {
-    if(menus != null) {
-    setMenuArray(menus);
+    if (menus) {
+      setMenuArray(menus);
     } else {
       setMenuArray([]);
     }
@@ -44,6 +44,8 @@ export default function AddMenu({ menus }: Menus) {
   };
 
   const handleSubmit = async () => {
+    setPreviewURL("");
+    setAddingMenu(!addingMenu);
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
@@ -62,14 +64,18 @@ export default function AddMenu({ menus }: Menus) {
 
         //If the menu array is NOT empty, add the new values to update the array.
         //If the menu array is empty (meaning there are no menus stored yet), Insert a new menu to the array to make it iterable
-        if (menuArray) {
-          UpdateMenu(uuid, menuArray);
+        if (response.ok) {
+          if (menuArray.length) {
+            await UpdateMenu(uuid, menuArray);
+          } else {
+            await InsertMenu(uuid);
+          }
+          const newMenuURL = await response.text(); // Assuming the API returns the new menu URL
+          setMenuArray((prevMenuArray) => [...prevMenuArray, newMenuURL]);
+          console.log("Image uploaded successfully:", response);
         } else {
-          InsertMenu(uuid);
+          console.error("Error uploading image:", response.statusText);
         }
-
-        console.log("Image uploaded successfully:", response);
-        location.reload();
       } catch (error) {
         console.error("Error uploading image:", error);
       }
@@ -79,17 +85,19 @@ export default function AddMenu({ menus }: Menus) {
     return false;
   };
 
-  const handleDeleteMenu = (menuIndex: number) => {
-    const trimmedURL = trimURL(menuArray[menuIndex]);
-    console.log(trimmedURL);
+  const handleDeleteMenu = async (menuIndex: number) => {
+    const trimmedURL: string = trimURL(menuArray[menuIndex]);
+    const newMenuArray = menuArray.filter((_, index) => index !== menuIndex);
     const result = confirm("Are you sure you want to delete this menu?");
     if (result) {
-      DeleteMenuFromDB(menuArray, menuArray[menuIndex]);
-      DeleteMenuFromS3(trimmedURL);
-    } else {
-      return;
+      try {
+        await DeleteMenuFromDB(menuArray, menuArray[menuIndex]);
+        await DeleteMenuFromS3(trimmedURL);
+        setMenuArray(newMenuArray);
+      } catch (error) {
+        console.error("Error deleting menu:", error);
+      }
     }
-    location.reload();
   };
 
   //I pass in the value of the image link from the DB into the deletefromS3 function. I need the first half of the URL gone to match the S3 object name.
@@ -112,8 +120,10 @@ export default function AddMenu({ menus }: Menus) {
     <div className="">
       {addingMenu ? (
         <>
-          <form action={handleSubmit} className="flex flex-col">
-            <label className="text-xl mb-2">Upload photos of your menu{"(s)"} here:</label>
+          <form action={handleSubmit} className="flex flex-col m-4">
+            <label className="text-xl mb-2">
+              Upload photos of your menu{"(s)"} here:
+            </label>
             <input
               type="file"
               accept="image/jpeg"
@@ -132,7 +142,9 @@ export default function AddMenu({ menus }: Menus) {
               </button>
               <button
                 className="text-left border-2 border-white w-fit bg-red-700 rounded-md mx-4"
-                onClick={() => setAddingMenu(!addingMenu)}
+                onClick={() => {
+                  setPreviewURL("");
+                  setAddingMenu(!addingMenu)}}
               >
                 <ClearIcon />
               </button>
@@ -156,16 +168,24 @@ export default function AddMenu({ menus }: Menus) {
           <div className="flex m-4">
             <h4 className="text-2xl font-semibold">Menus:</h4>
             <button
-              onClick={() => setAddingMenu(!addingMenu)}
+              onClick={() => {
+                if (menuArray.length >= 4) {
+                  alert(
+                    "You may not add more than 4 menus at a time, please clear a menu to add a new one."
+                  );
+                } else {
+                  setAddingMenu(!addingMenu);
+                }
+              }}
               className="mx-2"
             >
-              <AddCircleIcon className="text-btn-background"/>
+              <AddCircleIcon className="text-btn-background" />
             </button>
           </div>
           <div className="flex m-4">
             {menuArray.length > 0 ? (
               menuArray.map((menu, index) => (
-                <div key={menu} className="flex flex-col">
+                <div key={menu} className="flex flex-col mr-4">
                   <a href={menu} target="_blank" className="flex flex-col">
                     <MenuBookIcon fontSize="large" className="mx-auto" />
                     <span className="mx-auto">Menu #{index + 1}</span>

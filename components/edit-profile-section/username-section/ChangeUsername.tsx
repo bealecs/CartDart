@@ -60,7 +60,6 @@ export default function ChangeUsername({ name }: Username) {
           
             <button type="submit" className="mx-2"><CheckIcon className="border-2 border-white bg-btn-background rounded-md"/></button>
             <button
-              className="mx-2"
               onClick={() => {
                 setCurrentUsername(name);
                 setEdittingUsername(false);

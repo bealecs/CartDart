@@ -15,7 +15,7 @@ export default function Beta() {
               <p className="text-xl font-semibold leading-7 text-indigo-500">
                 Beta Testing
               </p>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight text-white-900 sm:text-4xl">
+              <h1 className="mt-2 text-3xl font-semibold tracking-tight text-white-900 sm:text-4xl">
                 Creating a great experience
               </h1>
               <p className="mt-6 text-md leading-8 text-indigo-600 border-2 border-indigo-600 rounded-xl text-center w-fit px-1">
@@ -80,15 +80,13 @@ export default function Beta() {
                   </span>
                 </li>
               </ul>
-              <h2 className="mt-8 text-2xl font-bold tracking-tight text-indigo-500">
+              <h2 className="mt-8 text-2xl font-semibold tracking-tight text-indigo-500">
                 Care to join?
               </h2>
-              <p className="mt-6">
-                Sign ups are currently open for the beta testing period. Along
-                with signing up to the application, you will be sent an
-                invitation to a discord channel where you will be able to report
-                your findings throughout the testing period.
+              <p className="mt-6 text-xl font-semibold">
+                Sign ups are currently open for the beta testing period!
               </p>
+              
             </div>
             <div className="flex justify-center mt-10">
               <a href="/signup" className="underline">

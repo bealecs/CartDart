@@ -3,7 +3,7 @@
 import s3Client from "@/app/lib/S3-Client";
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 
-export default async function DeleteMenuFromS3(itemToDelete) {
+export default async function DeleteMenuFromS3(itemToDelete: string) {
     const params = {
         Bucket: process.env.AWS_S3_MENUS_BUCKET_NAME,
         Key: itemToDelete

@@ -39,9 +39,9 @@ export default async function Profile() {
           Dashboard
         </Link>
         <div className="mt-24">
-          <div className="flex justify-evenly items-center">
+          <div className="flex justify-center items-center">
             <UploadToS3 pfp={currentUser.pfp ? currentUser.pfp : "/default-pfp.svg"} />
-            <div>
+            <div className="mx-2 lg:mx-8">
               <ChangeUsername name={currentUser.name} />
               <EditCityState
                 city={currentUser.city}
@@ -51,7 +51,7 @@ export default async function Profile() {
             </div>
           </div>
           <BioForm bio={currentUser.bio} />
-          <div className="lg:flex lg:my-12 border-t m-4 py-4 lg:py-12">
+          <div className="lg:flex lg:my-12 border-t m-4 py-4 lg:py-8">
             <div className="border border-gray-700 rounded-lg shadow-lg w-full md:w-8/12 lg:w-4/12 bg-gray-800 mx-auto">
               <TodaySpecial special_today={currentUser.special_today} />
               <AddMenu menus={currentUser.menus} />

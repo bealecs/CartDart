@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import UpdateSpecial from "./UpdateSpecial";
-import FetchSpecial from "./FetchSpecial";
 import EditIcon from "@mui/icons-material/Edit";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -37,17 +36,17 @@ export default function TodaySpecial({ special_today }: Special) {
     <div className="rounded-md my-8">
       {editting ? (
         <>
-          <h4 className="text-3xl text-btn-background text-center my-4">
+          <h4 className="text-2xl font-semibold m-4">
             {"Today's special:"}
           </h4>
-          <form className="flex justify-center my-2" action={handleSubmit}>
+          <form className="flex my-2" action={handleSubmit}>
             <label htmlFor="special" className="hidden">
               Edit your special deal of the day
             </label>
             <input
               autoFocus
               value={todaySpecial}
-              className="w-5/12 text-black p-1 rounded-md"
+              className="w-7/12 text-black ml-4 p-1 rounded-md"
               type="text"
               id="special"
               onChange={handleChange}
