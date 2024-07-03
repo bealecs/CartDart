@@ -1,3 +1,4 @@
+"use server"
 import { createClient } from "@/utils/supabase/server";
 
 //This function grabs the user from supabase authentication to check it against the profiles table in the supabase public DB

@@ -10,13 +10,13 @@ interface Bio {
   bio: string;
 }
 
-export default function BioForm(bio: Bio) {
+export default function BioForm({bio}: Bio) {
   const [edittingBio, setEdittingBio] = useState(false);
   const [bioContent, setBioContent] = useState(String);
 
   useEffect(() => {
-    setBioContent(bio.bio);
-  }, [bio.bio]);
+    setBioContent(bio);
+  }, [bio]);
 
   const handleSubmit = () => {
     if (bioContent.length < 1) {
@@ -65,7 +65,7 @@ export default function BioForm(bio: Bio) {
             <button
               className="ml-1 border-2 border-white bg-red-700 rounded-md"
               onClick={() => {
-                setBioContent(bio.bio);
+                setBioContent(bio);
                 setEdittingBio(false);
               }}
             >
