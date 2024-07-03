@@ -36,28 +36,28 @@ export default function Explore() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission behavior
+    e.preventDefault();
     setStartedSearch(startedSearch + 1);
     const result = await FetchSearchResults(query);
-      if (result) {
-        setSearchResults(
-          result.map((resultItem) => ({
-            id: resultItem.id,
-            name: resultItem.name,
-            email: resultItem.email,
-            bio: resultItem.bio,
-            pfp: resultItem.pfp,
-            Latitude_Longitude_Location: resultItem.Latitude_Longitude_Location,
-            vendor_type: resultItem.vendor_type,
-            menus: resultItem.menus,
-            special_today: resultItem.special_today,
-            state: resultItem.state,
-            city: resultItem.city,
-            vendor: resultItem.vendor,
-            favorites: resultItem.favorites,
-          }))
-        );
-    };
+    if (result) {
+      setSearchResults(
+        result.map((resultItem) => ({
+          id: resultItem.id,
+          name: resultItem.name,
+          email: resultItem.email,
+          bio: resultItem.bio,
+          pfp: resultItem.pfp,
+          Latitude_Longitude_Location: resultItem.Latitude_Longitude_Location,
+          vendor_type: resultItem.vendor_type,
+          menus: resultItem.menus,
+          special_today: resultItem.special_today,
+          state: resultItem.state,
+          city: resultItem.city,
+          vendor: resultItem.vendor,
+          favorites: resultItem.favorites,
+        }))
+      );
+    }
   };
 
   return (
