@@ -35,10 +35,10 @@ export default function Explore() {
     setQuery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
     setStartedSearch(startedSearch + 1);
-    FetchSearchResults(query).then((result) => {
+    const result = await FetchSearchResults(query);
       if (result) {
         setSearchResults(
           result.map((resultItem) => ({
@@ -57,8 +57,7 @@ export default function Explore() {
             favorites: resultItem.favorites,
           }))
         );
-      }
-    });
+    };
   };
 
   return (

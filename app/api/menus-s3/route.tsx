@@ -1,7 +1,9 @@
+"use server"
 import { NextResponse } from "next/server";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { createClient } from "@/utils/supabase/server";
 import s3Client from "@/app/lib/S3-Client";
+import { User } from "@/app/lib/Supabase-Client";
+import { GetCurrentUser } from "@/app/lib/GetCurrentUser";
 
 async function uploadFileToS3(file, fileName) {
   const fileBuffer = file;
@@ -20,13 +22,8 @@ async function uploadFileToS3(file, fileName) {
 }
 
 export async function POST(request) {
-  "use server";
 
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  const username = user.user_metadata.name;
+  const user: User = await GetCurrentUser();
 
   try {
     const formData = await request.formData();
@@ -39,7 +36,7 @@ export async function POST(request) {
     const buffer = Buffer.from(await file.arrayBuffer());
     const fileName = await uploadFileToS3(
       buffer,
-      `${username}Menu${request.headers.get("uuid")}`
+      `${user.name}Menu${request.headers.get("uuid")}`
     );
 
     return NextResponse.json({ success: true, fileName });
