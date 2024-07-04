@@ -11,7 +11,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata = {
   metadataBase: new URL(defaultUrl),
   title: "Cart Dart",
-  description: "The fastest way to find local food vendors",
+  description: "The fast way to find local food vendors",
 };
 
 export default function RootLayout({
