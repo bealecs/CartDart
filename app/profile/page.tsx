@@ -38,7 +38,7 @@ export default async function Profile() {
           </svg>{" "}
           Dashboard
         </Link>
-        <div className="mt-24">
+        <div className="mt-24 h-screen">
           <div className="flex justify-center items-center">
             <UploadToS3 pfp={currentUser.pfp ? currentUser.pfp : "/default-pfp.svg"} />
             <div className="mx-2 lg:mx-8">
