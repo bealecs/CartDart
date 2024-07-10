@@ -183,7 +183,7 @@ export default function CitySelector() {
         </select>
         <select
           id="city"
-          className="text-black w-full md:w-8/12 rounded-md"
+          className="text-black mt-1 w-full md:w-8/12 rounded-md"
           name="city"
           disabled={!selectedState}
           required
@@ -196,7 +196,7 @@ export default function CitySelector() {
           ))}
         </select>
       </div>
-      <a href="https://discord.com/channels/1256877017266130985/1258916459053318305" target="_blank" rel="ref noopener">My city is not listed</a>
+      <a href="https://discord.gg/fwGDfePSEv" target="_blank" rel="ref noopener">My city is not listed</a>
     </div>
   );
 }

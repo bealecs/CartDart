@@ -24,6 +24,7 @@ export default function HamburgerMenu() {
           <li className="my-2"><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit text-2xl" href="/dashboard">Home</a></li>
           <li className="my-2"><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit text-2xl" href="/explore">Explore</a></li>
           <li className="my-2"><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit text-2xl" href="/favorites">My Favorites</a></li>
+          <li className="my-2"><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit text-2xl" href="/profile">My Profile</a></li>
         </ul>
       </div> : <p></p>}
     </div>

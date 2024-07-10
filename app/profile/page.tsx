@@ -51,7 +51,7 @@ export default async function Profile() {
             </div>
           </div>
           <BioForm bio={currentUser.bio} />
-          <div className="lg:flex lg:my-12 border-t m-4 py-4 lg:py-8">
+          <div className="lg:flex lg:my-12 border-t py-4 bg-gray-900">
             <div className="border border-gray-700 rounded-lg shadow-lg w-full md:w-8/12 lg:w-4/12 bg-gray-800 mx-auto">
               <TodaySpecial special_today={currentUser.special_today} />
               <AddMenu menus={currentUser.menus} />

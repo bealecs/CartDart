@@ -32,7 +32,7 @@ export default function BioForm({bio}: Bio) {
       {!edittingBio ? (
         <div className="flex justify-center">
           <div className="flex">
-            <p className="mx-auto">{bioContent}</p>
+            <p className="mx-auto">{bioContent ? bioContent : "There is no bio set, yet..."}</p>
             <button
               onClick={() => {
                 setBioContent("");

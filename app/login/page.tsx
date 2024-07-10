@@ -84,6 +84,12 @@ export default function Login({
           Create an account
           </a>
         </div>
+        <div className="mx-auto">
+          Forgot password?{" "}
+          <a href="/password-reset" className="text-[#663399] underline">
+          Reset your password
+          </a>
+        </div>
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
             {searchParams.message}

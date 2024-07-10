@@ -60,7 +60,7 @@ export default function VendorTypeDisplay(type: VendorType) {
             <RestaurantMenuIcon fontSize="small" />
             <p className="items-center content-center px-2">
               {!vendorType
-                ? "There is no selected vendor category yet"
+                ? "Not Selected"
                 : vendorType.replace(/_/g, " ")}
             </p>
           </div>

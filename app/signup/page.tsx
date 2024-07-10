@@ -21,6 +21,7 @@ export default function Signup({
     const city = formData.get("city") as string;
     const userType = formData.get("userType") as string;
     const supabase = createClient();
+ 
 
     const { error } = await supabase.auth.signUp({
       email,
