@@ -53,6 +53,7 @@ export default function BioForm({bio}: Bio) {
             onChange={(e) => {
               setBioContent(e.target.value);
             }}
+            maxLength={120}
             value={bioContent}
           />
           <div className="flex mx-2">
@@ -74,6 +75,7 @@ export default function BioForm({bio}: Bio) {
           </div>
         </form>
       )}
+      {edittingBio && <aside className="text-sm">*Note: Maximum 120 character limit</aside>}
     </div>
   );
 }
