@@ -10,6 +10,7 @@ export default function ForgotPassword() {
     const email = formData.get("email") as string;
     const supabase = createClient();
 
+    console.log(origin)
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${origin}/password-reset/update-password`,
     });

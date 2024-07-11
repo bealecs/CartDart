@@ -9,9 +9,9 @@ import { useState } from "react";
 export default function Beta() {
   const [selected, setSelected] = useState<string>("beta");
   const selectedView =
-    "bg-btn-background hover:bg-btn-background-hover rounded-md border-2 border-gray-700 w-full text-center";
+    "bg-indigo-600 hover:bg-indigo-800 rounded-md border-2 border-gray-700 w-full text-center mx-1";
   const deselectedView =
-    "hover:bg-btn-background-hover border-2 rounded-md border-gray-700 w-full text-center";
+    "hover:bg-indigo-800 border-2 rounded-md border-gray-700 w-full text-center mx-1";
 
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 px-6  sm:py-32 lg:overflow-visible lg:px-0">

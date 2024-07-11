@@ -10,6 +10,10 @@ export async function GetCurrentUser() {
       data: { user },
     } = await supabase.auth.getUser();
   
+    if(!user) {
+      return;
+    }
+    
     const { data: profiles, error } = await supabase
       .from("profiles")
       .select("*")

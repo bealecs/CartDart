@@ -56,7 +56,7 @@ export default async function Page({
           alt={profile.name}
         />
           <h4 className="text-4xl font-semibold">{profile.name}</h4>
-          <Favorite id={profile.id} isFavorited={currentUser.favorites.includes(profile.id)} className="p-4"/>
+          {currentUser && <Favorite id={profile.id} isFavorited={currentUser.favorites.includes(profile.id)} className="p-4"/>}
           </div>
           <p className="lg:mt-8 text-lg">{profile.bio}</p>
         </div>
