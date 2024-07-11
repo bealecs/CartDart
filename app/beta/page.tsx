@@ -41,7 +41,7 @@ export default function Beta() {
         </div>
 
         <div className="lg:hidden flex justify-center">
-          <a href="/signup" className="underline">
+          <a href="https://discord.gg/PMbD7QN22z" target="_blank" rel="noopener noreferrer" className="underline">
             Sign up for beta testing
           </a>
           <OpenInNewIcon className="p-1" />
@@ -113,7 +113,7 @@ export default function Beta() {
                   <div>
                     <h3 className="my-4 text-2xl">Cart Dart Mission Statement</h3>
                     <p className="my-4">
-                      Cart Dart Mission Statement At Cart Dart, our mission is
+                      At Cart Dart, our mission is
                       to make finding local food vendors effortless and
                       enjoyable.</p>
                       <p className="my-4"> We are committed to providing a
@@ -137,7 +137,7 @@ export default function Beta() {
               </p>
             </div>
             <div className="flex justify-center mt-10">
-              <a href="/signup" className="underline">
+              <a href="https://discord.gg/PMbD7QN22z" target="_blank" rel="noopener noreferrer" className="underline">
                 Sign up for beta testing
               </a>
               <OpenInNewIcon className="p-1" />
