@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { SubmitButton } from "../login/submit-button";
 import { headers } from "next/headers";
 import CitySelector from "@/components/edit-profile-section/city-state/CityStateSelectionForm";
+import PageBackButton from "@/components/PageBackButton";
 
 export default function Signup({
   searchParams,
@@ -47,26 +47,7 @@ export default function Signup({
 
   return (
     <div className="flex flex-col items-center justify-center px-4 bg-gray-900 h-screen">
-      <Link
-        href="/"
-        className="transition duration-500 linear absolute left-4 top-8 py-1 px-2 rounded-md no-underline text-foreground bg-btn-background hover:bg-btn-background-hover flex items-center group text-sm z-10"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1"
-        >
-          <polyline points="15 18 9 12 15 6" />
-        </svg>{" "}
-        Back to landing
-      </Link>
+      <PageBackButton text="Back to landing" href="/" />
       <form className="flex flex-col justify-evenly my-8 h-full md:w-full max-w-md text-foreground">
         <h2 className="mx-auto text-3xl text-center text-[#663399] mt-10 mb-4">
           Create an account
