@@ -1,5 +1,6 @@
 import OpenInNew from "@mui/icons-material/OpenInNew";
 import Image from "next/image";
+import Logo from "../Logo";
 
 export default function NoUserDisplay() {
   return (
@@ -29,8 +30,7 @@ export default function NoUserDisplay() {
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Find Favorite Food Carts, Fast
             </h2>
-            <Image src={"/logo2.svg"} alt="logo image for cart dart" width={400} height={400} className="py-6" />
-            
+            <Logo height={400} width={400} />            
             <div className="flex justify-center">
             <a href="/explore">Explore local vendors</a>
             <OpenInNew className="p-1"/>

@@ -9,6 +9,7 @@ import RestaurantMenuIcon from "@mui/icons-material/RestaurantMenu";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import Loading from "../loading-fallbacks/LoadingEditProfile";
 import { UUID } from "crypto";
+import Logo from "../Logo";
 
 interface SearchResults {
   id: string;
@@ -93,13 +94,7 @@ export default function Explore() {
               <p className="text-4xl lg:text-5xl text-center md:text-4xl text-gray-300">
                 Your search starts here
               </p>
-              <Image
-                src={"/logo2.svg"}
-                alt="logo of Cart Dart"
-                width={400}
-                height={400}
-                className="mx-auto"
-              />
+              <Logo height={400} width={400} />
             </div>
           )}
           {isLoading ? (
