@@ -6,7 +6,7 @@ width: number;
 height: number;
 }
 
-export default function Logo({width, height}: Logo) {
+export default async function Logo({width, height}: Logo) {
   return (
     <Image
       src={"/logo2.svg"}
