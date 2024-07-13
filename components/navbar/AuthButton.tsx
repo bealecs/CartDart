@@ -29,7 +29,7 @@ export default async function AuthButton() {
         className="transition duration-300 linear border-2 border-transparent hover:text-gray-400 hover:border-b-gray-400"
       >
         <div className="flex">
-        <PFP size={50} />
+        <PFP size={50} className="rounded-full"/>
         <div className="hidden md:flex items-center ml-2">
         <p className="mr-1">Hey,</p>
         <UsernameDisplay name={name} />

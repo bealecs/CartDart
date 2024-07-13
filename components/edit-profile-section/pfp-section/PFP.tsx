@@ -2,7 +2,11 @@
 import Image from "next/image";
 import FetchPFP from "./FetchPFP";
 
-export default async function PFP({ size }: {size: number}) {
+interface PFP {
+  size: number;
+  className?: string;
+}
+export default async function PFP({ size, className }: PFP) {
 
   const pfp: string = await FetchPFP();
   const timestamp = new Date().getTime();
@@ -14,7 +18,7 @@ export default async function PFP({ size }: {size: number}) {
         height={size}
         src={pfp ? pfp + "?v=" + timestamp : "/default-pfp.svg"}
         alt="User Profile Picture"
-        className="rounded-full"
+        className={className}
       />
     </div>
   );

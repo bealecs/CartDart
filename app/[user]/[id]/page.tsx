@@ -1,11 +1,11 @@
 "use server";
 import { GetCurrentUser } from "@/app/lib/GetCurrentUser";
 import { User } from "@/app/lib/Supabase-Client";
+import UserPhoto from "@/components/UserPhoto";
 import MapComponent from "@/components/edit-profile-section/Geolocation/MapComponent";
 import Favorite from "@/components/edit-profile-section/favorite/Favorite";
 import { Navbar } from "@/components/navbar/Navbar";
 import { createClient } from "@/utils/supabase/server";
-import Image from "next/image";
 
 export default async function Page({
   params,
@@ -39,7 +39,7 @@ export default async function Page({
     <div key={profile.id} className="container mx-auto px-4 py-8">
       
       <div className="bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col items-center content-center">
-      <Image
+      <UserPhoto
           width={150}
           height={150}
           className="rounded-full border-4 border-gray-700 lg:hidden"
@@ -48,7 +48,7 @@ export default async function Page({
         />
         <div className="lg:ml-6 mt-4 lg:mt-0 text-center lg:text-left">
           <div className="flex flex-wrap items-center justify-center lg:justify-around">
-          <Image
+          <UserPhoto
           width={150}
           height={150}
           className="rounded-full border-4 border-gray-700 hidden lg:block"
