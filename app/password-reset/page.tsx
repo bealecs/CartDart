@@ -1,5 +1,4 @@
 import { createClient } from "@/utils/supabase/server";
-import { headers } from "next/headers";
 import { SubmitButton } from "../login/submit-button";
 import { redirect } from "next/navigation";
 import PageBackButton from "@/components/PageBackButton";
@@ -13,7 +12,6 @@ export default function ForgotPassword() {
   const handlePasswordReset = async (formData: FormData) => {
     "use server";
 
-    const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const supabase = createClient();
 
@@ -29,7 +27,7 @@ export default function ForgotPassword() {
 
   return (
     <div className="flex flex-col items-center justify-center px-4 bg-gray-900 h-screen" id="password-reset">
-      <PageBackButton text="Back to sign in" href="/signin" />
+      <PageBackButton text="Back to sign in" href="/login" />
       <form
         className="flex flex-col justify-evenly h-64 md:w-full max-w-md text-foreground"
       >
