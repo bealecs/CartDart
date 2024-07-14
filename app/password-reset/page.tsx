@@ -6,6 +6,10 @@ import PageBackButton from "@/components/PageBackButton";
 
 export default function ForgotPassword() {
   
+  const defaultUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";
+  
   const handlePasswordReset = async (formData: FormData) => {
     "use server";
 
@@ -14,7 +18,7 @@ export default function ForgotPassword() {
     const supabase = createClient();
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${origin}/password-reset/update-password`,
+      redirectTo: `${defaultUrl}/password-reset/update-password`,
     });
     
     if (error) {
