@@ -3,20 +3,18 @@ import { redirect } from "next/navigation";
 import { SubmitButton } from "../login/submit-button";
 import CitySelector from "@/components/edit-profile-section/city-state/CityStateSelectionForm";
 import PageBackButton from "@/components/PageBackButton";
+import { headers } from "next/headers";
 
 export default function Signup({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
-
-  const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
   
   const createAccount = async (formData: FormData) => {
     "use server";
 
+    const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const displayName = formData.get("displayName") as string;
@@ -30,7 +28,7 @@ export default function Signup({
       email,
       password,
       options: {
-        emailRedirectTo: `${defaultUrl}/auth/callback`,
+        emailRedirectTo: `${origin}/auth/callback`,
         data: {
           name: displayName,
           state: state,

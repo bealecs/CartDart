@@ -2,21 +2,19 @@ import { createClient } from "@/utils/supabase/server";
 import { SubmitButton } from "../login/submit-button";
 import { redirect } from "next/navigation";
 import PageBackButton from "@/components/PageBackButton";
+import { headers } from "next/headers";
 
 export default function ForgotPassword() {
-  
-  const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-  
+
   const handlePasswordReset = async (formData: FormData) => {
     "use server";
 
+    const origin = headers().get("origin");
     const email = formData.get("email") as string;
     const supabase = createClient();
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${defaultUrl}/password-reset/update-password`,
+      redirectTo: `${origin}/password-reset/update-password`,
     });
     
     if (error) {
