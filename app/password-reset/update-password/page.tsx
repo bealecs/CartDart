@@ -35,7 +35,7 @@ export default function UpdatePassword() {
         action={handleUpdatePassword}
         className="flex flex-col justify-evenly my-8 h-full md:w-full max-w-md text-foreground"
       >
-        <h2 className="mx-auto text-3xl text-center text-[#663399] mt-10 mb-4">
+        <h2 className="mx-auto text-3xl text-center text-white font-semibold mt-10 mb-4">
           Update Password
         </h2>
         <div className="flex flex-col">
