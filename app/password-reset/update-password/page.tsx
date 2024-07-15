@@ -15,6 +15,7 @@ export default function UpdatePassword() {
         return;
     }
 
+    console.log("attempting to update password")
     const { error } = await supabase.auth.updateUser({
         password: password1,
       });
@@ -24,7 +25,7 @@ export default function UpdatePassword() {
       return;
     }
     console.log("Password reset")
-    redirect("/dashboard"); 
+    redirect(`${process.env.VERCEL_URL}/dashboard`); 
   };
 
 
