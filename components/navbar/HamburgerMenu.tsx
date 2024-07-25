@@ -13,7 +13,7 @@ export default function HamburgerMenu() {
 
   return (
     <div>
-      <button className="block md:hidden px-1" onClick={handleClick}>
+      <button className="block md:hidden px-2" onClick={handleClick}>
         <MenuOpenIcon fontSize="large" className="text-6xl" />
       </button>
       {menuOpen ? <div className="w-screen h-fit bg-gray-900 absolute top-0 z-10 p-4 border-b-2 border-b-white">
