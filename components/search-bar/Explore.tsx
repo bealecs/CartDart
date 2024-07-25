@@ -65,7 +65,7 @@ export default function Explore() {
 
   return (
     <Suspense fallback={<Loading />}>
-      <div className="flex flex-col items-center content-center bg-gray-900 min-h-screen p-4">
+      <div className="flex flex-col my-12 items-center content-center bg-gray-900 min-h-screen p-4">
         <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto mt-8">
           <h2 className="text-2xl text-white mb-4">Vendor Search</h2>
           <div className="flex items-center">

@@ -73,7 +73,10 @@ export default async function HomeDisplay() {
               </div>
             ))
           ) : (
-            <p className="text-gray-300">No users found</p>
+            <div>
+              <h4 className="text-3xl font-semibold text-red-400 text-center my-12">Oh no!</h4>
+            <p className="text-gray-300 font-semibold">No vendors were found in this city :(</p>
+            </div>
           )}
         </div>
       </div>

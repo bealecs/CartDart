@@ -34,7 +34,7 @@ export default function NoUserDisplay() {
             <a href="/explore">Explore local vendors</a>
             <OpenInNew className="p-1"/>
             </div>
-            <div className="mt-12 flex items-center justify-center lg:justify-evenly lg:w-5/12 lg:mx-auto">
+            <div className="mt-12 flex items-center justify-evenly lg:w-5/12 lg:mx-auto">
               <a
                 href="/signup"
                 className="rounded-md bg-gray-300 px-3.5 py-2.5 text-sm font-semibold text-btn-background shadow-sm hover:bg-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
