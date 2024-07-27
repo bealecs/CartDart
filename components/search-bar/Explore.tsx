@@ -1,6 +1,6 @@
 "use client";
 import { Suspense, useState } from "react";
-import FetchSearchResults from "./FetchSearchResults";
+import FetchSearchResults, { FetchSearchResultsByCity, FetchSearchResultsByCuisine } from "./FetchSearchResults";
 import MapComponent from "../edit-profile-section/Geolocation/MapComponent";
 import Image from "next/image";
 import SearchIcon from "@mui/icons-material/Search";
@@ -27,6 +27,7 @@ interface SearchResults {
 }
 
 export default function Explore() {
+  const [searchSetting, setSearchSetting] = useState<string>("name");
   const [query, setQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SearchResults[]>([]);
   const [startedSearch, setStartedSearch] = useState<number>(0);
@@ -40,10 +41,11 @@ export default function Explore() {
     e.preventDefault();
     setStartedSearch(startedSearch + 1);
     setIsLoading(true); // Set loading to true when search starts
-    const result = await FetchSearchResults(query);
-    if (result) {
+    if(searchSetting === "name") {
+    const nameSearchResult = await FetchSearchResults(query);
+    if (nameSearchResult) {
       setSearchResults(
-        result.map((resultItem) => ({
+        nameSearchResult.map((resultItem) => ({
           id: resultItem.id,
           name: resultItem.name,
           email: resultItem.email,
@@ -60,14 +62,96 @@ export default function Explore() {
         }))
       );
     }
+  } else if (searchSetting === "city") {
+    const citySearchResult = await FetchSearchResultsByCity(query);
+    if (citySearchResult) {
+      setSearchResults(
+        citySearchResult.map((resultItem) => ({
+          id: resultItem.id,
+          name: resultItem.name,
+          email: resultItem.email,
+          bio: resultItem.bio,
+          pfp: resultItem.pfp,
+          Latitude_Longitude_Location: resultItem.Latitude_Longitude_Location,
+          vendor_type: resultItem.vendor_type,
+          menus: resultItem.menus,
+          special_today: resultItem.special_today,
+          state: resultItem.state,
+          city: resultItem.city,
+          vendor: resultItem.vendor,
+          favorites: resultItem.favorites,
+        }))
+      );
+    }
+  } else if (searchSetting === "cuisine") {
+    const cuisineSearchResult = await FetchSearchResultsByCuisine(query);
+    if (cuisineSearchResult) {
+      setSearchResults(
+        cuisineSearchResult.map((resultItem) => ({
+          id: resultItem.id,
+          name: resultItem.name,
+          email: resultItem.email,
+          bio: resultItem.bio,
+          pfp: resultItem.pfp,
+          Latitude_Longitude_Location: resultItem.Latitude_Longitude_Location,
+          vendor_type: resultItem.vendor_type,
+          menus: resultItem.menus,
+          special_today: resultItem.special_today,
+          state: resultItem.state,
+          city: resultItem.city,
+          vendor: resultItem.vendor,
+          favorites: resultItem.favorites,
+        }))
+      );
+    }
+  }
     setIsLoading(false); // Set loading to false after search completes
   };
 
+  const handleClick = (setting: string) => {
+    setSearchSetting(setting);
+    setQuery("");
+  }
   return (
     <Suspense fallback={<Loading />}>
       <div className="flex flex-col my-12 items-center content-center bg-gray-900 min-h-screen p-4">
         <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto mt-8">
           <h2 className="text-2xl text-white mb-4">Vendor Search</h2>
+          <div className="flex w-full justify-between my-4">
+            <div className="flex content-center">
+              <label htmlFor="name-radio" className="mx-2">Name</label>
+              <input
+                checked={searchSetting === "name"}
+                type="radio"
+                name="search-setting"
+                id="name-radio"
+                value={"name"}
+                onClick={() => handleClick("name")}
+              />
+            </div>
+            <div className="flex content-center">
+              <label htmlFor="city-radio" className="mx-2">City</label>
+              <input
+                checked={searchSetting === "city"}
+                type="radio"
+                id="city-radio"
+                name="search-setting"
+                value={"city"}
+                onClick={() => handleClick("city")}
+              />
+            </div>
+            <div className="flex content-center">
+              <label htmlFor="cuisine-radio" className="mx-2">Cuisine Type</label>
+              <input 
+                checked={searchSetting === "cuisine"}
+                type="radio"
+                id="cuisine-radio"
+                name="search-setting"
+                value={"cuisine"}
+                onClick={() => handleClick("cuisine")}
+              />
+            </div>
+          </div>
           <div className="flex items-center">
             <input
               autoFocus
@@ -76,8 +160,8 @@ export default function Explore() {
               type="text"
               value={query}
               onChange={handleChange}
-              placeholder="Search vendors by name"
-            />
+              placeholder={`Search vendors by ${searchSetting}`}
+            />      
             <button
               type="submit"
               className="bg-btn-background p-2 rounded-r-md"
@@ -86,21 +170,26 @@ export default function Explore() {
             </button>
           </div>
         </form>
-
         <div className="flex flex-wrap justify-center w-full my-8 gap-4">
           {!startedSearch && (
             <div className="my-8 mx-auto">
               <p className="text-4xl lg:text-5xl text-center md:text-4xl text-gray-300">
                 Your search starts here
               </p>
-              <Image src={"logo2.svg"} className="mx-auto" alt={"Logo for Cart Dart"} height={400} width={400} />
+              <Image
+                src={"logo2.svg"}
+                className="mx-auto"
+                alt={"Logo for Cart Dart"}
+                height={400}
+                width={400}
+              />
             </div>
           )}
           {isLoading ? (
             <div className="items-center h-screen bg-gray-900">
               <div className="text-white text-xl mb-4">Loading...</div>
               <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-white mx-auto"></div>
-            </div> 
+            </div>
           ) : searchResults.length === 0 && startedSearch ? (
             <p className="text-white">
               There were no results found for your search, please try another
