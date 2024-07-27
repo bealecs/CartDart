@@ -192,8 +192,7 @@ export default function Explore() {
             </div>
           ) : searchResults.length === 0 && startedSearch ? (
             <p className="text-white">
-              There were no results found for your search, please try another
-              vendor name
+              There were no results found for your search, please try again
             </p>
           ) : (
             searchResults.map((result: User, index) => (
