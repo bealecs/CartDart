@@ -161,6 +161,7 @@ export default function Explore() {
               value={query}
               onChange={handleChange}
               placeholder={`Search vendors by ${searchSetting}`}
+              minLength={3}
             />      
             <button
               type="submit"
