@@ -10,7 +10,7 @@ export const Navbar = () => {
           <li><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit" href="/dashboard">Home</a></li>
           <li><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit" href="/explore">Explore</a></li>
           <li><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit" href="/favorites">My Favorites</a></li>
-          <li><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit" href="https://discord.gg/7xt5eKdYc3" target="_blank" rel="ref noopener">Report an Issue</a></li>
+          <li><a className="transition duration-300 linear border-b-transparent border-b-2 hover:border-b-gray-400 hover:text-gray-400 w-fit" href="https://discord.gg/7xt5eKdYc3" target="_blank" rel="ref noopener">Contact Us</a></li>
         </ul>
         <HamburgerMenu />
         <div className="w-full pr-4">
