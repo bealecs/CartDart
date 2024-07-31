@@ -5,7 +5,7 @@ export default function NoUserDisplay() {
   return (
     <div className="bg-gray-800 overflow-hidden items-center">
       <div className="mx-auto ">
-        <div className="h-screen relative isolate overflow-hidden bg-gray-900 px-6 lg:pt-0 pt-16 shadow-2xl sm:rounded-3xl">
+        <div className="h-screen relative isolate overflow-hidden bg-gray-900 px-6 shadow-2xl sm:rounded-3xl">
           <svg
             viewBox="0 0 1024 1024"
             className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
