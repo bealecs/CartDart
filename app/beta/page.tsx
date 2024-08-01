@@ -114,8 +114,7 @@ export default function Beta() {
                     <h3 className="my-4 text-2xl">Cart Dart Mission Statement</h3>
                     <p className="my-4">
                       At Cart Dart, our mission is
-                      to make finding local food vendors effortless and
-                      enjoyable.</p>
+                      to make finding local food vendors effortless.</p>
                       <p className="my-4"> We are committed to providing a
                       platform that allows food vendors to share their locations, menus, and special deals
                       with ease. </p>
