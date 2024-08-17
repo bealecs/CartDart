@@ -1,5 +1,6 @@
 import OpenInNew from "@mui/icons-material/OpenInNew";
 import Image from "next/image";
+import CartPusher from "../svg-components/CartPusher";
 
 export default function NoUserDisplay() {
   return (
@@ -29,7 +30,7 @@ export default function NoUserDisplay() {
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Find Favorite Food Carts, Fast
             </h2>
-            <Image src={"logo2.svg"} alt="Logo of Cart Dart" className="mx-auto" height={400} width={400} />            
+            <CartPusher />
             <div className="flex justify-center">
             <a href="/explore">Explore local vendors</a>
             <OpenInNew className="p-1"/>

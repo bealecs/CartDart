@@ -115,10 +115,10 @@ export default function Beta() {
                     <p className="my-4">
                       At Cart Dart, our mission is
                       to make finding local food vendors effortless.</p>
-                      <p className="my-4"> We are committed to providing a
+                      <p className="my-4"> Cart Dart is committed to providing a
                       platform that allows food vendors to share their locations, menus, and special deals
                       with ease. </p>
-                      <p className="my-4">Our goal is to help individuals quickly and
+                      <p className="my-4">The goal is to help individuals quickly and
                       easily discover and support local food trucks and food
                       stands, especially when visiting new cities. By connecting
                       people to the local food scene, we aim to enhance the
