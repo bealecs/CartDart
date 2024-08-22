@@ -23,7 +23,7 @@ export default async function AuthButton() {
   };
 
   return user ? (
-    <div className="items-center gap-2 flex justify-end mb-2">
+    <div className="items-center gap-2 flex justify-end mb-2 mx-2">
       <a
         href="/profile"
         className="transition duration-300 linear border-2 border-transparent hover:text-gray-400 hover:border-b-gray-400"
