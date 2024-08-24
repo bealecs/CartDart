@@ -33,6 +33,30 @@ export default function Explore() {
   const [startedSearch, setStartedSearch] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false); // New loading state
 
+  const foodVariations = [
+    "American",
+    "Brazilian",
+    "Caribbean",
+    "Chinese",
+    "Cuban",
+    "Dessert",
+    "Ethiopian",
+    "Filipino",
+    "French",
+    "Greek",
+    "Hawaiian",
+    "Indian",
+    "Italian",
+    "Japanese",
+    "Korean",
+    "Mediterranean",
+    "Mexican",
+    "Middle Eastern",
+    "Peruvian",
+    "Thai",
+    "Vietnamese",
+  ];
+
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
@@ -153,7 +177,9 @@ export default function Explore() {
             </div>
           </div>
           <div className="flex items-center">
-            <input
+            {searchSetting === "cuisine" ? <select className="flex-grow text-black p-2 rounded-1-md" value={query} onChange={(e) => setQuery(e.target.value)}>
+              {foodVariations.map((foodType) => <option key={foodType} value={foodType}>{foodType}</option>)}
+            </select> :  <input
               autoFocus
               id="query"
               className="flex-grow text-black p-2 rounded-l-md"
@@ -162,7 +188,7 @@ export default function Explore() {
               onChange={handleChange}
               placeholder={`Search vendors by ${searchSetting}`}
               minLength={3}
-            />      
+            />}      
             <button
               type="submit"
               className="bg-btn-background p-2 rounded-r-md"
