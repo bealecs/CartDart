@@ -47,7 +47,7 @@ export default async function HomeDisplay() {
                         width={50}
                         src={user.pfp ? user.pfp : "/default-pfp.svg"}
                         alt="Profile picture"
-                        className="rounded-full mr-2"
+                        className="rounded-full mr-2 h-[50px] w-[50px] object-cover"
                       />
                       <div className="flex flex-col">
                         <a

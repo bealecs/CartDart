@@ -50,7 +50,7 @@ export default function GeoLocationComponent(coords: Geolocation) {
   };
 
   return (
-    <div className="border border-gray-700 rounded-lg shadow-lg w-full md:w-8/12 lg:w-4/12 mx-auto bg-gray-800 my-8 lg:my-0">
+    <div className="border border-gray-700 rounded-lg shadow-lg w-full md:w-8/12 lg:w-4/12 bg-gray-800 my-8 lg:my-0">
       <div className="flex flex-col p-4">
         <h4 className="text-2xl font-semibold">My Current Location:</h4>
         <div className="flex my-4">

@@ -32,8 +32,8 @@ export default async function VendorProfile() {
             </div>
           </div>
           <BioForm bio={currentUser.bio} />
-          <div className="lg:flex  w-full lg:my-12 border-t py-4 bg-gray-900 p-4">
-            <div className="border border-gray-700 rounded-lg shadow-lg w-full md:w-8/12 lg:w-4/12 bg-gray-800 mx-auto">
+          <div className="lg:flex lg:justify-evenly  w-full lg:w-10/12 mx-auto lg:my-12 border-t py-4 bg-gray-900 p-4">
+            <div className="border border-gray-700 rounded-lg shadow-lg w-full md:w-8/12 lg:w-4/12 bg-gray-800">
               <TodaySpecial special_today={currentUser.special_today} />
               <AddMenu menus={currentUser.menus} />
             </div>

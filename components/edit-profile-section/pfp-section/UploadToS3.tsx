@@ -73,7 +73,7 @@ export default function UploadToS3({ pfp }: { pfp: string }) {
                 height={65}
                 src={previewURL}
                 alt="preview of image to be uploaded"
-                className="p-2 rounded-full"
+                className="p-2 rounded-full h-[65px] w-[65px] object-cover"
               />
             </div>
           )}
