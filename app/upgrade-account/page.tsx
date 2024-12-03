@@ -9,11 +9,11 @@ export default function UpgradeAccount() {
         <h1 className="text-4xl font-semibold">Upgrade your account</h1>
         <aside className="my-2">Pay $2.99 one time and become a Vendor</aside>
         <Image
-          src={"/logo.jpeg"}
+          src={"/logo.png"}
           alt="Cart Dart Logo"
-          height={250}
-          width={250}
-          className="mx-auto rounded-lg mt-8"
+          height={400}
+          width={400}
+          className="mx-auto rounded-lg"
         />
         <div className="bg-btn-background transition duration-300 linear hover:bg-btn-background-hover w-10/12 mx-auto rounded-lg my-8 p-4 text-xl">
           <a href="https://buy.stripe.com/14k14RaN6d3M93O144" target="_blank" rel="noopener noreffer" className="p-4 w-full">Upgrade Now</a>

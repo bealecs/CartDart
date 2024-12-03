@@ -3,7 +3,7 @@ import Image from "next/image";
 import FetchPFP from "./FetchPFP";
 
 interface PFP {
-  size: number;
+  size?: number;
   className?: string;
 }
 export default async function PFP({ size, className }: PFP) {
@@ -14,8 +14,8 @@ export default async function PFP({ size, className }: PFP) {
   return (
     <div>
       <Image
-        width={size}
-        height={size}
+        width={size ? size: 150}
+        height={size ? size : 150}
         src={pfp ? pfp + "?v=" + timestamp : "/default-pfp.svg"}
         alt="User Profile Picture"
         className={className}

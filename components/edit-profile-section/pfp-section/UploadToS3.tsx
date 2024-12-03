@@ -5,7 +5,6 @@ import UpdatePFP from "./UpdatePFP";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
-import PFP from "./PFP";
 import FetchPFP from "./FetchPFP";
 
 export default function UploadToS3({ pfp }: { pfp: string }) {
@@ -57,7 +56,7 @@ export default function UploadToS3({ pfp }: { pfp: string }) {
   return (
     <div className="mx-2">
       {!editting ? (<>
-        <PFP size={150} className="rounded-full h-[150px] w-[150px] object-cover"/>
+        <Image src={pfp} width={150} height={150} alt="user profile picture" className="rounded-full h-[150px] w-[150px] object-cover"/>
         <button className="block w-fit mx-auto text-center my-2" onClick={() => setEditting(!editting)}><UploadFileIcon fontSize="medium" /></button>
       </>
       ) : (

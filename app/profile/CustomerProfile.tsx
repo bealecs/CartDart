@@ -1,6 +1,4 @@
-import BioForm from "@/components/edit-profile-section/bio-section/BioForm";
 import UploadToS3 from "@/components/edit-profile-section/pfp-section/UploadToS3";
-import VendorTypeDisplay from "@/components/edit-profile-section/vendor-type-section/VendorTypeDisplay";
 import ChangeUsername from "@/components/edit-profile-section/username-section/ChangeUsername"
 import EditCityState from "@/components/edit-profile-section/city-state/EditCityState";
 import { Suspense } from "react";
@@ -26,10 +24,10 @@ export default async function CustomerProfile() {
                 city={currentUser.city}
                 state={currentUser.state}
               />
-              <VendorTypeDisplay vendor_type={currentUser.vendor_type} />
+              {/* <VendorTypeDisplay vendor_type={currentUser.vendor_type} /> */}
             </div>
           </div>
-          <BioForm bio={currentUser.bio} />
+          {/* <BioForm bio={currentUser.bio} /> */}
           <div className="border-t-2 ">
             <h4 className="text-2xl text-center font-semibold mt-2">My Favorites:</h4>
             <FavoritesPageComponent />

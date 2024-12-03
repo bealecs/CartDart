@@ -58,7 +58,7 @@ export default function VendorTypeDisplay(type: VendorType) {
         <div className="flex">
           <div className="flex items-center border-2 border-btn-background rounded-md text-btn-background">
             <RestaurantMenuIcon fontSize="small" />
-            <p className="items-center content-center px-2">
+            <p className="items-center content-center px-2 w-max">
               {!vendorType
                 ? "Not Selected"
                 : vendorType.replace(/_/g, " ")}
