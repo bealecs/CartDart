@@ -83,7 +83,7 @@ export default async function FavoritesPageComponent() {
               width={50}
               src={profile.pfp ? profile.pfp : "/default-pfp.svg"}
               alt="Profile picture"
-              className="rounded-full mr-2"
+              className="rounded-full mr-2 h-[50px] w-[50px] object-cover"
             />
             <div className="flex flex-col">
               <a
