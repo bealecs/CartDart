@@ -167,7 +167,7 @@ export default function CitySelector() {
         <select
           autoFocus
           id="state"
-          className="text-black w-full md:w-8/12 rounded-md"
+          className="text-black w-full md:w-8/12 rounded-md p-2 focus:ring-2 focus:ring-blue-500"
           name="state"
           onChange={handleStateChange}
           required
@@ -183,7 +183,7 @@ export default function CitySelector() {
         </select>
         <select
           id="city"
-          className="text-black mt-1 w-full md:w-8/12 rounded-md"
+          className="text-black mt-1 w-full md:w-8/12 rounded-md p-2 focus:ring-2 focus:ring-blue-500"
           name="city"
           disabled={!selectedState}
           required

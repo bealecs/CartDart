@@ -58,7 +58,7 @@ export default function Signup({
           <label htmlFor="userType">Which type of user are you?:</label>
           <select
             id="state"
-            className="text-black p-1 w-full md:w-8/12 rounded-md mb-2"
+            className="text-black p-2 w-full md:w-8/12 rounded-md mb-2 focus:ring-2 focus:ring-blue-500"
             name="userType"
             required
           >
@@ -75,7 +75,7 @@ export default function Signup({
             Display Name:
           </label>
           <input
-            className="rounded-md p-1 bg-inherit border"
+            className="rounded-md p-1 bg-inherit border focus:ring-2 focus:ring-blue-500"
             name="displayName"
             placeholder="Display name"
             required
@@ -86,7 +86,7 @@ export default function Signup({
             Email:
           </label>
           <input
-            className="rounded-md p-1 bg-inherit border"
+            className="rounded-md p-1 bg-inherit border focus:ring-2 focus:ring-blue-500"
             name="email"
             placeholder="you@example.com"
             required
@@ -97,7 +97,7 @@ export default function Signup({
             Password:
           </label>
           <input
-            className="rounded-md p-1 bg-inherit border"
+            className="rounded-md p-1 bg-inherit border focus:ring-2 focus:ring-blue-500"
             type="password"
             name="password"
             placeholder="••••••••••••••••"
