@@ -42,7 +42,7 @@ export default async function Page({
       <Image
           width={150}
           height={150}
-          className="rounded-full border-4 border-gray-700 lg:hidden"
+          className="rounded-full border-4 border-gray-700 h-[150px] w-[150px] object-cover lg:hidden"
           src={profile.pfp ? profile.pfp : "/default-pfp.svg"}
           alt={profile.name}
         />
@@ -51,7 +51,7 @@ export default async function Page({
           <Image
           width={150}
           height={150}
-          className="rounded-full border-4 border-gray-700 hidden lg:block"
+          className="rounded-full border-4 w-[150px] h-[150px] object-cover border-gray-700 hidden lg:block"
           src={profile.pfp ? profile.pfp : "/default-pfp.svg"}
           alt={profile.name}
         />

@@ -254,7 +254,7 @@ export default function Explore() {
                         width={50}
                         src={result.pfp ? result.pfp : "/default-pfp.svg"}
                         alt="Profile picture"
-                        className="rounded-full mr-2"
+                        className="rounded-full mr-2 w-[50px] h-[50px] object-cover"
                       />
                       <div className="flex flex-col">
                         <a

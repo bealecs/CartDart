@@ -29,7 +29,7 @@ export default function NoUserDisplay() {
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Find Favorite Food, Fast
             </h2>
-            <div className="flex justify-center h-[700px] items-center">
+            <div className="flex justify-center items-center">
               <CartPusher />
             </div>
             <div className="flex justify-center">
