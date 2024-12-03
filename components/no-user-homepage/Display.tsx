@@ -4,7 +4,7 @@ export default function NoUserDisplay() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white px-4">
       {/* Title */}
-      <h1 className="text-4xl font-bold text-center mb-8 sm:text-5xl">
+      <h1 className="text-4xl font-bold text-center lg:mb-8 sm:text-5xl">
         Find Favorite Food, Fast
       </h1>
 
