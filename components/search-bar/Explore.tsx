@@ -177,12 +177,12 @@ export default function Explore() {
             </div>
           </div>
           <div className="flex items-center">
-            {searchSetting === "cuisine" ? <select className="flex-grow text-black p-2 rounded-1-md" value={query} onChange={(e) => setQuery(e.target.value)}>
+            {searchSetting === "cuisine" ? <select className="flex-grow text-black p-3 rounded-l-md outline-none focus:ring-2 focus:ring-blue-500" value={query} onChange={(e) => setQuery(e.target.value)}>
               {foodVariations.map((foodType) => <option key={foodType} value={foodType}>{foodType}</option>)}
             </select> :  <input
               autoFocus
               id="query"
-              className="flex-grow text-black p-2 rounded-l-md"
+              className="flex-grow text-black p-2 outline-none focus:ring-2 focus:ring-blue-500 rounded-l-md"
               type="text"
               value={query}
               onChange={handleChange}
@@ -204,7 +204,7 @@ export default function Explore() {
                 Your search starts here
               </p>
               <Image
-                src={"logo2.svg"}
+                src={"/logo.png"}
                 className="mx-auto"
                 alt={"Logo for Cart Dart"}
                 height={400}
