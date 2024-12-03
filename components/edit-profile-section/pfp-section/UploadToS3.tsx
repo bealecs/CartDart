@@ -6,6 +6,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import PFP from "./PFP";
+import FetchPFP from "./FetchPFP";
 
 export default function UploadToS3({ pfp }: { pfp: string }) {
   const [file, setFile] = useState(null);
@@ -42,7 +43,8 @@ export default function UploadToS3({ pfp }: { pfp: string }) {
         // Handle response from the server
         UpdatePFP();
         console.log("Image uploaded successfully:", response);
-        location.reload();
+        setEditting(false);
+        FetchPFP();
       } catch (error) {
         console.error("Error uploading image:", error);
       }
