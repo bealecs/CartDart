@@ -1,12 +1,10 @@
 export default function CartPusher() {
   return (
     <svg
-      width="774"
-      height="729"
+      className="w-full h-auto" // Tailwind classes to make the SVG responsive
       viewBox="0 0 774 729"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      href="http://www.w3.org/1999/xlink"
     >
       <rect width="774" height="729" fill="url(#pattern0_8_8)" />
       <line
