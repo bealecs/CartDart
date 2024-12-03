@@ -6,7 +6,8 @@ export default async function FetchSearchResults(query: string) {
   const { data, error } = await supabase
     .from('profiles')
     .select()
-    .textSearch('name', `${query}`);
+    .textSearch('name', `${query}`)
+    .eq("vendor", true);
 
   if (error) {
     console.log(error);
@@ -19,7 +20,8 @@ export async function FetchSearchResultsByCity(city: string) {
   const { data, error } = await supabase
   .from('profiles')
   .select()
-  .textSearch('city', `${city}`);
+  .textSearch('city', `${city}`)
+  .eq("vendor", true);
 
 if (error) {
   console.log(error);
@@ -32,7 +34,8 @@ export async function FetchSearchResultsByCuisine(cuisine: string) {
   const { data, error } = await supabase
   .from('profiles')
   .select()
-  .textSearch('vendor_type', `${cuisine}`);
+  .textSearch('vendor_type', `${cuisine}`)
+  .eq("vendor", true);
 
 if (error) {
   console.log(error);
